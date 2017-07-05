@@ -11,7 +11,7 @@ public abstract class Command {
         this.heap = Heap.getInstance();
     }
 
-    public abstract void run(String arg);
+    public abstract void run(Integer arg);
 
     public String getName() {
 
