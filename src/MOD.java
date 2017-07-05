@@ -6,7 +6,7 @@ public class MOD extends Operation {
     }
 
     @Override
-    public void run(String arg) {
+    public void run(Integer arg) {
 
         int x = this.stack.pop();
         int y = this.stack.pop();

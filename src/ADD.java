@@ -7,7 +7,7 @@ public class ADD extends Operation {
     }
 
     @Override
-    public void run(String arg) {
+    public void run(Integer arg) {
 
         /*if (arg.isEmpty() || arg.length() > 3) {
             throw new IllegalArgumentException("Wrong Argument for " + this.name + " Arg:" + arg);
