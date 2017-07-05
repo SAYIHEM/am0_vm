@@ -12,4 +12,9 @@ public abstract class Operation {
         return this.name;
     }
 
+    public void increment() {
+
+        this.stackPointer.increment();
+    }
+
 }
