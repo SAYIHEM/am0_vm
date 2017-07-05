@@ -9,5 +9,6 @@ public class LOAD extends Operation{
     public void run(Integer arg) {
 
         this.stack.push(this.heap.LOAD(arg));
+        increment();
     }
 }

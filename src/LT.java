@@ -12,5 +12,6 @@ public class LT extends Operation {
         int y = this.stack.pop();
 
         this.stack.push(x < y ? 1 : 0);
+        increment();
     }
 }

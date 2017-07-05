@@ -14,7 +14,7 @@ public class AM0Command implements Command {
 
         // Exceptions
         if (command == null) throw new NullPointerException("Command to execute was NULL!");
-        if (command.isEmpty()) throw new IllegalArgumentException("");
+        if (command.isEmpty()) throw new IllegalArgumentException("Command was empty!");
 
         String[] args = command.split(" ");
 
@@ -36,7 +36,5 @@ public class AM0Command implements Command {
 
 
         this.instructions.get(args[0]).run(cmd);
-
-
     }
 }

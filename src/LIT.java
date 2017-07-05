@@ -12,5 +12,6 @@ public class LIT  extends Operation {
     public void run(Integer arg) {
 
         this.stack.push(arg);
+        increment();
     }
 }

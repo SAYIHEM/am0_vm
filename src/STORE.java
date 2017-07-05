@@ -13,5 +13,6 @@ public class STORE extends Operation{
 
         Integer value = this.stack.pop();
         this.heap.STORE(arg, value);
+        increment();
     }
 }

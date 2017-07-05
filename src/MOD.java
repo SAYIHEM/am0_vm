@@ -12,5 +12,6 @@ public class MOD extends Operation {
         int y = this.stack.pop();
 
         this.stack.push(x % y);
+        increment();
     }
 }
