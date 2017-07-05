@@ -12,4 +12,9 @@ public abstract class Command {
     }
 
     public abstract void run(String arg);
+
+    public String getName() {
+
+        return this.name;
+    }
 }
