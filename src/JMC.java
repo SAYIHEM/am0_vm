@@ -12,6 +12,6 @@ public class JMC extends Operation {
     public void run(Integer arg) {
         Integer value = this.stack.pop();
         if(value == 0)
-            this.stackPointer()
+            this.stackPointer.setValue(arg);
     }
 }
