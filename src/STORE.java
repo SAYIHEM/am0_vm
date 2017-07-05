@@ -5,7 +5,6 @@ public class STORE extends Operation{
 
     public STORE() {
 
-        super();
         this.name = "STORE";
     }
 
