@@ -1,13 +1,10 @@
-import java.util.HashMap;
 import java.util.Map;
 
 public class AM0Command implements Command {
 
-    private Map<String, Operation> instructions = new HashMap<>();
+    private Map<String, Operation> instructions = AM0Instructions.getInstructions();
 
-    public AM0Command() {
-
-    }
+    public AM0Command() {}
 
     @Override
     public void compileAndExecute(String command) {
@@ -34,7 +31,7 @@ public class AM0Command implements Command {
         // Exceptions
         if (!this.instructions.containsKey(args[0])) throw new IllegalArgumentException("Wrong OperationName in Command: " + command);
 
-
+        // Run Command
         this.instructions.get(args[0]).run(cmd);
     }
 }
