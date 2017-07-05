@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 
+
+
+
 /**
  * Created by X0R_R0X on 7/5/2017.
  */
 public class Stack {
     private static Stack instance = new Stack();
-    public Stack getInstance()
+    public static Stack getInstance()
     {
         return instance;
     }

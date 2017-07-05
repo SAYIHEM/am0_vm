@@ -6,7 +6,7 @@ import java.util.ArrayList;
  */
 public class Heap {
     private static Heap instance = new Heap();
-    public Heap getInstance()
+    public static Heap getInstance()
     {
         return instance;
     }
