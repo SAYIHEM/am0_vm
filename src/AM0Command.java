@@ -8,5 +8,6 @@ public class AM0Command implements Command {
     @Override
     public void compileAndExecute(String argument) {
 
+        String args
     }
 }

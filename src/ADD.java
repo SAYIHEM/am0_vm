@@ -2,7 +2,6 @@ public class ADD extends Operation {
 
     public ADD() {
 
-        super();
         this.name = "ADD";
     }
 

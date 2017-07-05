@@ -1,15 +1,8 @@
 public abstract class Operation {
 
     protected String name;
-    protected Stack stack;
-    protected Heap heap;
-
-
-    public Operation() {
-
-        this.stack = Stack.getInstance();
-        this.heap = Heap.getInstance();
-    }
+    protected Stack stack = Stack.getInstance();
+    protected Heap heap = Heap.getInstance();
 
     public abstract void run(Integer arg);
 
