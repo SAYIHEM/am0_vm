@@ -2,7 +2,6 @@ public class LOAD extends Operation{
 
     public LOAD() {
 
-        super();
         this.name = "LOAD";
     }
 
