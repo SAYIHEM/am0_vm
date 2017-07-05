@@ -1,4 +1,4 @@
-public class GE extends Command {
+public class GE extends Operation {
 
     public GE() {
 

@@ -1,4 +1,4 @@
-public class DIV extends Command {
+public class DIV extends Operation {
 
     public DIV() {
 

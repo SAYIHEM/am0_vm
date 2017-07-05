@@ -1,4 +1,4 @@
-public class ADD extends Command {
+public class ADD extends Operation {
 
     public ADD() {
 

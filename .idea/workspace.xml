@@ -2,14 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93abb51e-3caa-46e9-904b-d5e5060108fc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/EQ.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GE.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GT.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/LE.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/LT.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MOD.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/NE.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AM0Command.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/LOAD.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Operation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ADD.java" afterPath="$PROJECT_DIR$/src/ADD.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Command.java" afterPath="$PROJECT_DIR$/src/Command.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DIV.java" afterPath="$PROJECT_DIR$/src/DIV.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EQ.java" afterPath="$PROJECT_DIR$/src/EQ.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GE.java" afterPath="$PROJECT_DIR$/src/GE.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GT.java" afterPath="$PROJECT_DIR$/src/GT.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LE.java" afterPath="$PROJECT_DIR$/src/LE.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LT.java" afterPath="$PROJECT_DIR$/src/LT.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MOD.java" afterPath="$PROJECT_DIR$/src/MOD.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MUL.java" afterPath="$PROJECT_DIR$/src/MUL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NE.java" afterPath="$PROJECT_DIR$/src/NE.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SUB.java" afterPath="$PROJECT_DIR$/src/SUB.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,8 +53,8 @@
       <file leaf-file-name="GT.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="14" selection-end-column="5" />
+            <state relative-caret-position="19">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -62,11 +70,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GE.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GE.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GE.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="285">
+              <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LOAD.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/LOAD.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -82,11 +100,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Heap.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Heap.java">
+      <file leaf-file-name="Operation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Operation.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
-              <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+              <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -95,18 +113,18 @@
       <file leaf-file-name="Command.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Command.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="19" />
+            <state relative-caret-position="19">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Stack.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Stack.java">
+      <file leaf-file-name="AM0Command.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AM0Command.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="26" column="24" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="38">
+              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -133,7 +151,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Operation.java" />
         <option value="$PROJECT_DIR$/src/Commands/Command.java" />
         <option value="$PROJECT_DIR$/src/Commands/ADD.java" />
         <option value="$PROJECT_DIR$/src/Stack.java" />
@@ -141,7 +158,6 @@
         <option value="$PROJECT_DIR$/src/ADD.java" />
         <option value="$PROJECT_DIR$/src/MUL.java" />
         <option value="$PROJECT_DIR$/src/SUB.java" />
-        <option value="$PROJECT_DIR$/src/Command.java" />
         <option value="$PROJECT_DIR$/src/DIV.java" />
         <option value="$PROJECT_DIR$/src/MOD.java" />
         <option value="$PROJECT_DIR$/src/EQ.java" />
@@ -150,6 +166,10 @@
         <option value="$PROJECT_DIR$/src/GT.java" />
         <option value="$PROJECT_DIR$/src/LE.java" />
         <option value="$PROJECT_DIR$/src/GE.java" />
+        <option value="$PROJECT_DIR$/src/LOAD.java" />
+        <option value="$PROJECT_DIR$/src/Trim.java" />
+        <option value="$PROJECT_DIR$/src/Operation.java" />
+        <option value="$PROJECT_DIR$/src/Command.java" />
       </list>
     </option>
   </component>
@@ -734,7 +754,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1499276030634</updated>
-      <workItem from="1499276035358" duration="6523000" />
+      <workItem from="1499276035358" duration="8736000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1499276896480</created>
@@ -771,11 +791,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499281678692</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="arithmetic and logical commands">
+      <created>1499282635785</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1499282635785</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6523000" />
+    <option name="totallyTimeSpent" value="8736000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="739" extended-state="6" />
@@ -796,7 +823,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="GhcMod" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20378788" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Cabal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -855,10 +882,13 @@
     <MESSAGE value="init" />
     <MESSAGE value="command interface" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="arithmetic and logical commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="arithmetic and logical commands" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -870,7 +900,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Command.java">
+    <entry file="file://$PROJECT_DIR$/src/Operation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
@@ -914,14 +944,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -982,14 +1004,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/LE.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -998,10 +1012,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/LOAD.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Trim.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GE.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Operation.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
-          <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AM0Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>

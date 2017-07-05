@@ -1,4 +1,4 @@
-public class SUB extends Command {
+public class SUB extends Operation {
 
     public SUB() {
 

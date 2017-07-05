@@ -1,4 +1,4 @@
-public class MOD extends Command {
+public class MOD extends Operation {
 
     public MOD() {
 

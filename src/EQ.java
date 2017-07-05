@@ -1,4 +1,4 @@
-public class EQ extends Command {
+public class EQ extends Operation {
 
     public EQ() {
 

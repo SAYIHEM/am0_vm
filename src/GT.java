@@ -1,4 +1,4 @@
-public class GT extends Command {
+public class GT extends Operation {
 
     public GT() {
 

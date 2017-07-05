@@ -1,4 +1,4 @@
-public class MUL extends Command {
+public class MUL extends Operation {
 
     public MUL() {
 

@@ -1,4 +1,4 @@
-public class LE extends Command {
+public class LE extends Operation {
 
     public LE() {
 
