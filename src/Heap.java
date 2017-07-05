@@ -11,6 +11,21 @@ public class Heap {
         return instance;
     }
 
-    private Integer[] heap = new Integer[100];
+    private final Integer ADDRESS_MAX = 0xFFFF;
 
+    private Integer[] heap = new Integer[ADDRESS_MAX];
+
+    public void STORE(Integer address, Integer value)
+    {
+        if(address < 0 || address >= ADDRESS_MAX)
+            throw new StackException("STORE error. address out of bounds!");
+        heap[address] = value;
+    }
+
+    public Integer LOAD(Integer address)
+    {
+        if(address < 0 || address >= ADDRESS_MAX)
+            throw new StackException("READ error. address out of bounds!");
+        return heap[address];
+    }
 }
