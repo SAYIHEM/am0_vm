@@ -1,8 +1,9 @@
+import java.util.HashMap;
 import java.util.Map;
 
 public class AM0Instructions {
 
-    private static Map<String, Operation> instructions;
+    private static Map<String, Operation> instructions = new HashMap<>();
     private static AM0Instructions instance = null;
 
     private AM0Instructions() {

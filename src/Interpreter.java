@@ -8,9 +8,9 @@ public class Interpreter {
 
     public static void main(String[] argv) {
 
-        System.out.println("Program start..");
+        System.out.println("Program start...");
 
-        String[] program = {
+        String[] program1 = {
                 "READ 1",
                 "READ 2",
                 "LOAD 1",
@@ -25,15 +25,30 @@ public class Interpreter {
                 "WRITE 3"
         };
 
+        String[] program2 = {
+                "READ 1",
+                "LOAD 1",
+                "LIT 1",
+                "GT",
+                "JMC 11",
+                "LOAD 1",
+                "LIT 2",
+                "DIV",
+                "STORE 1",
+                "WRITE 1",
+                "JMP 1"
+        };
+
         StackPointer stackPointer = StackPointer.getInstance();
         AM0Command command = new AM0Command();
 
 
-        while(stackPointer.getValue() < program.length) {
+        while(stackPointer.getValue() < program2.length) {
 
-            command.compileAndExecute(program[stackPointer.getValue()]);
+            System.out.println(program2[stackPointer.getValue()]);
+            command.compileAndExecute(program2[stackPointer.getValue()]);
         }
 
-        System.out.println("Program exec..");
+        System.out.println("Program exec...");
     }
 }

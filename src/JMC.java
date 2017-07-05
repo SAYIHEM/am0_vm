@@ -11,7 +11,14 @@ public class JMC extends Operation {
     @Override
     public void run(Integer arg) {
         Integer value = this.stack.pop();
-        if(value == 0)
+        if(value == 0) {
+
             this.stackPointer.setValue(arg);
+
+        } else {
+
+            increment();
+        }
+
     }
 }
