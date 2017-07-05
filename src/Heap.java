@@ -11,6 +11,15 @@ public class Heap {
         return instance;
     }
 
-    private Integer[] heap = new Integer[100];
+    private Integer[] heap = new Integer[0xFFFF];
 
+    public void STORE(Integer address, Integer value)
+    {
+        heap[address] = value;
+    }
+
+    public Integer LOAD(Integer address)
+    {
+        return heap[address];
+    }
 }
