@@ -18,7 +18,7 @@ public class Stack {
         int i = stack.size() - 1;
         if(i < 0)
         {
-            throw new StackExceptions("negative stackpointer! stack empty.");
+            throw new StackException("negative stackpointer! stack empty.");
         }
         Integer value = stack.get(i);
         stack.remove(i);
