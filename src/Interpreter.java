@@ -1,6 +1,3 @@
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 /**
  * Created by X0R_R0X on 7/6/2017.
  */
@@ -42,13 +39,23 @@ public class Interpreter {
         StackPointer stackPointer = StackPointer.getInstance();
         AM0Command command = new AM0Command();
 
+        String[] program = program1;
 
-        while(stackPointer.getValue() < program2.length) {
+        if (argv.length != 0) {
 
-            System.out.println(program2[stackPointer.getValue()]);
-            command.compileAndExecute(program2[stackPointer.getValue()]);
+            program = argv[0].split(",");
         }
 
+        while(stackPointer.getValue() < program.length) {
+
+            System.out.println(program[stackPointer.getValue()]);
+            command.compileAndExecute(program[stackPointer.getValue()]);
+        }
+
+
+
         System.out.println("Program exec...");
+
+        // Program command line Input: "READ 1,LOAD 1,LIT 1,GT,JMC 11,LOAD 1,LIT 2,DIV,STORE 1,WRITE 1,JMP 1"
     }
 }
