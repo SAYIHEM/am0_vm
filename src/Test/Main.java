@@ -36,16 +36,24 @@ public class Main {
                 "JMC 11",
                 "LOAD 1",
                 "LIT 2",
-                "DIV",
+                "Logical.DIV",
                 "STORE 1",
                 "WRITE 1",
                 "JMP 1"
         };
 
+        String[] program3 = {
+                "LIT 1",
+                "LIT 1",
+                "ADD",
+                "STORE 1",
+                "WRITE 1"
+        };
+
         CommandPointer stackPointer = new CommandPointer();
         AM0Interpreter command = new AM0Interpreter(new AM0Instructions());
 
-        String[] program = program1;
+        String[] program = program2;
 
         if (argv.length != 0) {
 
