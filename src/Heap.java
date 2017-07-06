@@ -1,10 +1,13 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by X0R_R0X on 7/5/2017.
  */
 public class Heap {
+
     private static Heap instance = new Heap();
     public static Heap getInstance()
     {
@@ -13,19 +16,19 @@ public class Heap {
 
     private final Integer ADDRESS_MAX = 0xFFFF;
 
-    private Integer[] heap = new Integer[ADDRESS_MAX];
+    private Map<Integer, Integer> heap = new HashMap<>();
 
     public void STORE(Integer address, Integer value)
     {
         if(address < 0 || address >= ADDRESS_MAX)
             throw new StackException("STORE error. address out of bounds!");
-        heap[address] = value;
+        heap.put(address, value);
     }
 
     public Integer LOAD(Integer address)
     {
         if(address < 0 || address >= ADDRESS_MAX)
             throw new StackException("READ error. address out of bounds!");
-        return heap[address];
+        return heap.get(address);
     }
 }
