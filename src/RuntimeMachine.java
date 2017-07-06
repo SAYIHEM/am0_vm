@@ -1,7 +1,7 @@
 /**
  * Created by X0R_R0X on 7/6/2017.
  */
-public class Interpreter {
+public class RuntimeMachine {
 
     public static void main(String[] argv) {
 
@@ -37,7 +37,7 @@ public class Interpreter {
         };
 
         StackPointer stackPointer = StackPointer.getInstance();
-        AM0Command command = new AM0Command();
+        AM0Interpreter command = new AM0Interpreter();
 
         String[] program = program1;
 
@@ -49,13 +49,10 @@ public class Interpreter {
         while(stackPointer.getValue() < program.length) {
 
             System.out.println(program[stackPointer.getValue()]);
-            command.compileAndExecute(program[stackPointer.getValue()]);
+            command.execute(program[stackPointer.getValue()]);
         }
 
 
-
-        System.out.println("Program exec...");
-
-        // Program command line Input: "READ 1,LOAD 1,LIT 1,GT,JMC 11,LOAD 1,LIT 2,DIV,STORE 1,WRITE 1,JMP 1"
+        System.out.println("Program terminated...");
     }
 }

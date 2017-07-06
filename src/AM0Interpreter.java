@@ -1,13 +1,12 @@
 import java.util.Map;
 
-public class AM0Command implements Command {
+public class AM0Interpreter {
 
     private Map<String, Operation> instructions = AM0Instructions.getInstructions();
 
-    public AM0Command() {}
+    public AM0Interpreter() {}
 
-    @Override
-    public void compileAndExecute(String command) {
+    public void execute(String command) {
 
         // Exceptions
         if (command == null) throw new NullPointerException("Command to execute was NULL!");
