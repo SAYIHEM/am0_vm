@@ -36,13 +36,13 @@ public class Main {
                 "JMC 11",
                 "LOAD 1",
                 "LIT 2",
-                "Logical.DIV",
+                "DIV",
                 "STORE 1",
                 "WRITE 1",
                 "JMP 1"
         };
 
-        CommandPointer stackPointer = CommandPointer.getInstance();
+        CommandPointer stackPointer = new CommandPointer();
         AM0Interpreter command = new AM0Interpreter(new AM0Instructions());
 
         String[] program = program1;
