@@ -42,10 +42,18 @@ public class Main {
                 "JMP 1"
         };
 
+        String[] program3 = {
+                "LIT 1",
+                "LIT 1",
+                "ADD",
+                "STORE 1",
+                "WRITE 1"
+        };
+
         CommandPointer stackPointer = CommandPointer.getInstance();
         AM0Interpreter command = new AM0Interpreter(new AM0Instructions());
 
-        String[] program = program1;
+        String[] program = program2;
 
         if (argv.length != 0) {
 

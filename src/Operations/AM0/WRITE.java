@@ -17,7 +17,7 @@ public class WRITE extends Operation {
 
     @Override
     public void run(Integer arg) {
-        System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK + "OUTPUT ->" + ANSI_RESET + " " + arg);
+        System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK + "OUTPUT ->" + ANSI_RESET + " " + heap.LOAD(arg));
         increment();
     }
 }
