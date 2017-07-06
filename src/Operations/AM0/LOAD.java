@@ -4,7 +4,7 @@ public class LOAD extends Operation {
 
     public LOAD() {
 
-        this.name = "Operations.AM0.LOAD";
+        this.name = "LOAD";
     }
 
     @Override

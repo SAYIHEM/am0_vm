@@ -6,7 +6,7 @@ public class GT extends Operation {
 
     public GT() {
 
-        this.name = "Operations.AM0.Arithmethic.GT";
+        this.name = "GT";
     }
 
     @Override

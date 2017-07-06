@@ -14,7 +14,7 @@ public class READ extends Operation {
 
     public READ()
     {
-        this.name = "Operations.AM0.READ";
+        this.name = "READ";
     }
 
     @Override

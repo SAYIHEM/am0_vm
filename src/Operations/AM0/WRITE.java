@@ -12,7 +12,7 @@ public class WRITE extends Operation {
 
     public WRITE()
     {
-        this.name = "Operations.AM0.WRITE";
+        this.name = "WRITE";
     }
 
     @Override

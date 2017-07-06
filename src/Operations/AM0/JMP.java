@@ -7,7 +7,7 @@ public class JMP extends Operation {
 
     public JMP()
     {
-        this.name = "Operations.AM0.JMP";
+        this.name = "JMP";
     }
 
     @Override
