@@ -8,10 +8,10 @@ public class SUB extends Operation {
     @Override
     public void run(Integer arg) {
 
-        int y = this.stack.pop();
-        int x = this.stack.pop();
+        int y = this.runtimeStack.pop();
+        int x = this.runtimeStack.pop();
 
-        this.stack.push(x - y);
+        this.runtimeStack.push(x - y);
         increment();
     }
 }

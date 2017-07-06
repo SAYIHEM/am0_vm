@@ -1,6 +1,6 @@
 import java.util.Map;
 
-public class AM0Interpreter {
+public class AM0Interpreter implements Interpreter {
 
     private Map<String, Operation> instructions = AM0Instructions.getInstructions();
 

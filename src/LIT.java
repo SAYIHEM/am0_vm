@@ -11,7 +11,7 @@ public class LIT  extends Operation {
     @Override
     public void run(Integer arg) {
 
-        this.stack.push(arg);
+        this.runtimeStack.push(arg);
         increment();
     }
 }

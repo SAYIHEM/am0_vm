@@ -1,9 +1,9 @@
 /**
  * Created by X0R_R0X on 7/5/2017.
  */
-public class StackPointer {
-    private static StackPointer instance = new StackPointer();
-    public static StackPointer getInstance()
+public class CommandPointer {
+    private static CommandPointer instance = new CommandPointer();
+    public static CommandPointer getInstance()
     {
         return instance;
     }

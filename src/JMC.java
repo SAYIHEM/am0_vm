@@ -10,7 +10,7 @@ public class JMC extends Operation {
 
     @Override
     public void run(Integer arg) {
-        Integer value = this.stack.pop();
+        Integer value = this.runtimeStack.pop();
         if(value == 0) {
 
             this.stackPointer.setValue(arg);

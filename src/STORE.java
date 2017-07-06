@@ -11,7 +11,7 @@ public class STORE extends Operation{
     @Override
     public void run(Integer arg) {
 
-        Integer value = this.stack.pop();
+        Integer value = this.runtimeStack.pop();
         this.heap.STORE(arg, value);
         increment();
     }

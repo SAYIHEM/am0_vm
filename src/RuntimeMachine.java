@@ -36,7 +36,7 @@ public class RuntimeMachine {
                 "JMP 1"
         };
 
-        StackPointer stackPointer = StackPointer.getInstance();
+        CommandPointer stackPointer = CommandPointer.getInstance();
         AM0Interpreter command = new AM0Interpreter();
 
         String[] program = program1;

@@ -8,7 +8,7 @@ public class LOAD extends Operation{
     @Override
     public void run(Integer arg) {
 
-        this.stack.push(this.heap.LOAD(arg));
+        this.runtimeStack.push(this.heap.LOAD(arg));
         increment();
     }
 }
