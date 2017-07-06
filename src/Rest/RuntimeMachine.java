@@ -10,32 +10,32 @@ public class RuntimeMachine {
         System.out.println("Program start...");
 
         String[] program1 = {
-                "Operations.AM0.READ 1",
-                "Operations.AM0.READ 2",
-                "Operations.AM0.LOAD 1",
-                "Operations.AM0.LOAD 2",
-                "Operations.AM0.Arithmethic.GT",
-                "Operations.AM0.JMC 9",
-                "Operations.AM0.LOAD 1",
-                "Operations.AM0.STORE 3",
-                "Operations.AM0.JMP 11",
-                "Operations.AM0.LOAD 2",
-                "Operations.AM0.STORE 3",
-                "Operations.AM0.WRITE 3"
+                "READ 1",
+                "READ 2",
+                "LOAD 1",
+                "LOAD 2",
+                "GT",
+                "JMC 9",
+                "LOAD 1",
+                "STORE 3",
+                "JMP 11",
+                "LOAD 2",
+                "STORE 3",
+                "WRITE 3"
         };
 
         String[] program2 = {
-                "Operations.AM0.READ 1",
-                "Operations.AM0.LOAD 1",
-                "Operations.AM0.LIT 1",
-                "Operations.AM0.Arithmethic.GT",
-                "Operations.AM0.JMC 11",
-                "Operations.AM0.LOAD 1",
-                "Operations.AM0.LIT 2",
-                "Operations.AM0.Logical.DIV",
-                "Operations.AM0.STORE 1",
-                "Operations.AM0.WRITE 1",
-                "Operations.AM0.JMP 1"
+                "READ 1",
+                "LOAD 1",
+                "LIT 1",
+                "GT",
+                "JMC 11",
+                "LOAD 1",
+                "LIT 2",
+                "Logical.DIV",
+                "STORE 1",
+                "WRITE 1",
+                "JMP 1"
         };
 
         CommandPointer stackPointer = CommandPointer.getInstance();
