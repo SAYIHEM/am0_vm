@@ -7,7 +7,7 @@ public class STORE extends Operation {
 
     public STORE() {
 
-        this.name = "Operations.AM0.STORE";
+        this.name = "STORE";
     }
 
     @Override

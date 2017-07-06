@@ -6,7 +6,7 @@ public class GE extends Operation {
 
     public GE() {
 
-        this.name = "Operations.AM0.Arithmethic.GE";
+        this.name = "GE";
     }
 
     @Override

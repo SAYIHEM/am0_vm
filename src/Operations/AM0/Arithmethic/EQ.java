@@ -6,7 +6,7 @@ public class EQ extends Operation {
 
     public EQ() {
 
-        this.name = "Operations.AM0.Arithmethic.EQ";
+        this.name = "EQ";
     }
 
     @Override

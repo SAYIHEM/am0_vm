@@ -7,7 +7,7 @@ public class JMC extends Operation {
 
     public JMC()
     {
-        this.name = "Operations.AM0.JMC";
+        this.name = "JMC";
     }
 
     @Override

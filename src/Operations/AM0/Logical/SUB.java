@@ -6,7 +6,7 @@ public class SUB extends Operation {
 
     public SUB() {
 
-        this.name = "Operations.AM0.Logical.SUB";
+        this.name = "SUB";
     }
 
     @Override
