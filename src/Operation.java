@@ -1,7 +1,7 @@
 public abstract class Operation {
 
     protected String name;
-    protected Stack runtimeStack = RuntimeStack.getInstance();
+    protected Stack runtimeStack = Stack.getRuntimeStack();
     protected Heap heap = Heap.getInstance();
     protected CommandPointer stackPointer = CommandPointer.getInstance();
 
