@@ -1,3 +1,5 @@
+package Operations.AM0;
+
 import java.util.Scanner;
 
 /**
@@ -12,7 +14,7 @@ public class READ extends Operation {
 
     public READ()
     {
-        this.name = "READ";
+        this.name = "Operations.AM0.READ";
     }
 
     @Override

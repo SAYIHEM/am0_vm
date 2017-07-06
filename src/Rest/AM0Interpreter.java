@@ -1,3 +1,7 @@
+package Rest;
+
+import Operations.AM0.Operation;
+
 import java.util.Map;
 
 public class AM0Interpreter implements Interpreter {

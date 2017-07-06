@@ -1,8 +1,12 @@
+package Operations.AM0.Logical;
+
+import Operations.AM0.Operation;
+
 public class SUB extends Operation {
 
     public SUB() {
 
-        this.name = "SUB";
+        this.name = "Operations.AM0.Logical.SUB";
     }
 
     @Override

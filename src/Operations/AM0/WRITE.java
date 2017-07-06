@@ -1,3 +1,5 @@
+package Operations.AM0;
+
 /**
  * Created by X0R_R0X on 7/5/2017.
  */
@@ -10,7 +12,7 @@ public class WRITE extends Operation {
 
     public WRITE()
     {
-        this.name = "WRITE";
+        this.name = "Operations.AM0.WRITE";
     }
 
     @Override

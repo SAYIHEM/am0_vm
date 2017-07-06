@@ -1,3 +1,7 @@
+package Operations.AM0.Arithmethic;
+
+import Operations.AM0.Operation;
+
 public class LT extends Operation {
 
     public LT() {

@@ -1,3 +1,9 @@
+package Operations.AM0;
+
+import Rest.CommandPointer;
+import Rest.Heap;
+import Stacks.Stack;
+
 public abstract class Operation {
 
     protected String name;

@@ -1,8 +1,12 @@
+package Operations.AM0.Logical;
+
+import Operations.AM0.Operation;
+
 public class ADD extends Operation {
 
     public ADD() {
 
-        this.name = "ADD";
+        this.name = "Operations.AM0.Logical.ADD";
     }
 
     @Override

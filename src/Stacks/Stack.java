@@ -1,8 +1,12 @@
+package Stacks;
+
+import Exceptions.StackException;
+
 import java.util.ArrayList;
 
 public class Stack {
 
-    // Stack instances
+    // Stacks.Stack instances
     protected static Stack runtimeStack = null;
     protected static Stack dataStack = null;
 
@@ -10,7 +14,6 @@ public class Stack {
 
     // Constructor
     private Stack() { stack = new ArrayList<>(); }
-
 
     public static Stack getRuntimeStack() {
 

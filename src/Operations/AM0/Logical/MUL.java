@@ -1,3 +1,7 @@
+package Operations.AM0.Logical;
+
+import Operations.AM0.Operation;
+
 public class MUL extends Operation {
 
     public MUL() {

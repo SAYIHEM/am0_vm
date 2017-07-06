@@ -1,8 +1,10 @@
-public class LOAD extends Operation{
+package Operations.AM0;
+
+public class LOAD extends Operation {
 
     public LOAD() {
 
-        this.name = "LOAD";
+        this.name = "Operations.AM0.LOAD";
     }
 
     @Override

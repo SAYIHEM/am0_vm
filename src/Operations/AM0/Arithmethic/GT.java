@@ -1,8 +1,12 @@
+package Operations.AM0.Arithmethic;
+
+import Operations.AM0.Operation;
+
 public class GT extends Operation {
 
     public GT() {
 
-        this.name = "GT";
+        this.name = "Operations.AM0.Arithmethic.GT";
     }
 
     @Override

@@ -1,8 +1,12 @@
+package Operations.AM0.Arithmethic;
+
+import Operations.AM0.Operation;
+
 public class GE extends Operation {
 
     public GE() {
 
-        this.name = "GE";
+        this.name = "Operations.AM0.Arithmethic.GE";
     }
 
     @Override

@@ -1,5 +1,7 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+package Rest;
+
+import Exceptions.StackException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,14 +23,14 @@ public class Heap {
     public void STORE(Integer address, Integer value)
     {
         if(address < 0 || address >= ADDRESS_MAX)
-            throw new StackException("STORE error. address out of bounds!");
+            throw new StackException("Operations.AM0.STORE error. address out of bounds!");
         heap.put(address, value);
     }
 
     public Integer LOAD(Integer address)
     {
         if(address < 0 || address >= ADDRESS_MAX)
-            throw new StackException("READ error. address out of bounds!");
+            throw new StackException("Operations.AM0.READ error. address out of bounds!");
         return heap.get(address);
     }
 }

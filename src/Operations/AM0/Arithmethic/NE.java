@@ -1,3 +1,7 @@
+package Operations.AM0.Arithmethic;
+
+import Operations.AM0.Operation;
+
 public class NE extends Operation {
 
     public NE() {
