@@ -1,3 +1,9 @@
+package Rest;
+
+import Operations.AM0.*;
+import Operations.AM0.Arithmethic.*;
+import Operations.AM0.Logical.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +14,7 @@ public class AM0Instructions {
 
     private AM0Instructions() {
 
-        // SetUp Operation-Map for AM0
+        // SetUp Operations.AM0.Operation-Map for Operations.AM0
         instructions.put("ADD", new ADD());
         instructions.put("MUL", new MUL());
         instructions.put("SUB", new SUB());

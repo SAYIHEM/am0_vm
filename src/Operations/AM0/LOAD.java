@@ -1,4 +1,6 @@
-public class LOAD extends Operation{
+package Operations.AM0;
+
+public class LOAD extends Operation {
 
     public LOAD() {
 

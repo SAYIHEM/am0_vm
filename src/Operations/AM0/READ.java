@@ -1,3 +1,5 @@
+package Operations.AM0;
+
 import java.util.Scanner;
 
 /**

@@ -1,8 +1,12 @@
+package Operations.AM0.Logical;
+
+import Operations.AM0.Operation;
+
 public class DIV extends Operation {
 
     public DIV() {
 
-        this.name = "DIV";
+        this.name = "Operations.AM0.Logical.DIV";
     }
 
     @Override

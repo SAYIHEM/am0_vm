@@ -1,3 +1,5 @@
+package Rest;
+
 /**
  * Created by X0R_R0X on 7/6/2017.
  */
@@ -30,7 +32,7 @@ public class RuntimeMachine {
                 "JMC 11",
                 "LOAD 1",
                 "LIT 2",
-                "DIV",
+                "Logical.DIV",
                 "STORE 1",
                 "WRITE 1",
                 "JMP 1"
