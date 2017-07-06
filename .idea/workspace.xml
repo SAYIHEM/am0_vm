@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93abb51e-3caa-46e9-904b-d5e5060108fc" name="Default" comment="AM0Command">
+    <list default="true" id="93abb51e-3caa-46e9-904b-d5e5060108fc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/am0_vm.iml" afterPath="$PROJECT_DIR$/am0_vm.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Operations/AM0/Arithmethic/EQ.java" afterPath="$PROJECT_DIR$/src/Operations/AM0/Arithmethic/EQ.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Operations/AM0/Arithmethic/GE.java" afterPath="$PROJECT_DIR$/src/Operations/AM0/Arithmethic/GE.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Operations/AM0/Arithmethic/GT.java" afterPath="$PROJECT_DIR$/src/Operations/AM0/Arithmethic/GT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Operations/AM0/JMC.java" afterPath="$PROJECT_DIR$/src/Operations/AM0/JMC.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Operations/AM0/JMP.java" afterPath="$PROJECT_DIR$/src/Operations/AM0/JMP.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Operations/AM0/LOAD.java" afterPath="$PROJECT_DIR$/src/Operations/AM0/LOAD.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Operations/AM0/READ.java" afterPath="$PROJECT_DIR$/src/Operations/AM0/READ.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Operations/AM0/STORE.java" afterPath="$PROJECT_DIR$/src/Operations/AM0/STORE.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Operations/AM0/WRITE.java" afterPath="$PROJECT_DIR$/src/Operations/AM0/WRITE.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rest/AM0Instructions.java" afterPath="$PROJECT_DIR$/src/Rest/AM0Instructions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rest/RuntimeMachine.java" afterPath="$PROJECT_DIR$/src/Rest/RuntimeMachine.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -923,7 +911,14 @@
       <option name="project" value="LOCAL" />
       <updated>1499347066340</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="fixed commands">
+      <created>1499358502703</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1499358502703</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1033,7 +1028,8 @@
     <MESSAGE value="AM0Command" />
     <MESSAGE value="..." />
     <MESSAGE value="Added multiple instances for Stack" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added multiple instances for Stack" />
+    <MESSAGE value="fixed commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed commands" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
