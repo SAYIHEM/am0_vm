@@ -1,30 +1,25 @@
 import java.util.ArrayList;
 
+
+/**
+ * Created by X0R_R0X on 7/5/2017.
+ */
 public class Stack {
+    private static Stack instance = new Stack();
+    public static Stack getInstance()
+    {
+        return instance;
+    }
 
-    // Stack instances
-    protected static Stack runtimeStack = null;
-    protected static Stack dataStack = null;
-
-    private ArrayList<Integer> stack;
-
-    // Constructor
-    private Stack() { stack = new ArrayList<>(); }
-
-
-    public static Stack getRuntimeStack() {
-
-        if (runtimeStack == null) runtimeStack = new Stack();
-
+    private static Stack runtimeStack = new Stack();
+    public static Stack getRuntimeStack()
+    {
         return runtimeStack;
     }
 
-    public static Stack getDataStack() {
 
-        if (dataStack == null) dataStack = new Stack();
 
-        return dataStack;
-    }
+    private ArrayList<Integer> stack = new ArrayList<>();
 
     //throws StackExceptions
     public Integer pop()
@@ -32,7 +27,7 @@ public class Stack {
         int i = stack.size() - 1;
         if(i < 0)
         {
-            throw new StackException("negative stackpointer! runtimeStack empty.");
+            throw new StackException("negative stackpointer! stack empty.");
         }
         Integer value = stack.get(i);
         stack.remove(i);
