@@ -1,20 +1,16 @@
-package Rest;
+package InstructionSets;
 
 import Operations.AM0.*;
 import Operations.AM0.Arithmethic.*;
 import Operations.AM0.Logical.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class AM0Instructions {
+public class AM0Instructions extends Instructions {
 
-    private static Map<String, Operation> instructions = new HashMap<>();
-    private static AM0Instructions instance = null;
+    public AM0Instructions() {
 
-    private AM0Instructions() {
-
-        // SetUp Operations.AM0.Operation-Map for Operations.AM0
+        // SetUp AM0.Operation-Map for AM0
         instructions.put("ADD", new ADD());
         instructions.put("MUL", new MUL());
         instructions.put("SUB", new SUB());
@@ -34,13 +30,8 @@ public class AM0Instructions {
         instructions.put("JMP", new JMP());
         instructions.put("JMC", new JMC());
     }
-    
-    public static Map<String, Operation> getInstructions() {
 
-        if (instance == null) {
-
-            instance = new AM0Instructions();
-        }
+    public Map<String, Operation> getInstructions() {
 
         return instructions;
     }

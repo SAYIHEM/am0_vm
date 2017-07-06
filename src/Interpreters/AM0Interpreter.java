@@ -1,14 +1,24 @@
-package Rest;
+package Interpreters;
 
+import InstructionSets.Instructions;
 import Operations.AM0.Operation;
+import InstructionSets.AM0Instructions;
+import Singletons.Colors;
 
 import java.util.Map;
 
 public class AM0Interpreter implements Interpreter {
 
-    private Map<String, Operation> instructions = AM0Instructions.getInstructions();
+    private Map<String, Operation> instructions;
 
-    public AM0Interpreter() {}
+    public AM0Interpreter(Instructions instructions) {
+
+        if (instructions == null) throw new NullPointerException("Instructions to set were NULL!");
+        if (!(instructions instanceof AM0Instructions)) System.out.println(Colors.RED + "Warning: Using InstructionSet that is not AM0!" + Colors.RESET);
+
+        this.instructions = instructions.getInstructions();
+
+    }
 
     public void execute(String command) {
 

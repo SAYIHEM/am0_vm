@@ -1,4 +1,4 @@
-package Rest;
+package Interpreters;
 
 public interface Interpreter {
 

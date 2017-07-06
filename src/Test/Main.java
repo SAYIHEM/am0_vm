@@ -1,9 +1,13 @@
-package Rest;
+package Test;
+
+import InstructionSets.AM0Instructions;
+import Interpreters.AM0Interpreter;
+import CommandPointers.CommandPointer;
 
 /**
  * Created by X0R_R0X on 7/6/2017.
  */
-public class RuntimeMachine {
+public class Main {
 
     public static void main(String[] argv) {
 
@@ -39,7 +43,7 @@ public class RuntimeMachine {
         };
 
         CommandPointer stackPointer = CommandPointer.getInstance();
-        AM0Interpreter command = new AM0Interpreter();
+        AM0Interpreter command = new AM0Interpreter(new AM0Instructions());
 
         String[] program = program1;
 
