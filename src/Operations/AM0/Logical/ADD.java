@@ -6,7 +6,7 @@ public class ADD extends Operation {
 
     public ADD() {
 
-        this.name = "Operations.AM0.Logical.ADD";
+        this.name = "ADD";
     }
 
     @Override

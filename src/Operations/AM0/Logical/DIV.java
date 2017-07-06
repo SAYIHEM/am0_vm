@@ -6,7 +6,7 @@ public class DIV extends Operation {
 
     public DIV() {
 
-        this.name = "Operations.AM0.Logical.DIV";
+        this.name = "DIV";
     }
 
     @Override

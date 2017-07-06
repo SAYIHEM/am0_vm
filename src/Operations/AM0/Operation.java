@@ -1,7 +1,7 @@
 package Operations.AM0;
 
-import Rest.CommandPointer;
-import Rest.Heap;
+import CommandPointers.CommandPointer;
+import Heaps.Heap;
 import Stacks.Stack;
 
 public abstract class Operation {
