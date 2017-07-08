@@ -107,14 +107,31 @@ public class Main {
         };
 
         String[] program7 = {
-                "LIT 1",
+                "LIT 0",
                 "STORE 5",
-                "WRITE 5"
+                "LOAD 5",
+                "LIT 50",
+                "GE",
+                "JMC 9",
+                "LIT 1",
+                "STORE 10",
+                "JMP 11",
+                "LIT 0",
+                "STORE 10",
+                "LOAD 5",
+                "LIT 100",
+                "LE",
+                "JMC 0",
+                "LIT 1",
+                "LOAD 5",
+                "ADD",
+                "STORE 5",
+                "JMP 2"
         };
 
 
-        AM0Machine machine = new AM0Machine(program6);
-        System.out.println(machine.getOutput());
+        AM0Machine machine = new AM0Machine(program7);
+        //System.out.println(machine.getOutput());
 
 
         System.out.println("Program terminated...");
