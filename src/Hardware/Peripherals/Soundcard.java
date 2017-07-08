@@ -6,6 +6,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
+import java.awt.*;
 
 /**
  * Created by X0R_R0X on 7/8/2017.
@@ -74,6 +75,7 @@ public class Soundcard extends Device {
         {
             System.out.println("playing sound!");
             tryPlayTone(frequency, time, volume);
+            //Toolkit.getDefaultToolkit().beep();
             sharedStorage.store(frequencyAddress, 0);
             sharedStorage.store(timeAddress, 0);
             sharedStorage.store(volumeAddress, 0);
