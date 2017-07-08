@@ -62,7 +62,58 @@ public class Main {
                 "JMP 0"//
         };
 
-        AM0Machine machine = new AM0Machine(program4);
+        ///draws a line on screen
+        String[] program5 = {
+                "LIT 1",
+                "LIT 1",
+                "LIT 1",
+                "LIT 1",
+                "STORE 10",
+                "STORE 11",
+                "STORE 12",
+                "STORE 13",
+                "LIT 1",
+                "LIT 1",
+                "LIT 1",
+                "LIT 1",
+                "STORE 22",
+                "STORE 23",
+                "STORE 24",
+                "STORE 25"
+        };
+
+
+
+
+        //animation, blinks pixel
+        String[] program6 = {
+                "LIT 0",
+                "STORE 5",
+                "WRITE 5",
+                "LOAD 5",
+                "LIT 2",
+                "MOD",
+                "JMC 9",
+                "LIT 1",
+                "STORE 10",
+                "JMP 11",
+                "LIT 0",
+                "STORE 10",
+                "LIT 1",
+                "LOAD 5",
+                "ADD",
+                "STORE 5",
+                "JMP 2"
+        };
+
+        String[] program7 = {
+                "LIT 1",
+                "STORE 5",
+                "WRITE 5"
+        };
+
+
+        AM0Machine machine = new AM0Machine(program6);
         System.out.println(machine.getOutput());
 
 

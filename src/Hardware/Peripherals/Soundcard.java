@@ -75,7 +75,6 @@ public class Soundcard extends Device {
 
         if(time != 0 && frequency != 0 && volume != 0)
         {
-            System.out.println("playing sound!");
             Thread t = new Thread(() -> tryPlayTone(frequency, time, volume));
             t.start();
             try {

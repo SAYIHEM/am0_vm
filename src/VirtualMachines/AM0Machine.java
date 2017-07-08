@@ -3,11 +3,13 @@ package VirtualMachines;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Hardware.Peripherals.Device;
+import Hardware.Peripherals.Display;
 import Hardware.Peripherals.Soundcard;
 import InstructionSets.AM0Instructions;
 import Interpreters.AM0Interpreter;
 import Hardware.Stacks.Stack;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class AM0Machine extends RuntimeMachine {
 
 
     private final int SOUND_FREQ = 1, SOUND_TIME = 2, SOUND_VOL = 3;
+    private final int DISPLAY_BASE = 10;
     private List<Device> devices;
 
     private void handlePeripherals()
@@ -47,8 +50,11 @@ public class AM0Machine extends RuntimeMachine {
         this.devices = new ArrayList<>();
         this.devices.add(new Soundcard(8000f, runtimeHeap, SOUND_FREQ, SOUND_TIME, SOUND_VOL));
 
-        // TEST
-        //((Soundcard) this.devices.get(0)).tryPlayTone(800, 200, 75);
+        JFrame f = new JFrame("Title");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setSize(500, 500);
+        f.setVisible(true);
+        this.devices.add(new Display(runtimeHeap, DISPLAY_BASE, 4, 4, f));
     }
 
     public void run(String[] program) {
