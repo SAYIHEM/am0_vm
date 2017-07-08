@@ -7,6 +7,7 @@ import Hardware.Peripherals.Soundcard;
 import InstructionSets.AM0Instructions;
 import Interpreters.AM0Interpreter;
 import Hardware.Stacks.Stack;
+import Logs.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +47,6 @@ public class AM0Machine extends RuntimeMachine {
 
         this.devices = new ArrayList<>();
         this.devices.add(new Soundcard(8000f, runtimeHeap, SOUND_FREQ, SOUND_TIME, SOUND_VOL));
-
-        // TEST
-        //((Soundcard) this.devices.get(0)).tryPlayTone(800, 200, 75);
     }
 
     public void run(String[] program) {
@@ -60,6 +58,7 @@ public class AM0Machine extends RuntimeMachine {
             // Write output
             output += program[commandPointer.getValue()] + "\n";
 
+            Log.d("AM0", program[commandPointer.getValue()]);
             interpreter.execute(program[commandPointer.getValue()]);
 
             handlePeripherals();

@@ -31,6 +31,10 @@ public class Heap {
     {
         if(address < 0 || address >= ADDRESS_MAX)
             throw new StackException("READ error. address out of bounds!");
-        return heap.get(address);
+
+        Integer val = heap.get(address);
+        if (val == null) throw new StackException("READ error. Value in address was NULL!");
+
+        return val;
     }
 }

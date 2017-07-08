@@ -61,8 +61,7 @@ public class Main {
                 "STORE 3"  //
         };
 
-        AM0Machine machine = new AM0Machine(program4);
-        System.out.println(machine.getOutput());
+        AM0Machine machine = new AM0Machine(program1);
 
 
         System.out.println("Program terminated...");

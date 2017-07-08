@@ -1,5 +1,6 @@
 package Operations.AM0.Memory;
 
+import Constants.ArgPatterns;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Operations.AM0.AM0operation;
@@ -13,11 +14,15 @@ public class JMP extends AM0operation {
     public JMP(Heap heap, Stack stack, CommandPointer commandPointer)
     {
         super(heap, stack, commandPointer);
-        this.name = "JMP";
     }
 
     @Override
-    public void run(Integer arg) {
-        this.commandPointer.setValue(arg);
+    public void run(String arg) {
+
+        // Test argument string
+        if (!arg.matches(ArgPatterns.INT))
+            throw new IllegalArgumentException("Error in "+ this.name + ". Argument was '" + arg + "'.");
+
+        this.commandPointer.setValue(Integer.parseInt(arg));
     }
 }
