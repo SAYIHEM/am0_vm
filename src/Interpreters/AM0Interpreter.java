@@ -32,7 +32,7 @@ public class AM0Interpreter implements Interpreter {
             throw new IllegalArgumentException("Error in " + this.getClass().getSimpleName() + ". Command was '" + command + "'.");
 
         String[] args = command.split(" ");
-        String operation = args[0];
+        String operation = args[0].toUpperCase();
         String arg = (args.length == 2) ? args[1] : "";
 
         // Exceptions

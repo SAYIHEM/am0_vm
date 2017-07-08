@@ -7,9 +7,9 @@ import Hardware.Stacks.Pointer;
 import Hardware.Stacks.Stack;
 import Operations.AM1.AM1operation;
 
-public class LOAD extends AM1operation {
+public class LOADA extends AM1operation {
 
-    public LOAD(Heap heap, Stack stack, Heap runtimeHeap, CommandPointer commandPointer, Pointer reference) {
+    public LOADA(Heap heap, Stack stack, Heap runtimeHeap, CommandPointer commandPointer, Pointer reference) {
         super(heap, stack, runtimeHeap, commandPointer, reference);
     }
 
@@ -27,13 +27,13 @@ public class LOAD extends AM1operation {
         // For 'global' flag
         if (flag.equals("global")) {
 
-            stack.push(heap.load(address));
+
         }
 
         // For 'lokal' flag
         if (flag.equals("lokal")) {
 
-            stack.push(heap.load(reference.getValue() + address));
+
         }
 
         increment();
