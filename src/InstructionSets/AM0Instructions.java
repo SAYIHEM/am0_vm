@@ -7,6 +7,7 @@ import Operations.AM0.Arithmethic.*;
 import Operations.AM0.Logical.*;
 import Operations.AM0.Memory.*;
 import Hardware.Stacks.Stack;
+import Operations.AM0.Memory.READ;
 
 import java.util.Map;
 

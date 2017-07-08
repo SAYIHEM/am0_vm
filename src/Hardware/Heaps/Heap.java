@@ -1,4 +1,4 @@
-package Heaps;
+package Hardware.Heaps;
 
 import Exceptions.StackException;
 
@@ -31,7 +31,7 @@ public class Heap {
         heap.put(address, value);
     }
 
-    public Integer LOAD(Integer address)
+    public Integer load(Integer address)
     {
         if(address < 0 || address >= ADDRESS_MAX)
             throw new StackException("READ error. address out of bounds!");

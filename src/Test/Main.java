@@ -1,8 +1,7 @@
 package Test;
 
-import InstructionSets.AM0Instructions;
-import Interpreters.AM0Interpreter;
-import CommandPointers.CommandPointer;
+
+import VirtualMachines.AM0Machine;
 
 /**
  * Created by X0R_R0X on 7/6/2017.
@@ -59,22 +58,8 @@ public class Main {
                 "STORE 2", //push to device buffer
                 "STORE 3"  //
         };
-        CommandPointer stackPointer = new CommandPointer();
-        AM0Interpreter command = new AM0Interpreter(new AM0Instructions());
 
-        String[] program = program2;
-
-        if (argv.length != 0) {
-
-            program = argv[0].split(",");
-        }
-
-        while(stackPointer.getValue() < program.length) {
-
-            System.out.println(program[stackPointer.getValue()]);
-            command.execute(program[stackPointer.getValue()]);
-        }
-
+        AM0Machine machine = new AM0Machine(program3);
 
         System.out.println("Program terminated...");
     }

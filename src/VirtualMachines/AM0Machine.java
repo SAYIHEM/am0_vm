@@ -11,7 +11,7 @@ import Hardware.Stacks.Stack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AM0Machine {
+public class AM0Machine extends RuntimeMachine {
 
     private CommandPointer commandPointer = new CommandPointer();
     private Stack runtimeStack = new Stack();
@@ -52,12 +52,13 @@ public class AM0Machine {
 
         while(commandPointer.getValue() < program.length) {
 
+            // Write output
+            output += program[commandPointer.getValue()] + "\n";
+
             System.out.println(program[commandPointer.getValue()]);
             interpreter.execute(program[commandPointer.getValue()]);
 
             handlePeripherals();
         }
-
-        System.out.println("Program terminated...");
     }
 }

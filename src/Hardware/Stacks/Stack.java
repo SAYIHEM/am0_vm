@@ -1,4 +1,4 @@
-package Stacks;
+package Hardware.Stacks;
 
 import Exceptions.StackException;
 
