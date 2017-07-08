@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93abb51e-3caa-46e9-904b-d5e5060108fc" name="Default" comment="fixed sound" />
+    <list default="true" id="93abb51e-3caa-46e9-904b-d5e5060108fc" name="Default" comment="fixed sound">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -723,7 +725,7 @@
       <workItem from="1499346984912" duration="901000" />
       <workItem from="1499526369107" duration="25000" />
       <workItem from="1499526492211" duration="16889000" />
-      <workItem from="1499549413804" duration="148000" />
+      <workItem from="1499549413804" duration="216000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1499276896480</created>
@@ -865,11 +867,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499534657534</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary=".">
+      <created>1499549624312</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1499549624312</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39497000" />
+    <option name="totallyTimeSpent" value="39565000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-4" width="1922" height="1022" extended-state="6" />
@@ -950,14 +959,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="command interface" />
-    <MESSAGE value="." />
     <MESSAGE value="arithmetic and logical commands" />
     <MESSAGE value="AM0Command" />
     <MESSAGE value="..." />
     <MESSAGE value="Added multiple instances for Stack" />
     <MESSAGE value="fixed commands" />
     <MESSAGE value="fixed sound" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed sound" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
