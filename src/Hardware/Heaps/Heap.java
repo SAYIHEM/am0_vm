@@ -11,10 +11,6 @@ import java.util.Map;
 public class Heap {
 
     private static Heap instance = new Heap();
-    public static Heap getInstance()
-    {
-        return instance;
-    }
 
     private final Integer ADDRESS_MAX = 0xFFFF;
     private Map<Integer, Integer> heap;
