@@ -23,7 +23,7 @@ public class WRITE extends AM0operation {
 
     @Override
     public void run(Integer arg) {
-        System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK + "OUTPUT ->" + ANSI_RESET + " " + heap.LOAD(arg));
+        System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK + "OUTPUT ->" + ANSI_RESET + " " + heap.load(arg));
         increment();
     }
 }

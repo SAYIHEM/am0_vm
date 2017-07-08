@@ -24,7 +24,7 @@ public class READ extends AM0operation {
         System.out.print(Colors.BLUE_BACK + Colors.BLACK + "INPUT <-" + Colors.ANSI_RESET + " ");
         Scanner in = new Scanner(System.in);
         String input = in.nextLine().trim();
-        this.heap.STORE(arg, Integer.parseInt(input));
+        this.heap.store(arg, Integer.parseInt(input));
         increment();
     }
 }

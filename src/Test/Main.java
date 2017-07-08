@@ -48,8 +48,19 @@ public class Main {
                 "WRITE 1"
         };
 
+        ///plays funny sound
+        String[] program4 = {
+                "LIT 100", //full volume
+                "LIT 200", //play 200ms
+                "LIT 600", //play 600Hz tone
+                "STORE 1", //
+                "STORE 2", //push to device buffer
+                "STORE 3"  //
+        };
+
+
         AM0Machine vm = new AM0Machine();
-        vm.run(program2);
+        vm.run(program4);
 
     }
 }

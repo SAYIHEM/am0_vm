@@ -13,14 +13,14 @@ public class STORE extends AM0operation {
     public STORE(Heap heap, Stack stack, CommandPointer commandPointer) {
 
         super(heap, stack, commandPointer);
-        this.name = "STORE";
+        this.name = "store";
     }
 
     @Override
     public void run(Integer arg) {
 
         Integer value = this.stack.pop();
-        this.heap.STORE(arg, value);
+        this.heap.store(arg, value);
         increment();
     }
 }

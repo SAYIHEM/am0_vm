@@ -10,13 +10,13 @@ public class LOAD extends AM0operation {
     public LOAD(Heap heap, Stack stack, CommandPointer commandPointer) {
 
         super(heap, stack, commandPointer);
-        this.name = "LOAD";
+        this.name = "load";
     }
 
     @Override
     public void run(Integer arg) {
 
-        this.stack.push(this.heap.LOAD(arg));
+        this.stack.push(this.heap.load(arg));
         increment();
     }
 }

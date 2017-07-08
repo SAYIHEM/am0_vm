@@ -18,14 +18,14 @@ public class Heap {
         heap =  new HashMap<>();
     }
 
-    public void STORE(Integer address, Integer value)
+    public void store(Integer address, Integer value)
     {
         if(address < 0 || address >= ADDRESS_MAX)
-            throw new StackException("STORE error. address out of bounds!");
+            throw new StackException("store error. address out of bounds!");
         heap.put(address, value);
     }
 
-    public Integer LOAD(Integer address)
+    public Integer load(Integer address)
     {
         if(address < 0 || address >= ADDRESS_MAX)
             throw new StackException("READ error. address out of bounds!");
