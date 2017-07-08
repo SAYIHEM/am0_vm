@@ -51,14 +51,15 @@ public class Main {
                 "WRITE 1"
         };
 
-        ///plays funny sound
+        ///annoys you by beeping real HARDDDDD
         String[] program4 = {
-                "LIT 75", //full volume
-                "LIT 200", //play 200ms
+                "LIT 1", // volume
+                "LIT 500", //play 200ms
                 "LIT 800", //play 600Hz tone
                 "STORE 1", //
                 "STORE 2", //push to device buffer
-                "STORE 3"  //
+                "STORE 3",
+                "JMP 0"//
         };
 
         AM0Machine machine = new AM0Machine(program4);

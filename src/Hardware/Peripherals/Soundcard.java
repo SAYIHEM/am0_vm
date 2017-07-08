@@ -34,6 +34,7 @@ public class Soundcard extends Device {
     {
         try {
             tone(hz, millis, volume / 100d);
+
         }
         catch (Exception e)
         {
@@ -75,8 +76,14 @@ public class Soundcard extends Device {
         if(time != 0 && frequency != 0 && volume != 0)
         {
             System.out.println("playing sound!");
-            tryPlayTone(frequency, time, volume);
-            //Toolkit.getDefaultToolkit().beep();
+            Thread t = new Thread(() -> tryPlayTone(frequency, time, volume));
+            t.start();
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             sharedStorage.store(frequencyAddress, 0);
             sharedStorage.store(timeAddress, 0);
             sharedStorage.store(volumeAddress, 0);
