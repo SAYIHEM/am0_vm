@@ -55,10 +55,7 @@ public class AM0Machine extends RuntimeMachine {
 
         while(commandPointer.getValue() < program.length) {
 
-            // Write output
-            output += program[commandPointer.getValue()] + "\n";
-
-            Log.d("AM0", program[commandPointer.getValue()]);
+            Log.d("AM0", commandPointer.getValue() + "\t" +program[commandPointer.getValue()]);
             interpreter.execute(program[commandPointer.getValue()]);
 
             handlePeripherals();
