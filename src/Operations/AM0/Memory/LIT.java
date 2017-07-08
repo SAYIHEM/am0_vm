@@ -1,25 +1,25 @@
-package Operations.AM0.Logical;
+package Operations.AM0.Memory;
 
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Operations.AM0.AM0operation;
 import Hardware.Stacks.Stack;
 
-public class MUL extends AM0operation {
+/**
+ * Created by X0R_R0X on 7/5/2017.
+ */
+public class LIT  extends AM0operation {
 
-    public MUL(Heap heap, Stack stack, CommandPointer commandPointer) {
+    public LIT(Heap heap, Stack stack, CommandPointer commandPointer) {
 
         super(heap, stack, commandPointer);
-        this.name = "MUL";
+        this.name = "LIT";
     }
 
     @Override
     public void run(Integer arg) {
 
-        int y = this.stack.pop();
-        int x = this.stack.pop();
-
-        this.stack.push(x * y);
+        this.stack.push(arg);
         increment();
     }
 }

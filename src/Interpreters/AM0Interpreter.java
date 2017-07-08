@@ -1,15 +1,15 @@
 package Interpreters;
 
 import InstructionSets.Instructions;
-import Operations.AM0.Operation;
+import Operations.AM0.AM0operation;
 import InstructionSets.AM0Instructions;
-import Singletons.Colors;
+import Constants.Colors;
 
 import java.util.Map;
 
 public class AM0Interpreter implements Interpreter {
 
-    private Map<String, Operation> instructions;
+    private Map<String, AM0operation> instructions;
 
     public AM0Interpreter(Instructions instructions) {
 

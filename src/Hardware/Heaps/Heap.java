@@ -1,4 +1,4 @@
-package Heaps;
+package Hardware.Heaps;
 
 import Exceptions.StackException;
 
@@ -10,15 +10,13 @@ import java.util.Map;
  */
 public class Heap {
 
-    private static Heap instance = new Heap();
-    public static Heap getInstance()
-    {
-        return instance;
-    }
-
     private final Integer ADDRESS_MAX = 0xFFFF;
+    private Map<Integer, Integer> heap;
 
-    private Map<Integer, Integer> heap = new HashMap<>();
+    public Heap()
+    {
+        heap =  new HashMap<>();
+    }
 
     public void STORE(Integer address, Integer value)
     {

@@ -1,33 +1,14 @@
-package Stacks;
+package Hardware.Stacks;
 
 import Exceptions.StackException;
 
 import java.util.ArrayList;
 
 public class Stack {
-
-    // Stacks.Stack instances
-    protected static Stack runtimeStack = null;
-    protected static Stack dataStack = null;
-
     private ArrayList<Integer> stack;
 
     // Constructor
-    private Stack() { stack = new ArrayList<>(); }
-
-    public static Stack getRuntimeStack() {
-
-        if (runtimeStack == null) runtimeStack = new Stack();
-
-        return runtimeStack;
-    }
-
-    public static Stack getDataStack() {
-
-        if (dataStack == null) dataStack = new Stack();
-
-        return dataStack;
-    }
+    public Stack() { stack = new ArrayList<>(); }
 
     //throws StackExceptions
     public Integer pop()

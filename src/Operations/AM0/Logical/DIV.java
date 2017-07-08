@@ -1,21 +1,25 @@
 package Operations.AM0.Logical;
 
-import Operations.AM0.Operation;
+import Hardware.CommandPointers.CommandPointer;
+import Hardware.Heaps.Heap;
+import Operations.AM0.AM0operation;
+import Hardware.Stacks.Stack;
 
-public class DIV extends Operation {
+public class DIV extends AM0operation {
 
-    public DIV() {
+    public DIV(Heap heap, Stack stack, CommandPointer commandPointer) {
 
+        super(heap, stack, commandPointer);
         this.name = "DIV";
     }
 
     @Override
     public void run(Integer arg) {
 
-        int y = this.runtimeStack.pop();
-        int x = this.runtimeStack.pop();
+        int y = this.stack.pop();
+        int x = this.stack.pop();
 
-        this.runtimeStack.push(x / y);
+        this.stack.push(x / y);
 
         increment();
     }
