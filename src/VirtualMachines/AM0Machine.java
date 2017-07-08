@@ -8,6 +8,7 @@ import Hardware.Peripherals.Soundcard;
 import InstructionSets.AM0Instructions;
 import Interpreters.AM0Interpreter;
 import Hardware.Stacks.Stack;
+import Logs.Log;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -66,6 +67,7 @@ public class AM0Machine extends RuntimeMachine {
             // Write output
             output += program[commandPointer.getValue()] + "\n";
 
+            Log.d("AM0", program[commandPointer.getValue()]);
             interpreter.execute(program[commandPointer.getValue()]);
 
             handlePeripherals();

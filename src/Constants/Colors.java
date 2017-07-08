@@ -1,6 +1,6 @@
 package Constants;
 
-public class Colors {
+public abstract class Colors {
 
     // Reset Code
     public static final String RESET = "\u001B[0m";

@@ -1,5 +1,6 @@
 package Operations.AM0.Memory;
 
+import Constants.ArgPatterns;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Operations.AM0.AM0operation;
@@ -13,14 +14,17 @@ public class STORE extends AM0operation {
     public STORE(Heap heap, Stack stack, CommandPointer commandPointer) {
 
         super(heap, stack, commandPointer);
-        this.name = "store";
     }
 
     @Override
-    public void run(Integer arg) {
+    public void run(String arg) {
+
+        // Test argument string
+        if (!arg.matches(ArgPatterns.INT))
+            throw new IllegalArgumentException("Error in "+ this.name + ". Argument was '" + arg + "'.");
 
         Integer value = this.stack.pop();
-        this.heap.store(arg, value);
+        this.heap.store(Integer.parseInt(arg), value);
         increment();
     }
 }

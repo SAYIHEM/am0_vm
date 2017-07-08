@@ -1,5 +1,6 @@
 package Interpreters;
 
+import Constants.ArgPatterns;
 import InstructionSets.Instructions;
 import Operations.AM0.AM0operation;
 import InstructionSets.AM0Instructions;
@@ -26,25 +27,18 @@ public class AM0Interpreter implements Interpreter {
         if (command == null) throw new NullPointerException("Command to execute was NULL!");
         if (command.isEmpty()) throw new IllegalArgumentException("Command was empty!");
 
+        // Test command string
+        if (!(command.matches(ArgPatterns.AM0_COMMAND)))
+            throw new IllegalArgumentException("Error in " + this.getClass().getSimpleName() + ". Command was '" + command + "'.");
+
         String[] args = command.split(" ");
-
-        int cmd = 0;
-        if (args.length > 1) {
-
-            try {
-
-                cmd = Integer.parseInt(args[1]);
-
-            } catch (NumberFormatException e) {
-
-                System.out.println("Illegal Argument in Command: " + command);
-            }
-        }
+        String operation = args[0];
+        String arg = (args.length == 2) ? args[1] : "";
 
         // Exceptions
-        if (!this.instructions.containsKey(args[0])) throw new IllegalArgumentException("Wrong OperationName in Command: " + command);
+        if (!this.instructions.containsKey(operation)) throw new IllegalArgumentException("Wrong OperationName in Command: " + command);
 
         // Run Command
-        this.instructions.get(args[0]).run(cmd);
+        this.instructions.get(args[0]).run(arg);
     }
 }

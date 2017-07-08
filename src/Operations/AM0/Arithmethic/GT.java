@@ -10,11 +10,10 @@ public class GT extends AM0operation {
     public GT(Heap heap, Stack stack, CommandPointer commandPointer) {
 
         super(heap, stack, commandPointer);
-        this.name = "GT";
     }
 
     @Override
-    public void run(Integer arg) {
+    public void run(String arg) {
 
         int y = this.stack.pop();
         int x = this.stack.pop();
