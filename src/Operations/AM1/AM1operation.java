@@ -10,15 +10,17 @@ public abstract class AM1operation extends Operation {
 
     protected Heap heap;
     protected Stack stack;
+    protected Heap runtimeHeap;
     protected CommandPointer commandPointer;
     protected Pointer reference;
 
-    public AM1operation(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
+    public AM1operation(Heap heap, Stack stack, Heap runtimeHeap, CommandPointer commandPointer, Pointer reference) {
 
         this.name = this.getClass().getSimpleName();
 
         this.heap = heap;
         this.stack = stack;
+        this.runtimeHeap = runtimeHeap;
         this.commandPointer = commandPointer;
         this.reference = reference;
     }
@@ -36,5 +38,13 @@ public abstract class AM1operation extends Operation {
         arg = arg.replace(",", "");
 
         return arg.split(" ");
+    }
+
+    protected int BRACKET_INT(String arg) {
+
+        arg = arg.replace("(", "");
+        arg = arg.replace(")", "");
+
+        return Integer.parseInt(arg);
     }
 }
