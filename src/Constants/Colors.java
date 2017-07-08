@@ -1,4 +1,4 @@
-package Singletons;
+package Constants;
 
 public class Colors {
 
@@ -24,5 +24,8 @@ public class Colors {
     public static final String PURPLE_BACK = "\u001B[45m";
     public static final String CYAN_BACK = "\u001B[46m";
     public static final String WHITE_BACK = "\u001B[47m";
+
+    //reset
+    public static final String ANSI_RESET = "\u001B[0m";
 
 }

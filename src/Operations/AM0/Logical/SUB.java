@@ -1,21 +1,25 @@
 package Operations.AM0.Logical;
 
-import Operations.AM0.Operation;
+import Hardware.CommandPointers.CommandPointer;
+import Hardware.Heaps.Heap;
+import Operations.AM0.AM0operation;
+import Hardware.Stacks.Stack;
 
-public class SUB extends Operation {
+public class SUB extends AM0operation {
 
-    public SUB() {
+    public SUB(Heap heap, Stack stack, CommandPointer commandPointer) {
 
+        super(heap, stack, commandPointer);
         this.name = "SUB";
     }
 
     @Override
     public void run(Integer arg) {
 
-        int y = this.runtimeStack.pop();
-        int x = this.runtimeStack.pop();
+        int y = this.stack.pop();
+        int x = this.stack.pop();
 
-        this.runtimeStack.push(x - y);
+        this.stack.push(x - y);
         increment();
     }
 }

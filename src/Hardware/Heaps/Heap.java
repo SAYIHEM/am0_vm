@@ -10,12 +10,21 @@ import java.util.Map;
  */
 public class Heap {
 
+    private static Heap instance = new Heap();
+    public static Heap getInstance()
+    {
+        return instance;
+    }
+
     private final Integer ADDRESS_MAX = 0xFFFF;
-    private Map<Integer, Integer> heap = new HashMap<>();
+    private Map<Integer, Integer> heap;
 
-    public Heap() {}
+    public Heap()
+    {
+        heap =  new HashMap<>();
+    }
 
-    public void STORE(Integer address, Integer value)
+    public void store(Integer address, Integer value)
     {
         if(address < 0 || address >= ADDRESS_MAX)
             throw new StackException("STORE error. address out of bounds!");

@@ -5,11 +5,10 @@ import Exceptions.StackException;
 import java.util.ArrayList;
 
 public class Stack {
-
-    private ArrayList<Integer> stack = new ArrayList<>();
+    private ArrayList<Integer> stack;
 
     // Constructor
-    public Stack() {}
+    public Stack() { stack = new ArrayList<>(); }
 
     //throws StackExceptions
     public Integer pop()

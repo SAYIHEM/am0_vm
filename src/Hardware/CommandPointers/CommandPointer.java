@@ -5,9 +5,11 @@ package CommandPointers;
  */
 public class CommandPointer {
 
-    private Integer value = 0;
-
-    public CommandPointer() {}
+    private Integer value;
+    public CommandPointer()
+    {
+        value = 0;
+    }
 
     public void increment()
     {
