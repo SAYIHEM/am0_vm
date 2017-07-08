@@ -13,17 +13,13 @@ import java.util.List;
 
 public class AM0Machine extends RuntimeMachine {
 
-    private CommandPointer commandPointer = new CommandPointer();
-    private Stack runtimeStack = new Stack();
-    private Heap runtimeHeap = new Heap();
+    private CommandPointer commandPointer;
+    private Stack runtimeStack;
+    private Heap runtimeHeap;
 
 
     private final int SOUND_FREQ = 1, SOUND_TIME = 2, SOUND_VOL = 3;
-
-
-    Device[] devices = {
-            new Soundcard(8000f, runtimeHeap, SOUND_FREQ, SOUND_TIME, SOUND_VOL)
-    };
+    private List<Device> devices;
 
     private void handlePeripherals()
     {
@@ -33,17 +29,26 @@ public class AM0Machine extends RuntimeMachine {
 
     public AM0Machine()
     {
-        commandPointer = new CommandPointer();
-        runtimeStack = new Stack();
-        runtimeHeap = new Heap();
+        init();
     }
 
     public AM0Machine(String[] program)
     {
+        init();
+        run(program);
+    }
+
+    private void init() {
+
         commandPointer = new CommandPointer();
         runtimeStack = new Stack();
         runtimeHeap = new Heap();
-        run(program);
+
+        this.devices = new ArrayList<>();
+        this.devices.add(new Soundcard(8000f, runtimeHeap, SOUND_FREQ, SOUND_TIME, SOUND_VOL));
+
+        // TEST
+        //((Soundcard) this.devices.get(0)).tryPlayTone(800, 200, 75);
     }
 
     public void run(String[] program) {

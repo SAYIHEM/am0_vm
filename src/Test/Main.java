@@ -59,7 +59,15 @@ public class Main {
                 "STORE 3"  //
         };
 
-        AM0Machine machine = new AM0Machine(program3);
+        AM0Machine machine = new AM0Machine(program4);
+
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 
         System.out.println("Program terminated...");
     }
