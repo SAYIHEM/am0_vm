@@ -1,6 +1,8 @@
 package Test;
 
 
+import Hardware.Peripherals.Soundcard;
+import Logs.Log;
 import VirtualMachines.AM0Machine;
 
 /**
@@ -51,22 +53,16 @@ public class Main {
 
         ///plays funny sound
         String[] program4 = {
-                "LIT 100", //full volume
+                "LIT 75", //full volume
                 "LIT 200", //play 200ms
-                "LIT 600", //play 600Hz tone
+                "LIT 800", //play 600Hz tone
                 "STORE 1", //
                 "STORE 2", //push to device buffer
                 "STORE 3"  //
         };
 
         AM0Machine machine = new AM0Machine(program4);
-
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        System.out.println(machine.getOutput());
 
 
         System.out.println("Program terminated...");

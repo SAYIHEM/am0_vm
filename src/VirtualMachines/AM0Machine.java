@@ -8,7 +8,6 @@ import InstructionSets.AM0Instructions;
 import Interpreters.AM0Interpreter;
 import Hardware.Stacks.Stack;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +49,6 @@ public class AM0Machine extends RuntimeMachine {
 
         // TEST
         //((Soundcard) this.devices.get(0)).tryPlayTone(800, 200, 75);
-        //Toolkit.getDefaultToolkit().beep();
     }
 
     public void run(String[] program) {
@@ -62,7 +60,6 @@ public class AM0Machine extends RuntimeMachine {
             // Write output
             output += program[commandPointer.getValue()] + "\n";
 
-            System.out.println(program[commandPointer.getValue()]);
             interpreter.execute(program[commandPointer.getValue()]);
 
             handlePeripherals();

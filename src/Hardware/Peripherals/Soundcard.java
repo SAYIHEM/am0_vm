@@ -1,6 +1,7 @@
 package Hardware.Peripherals;
 
 import Hardware.Heaps.Heap;
+import Logs.Log;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
@@ -36,7 +37,7 @@ public class Soundcard extends Device {
         }
         catch (Exception e)
         {
-            System.out.println("SOUNDCARD ERROR!");
+            Log.d(this, "SOUNDCARD ERROR!");
         }
     }
 

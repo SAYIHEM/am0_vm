@@ -21,7 +21,7 @@ public class READ extends AM0operation {
 
     @Override
     public void run(Integer arg) {
-        System.out.print(Colors.BLUE_BACK + Colors.BLACK + "INPUT <-" + Colors.ANSI_RESET + " ");
+        System.out.print(Colors.BLUE_BACK + Colors.BLACK + "INPUT <-" + Colors.RESET + " ");
         Scanner in = new Scanner(System.in);
         String input = in.nextLine().trim();
         this.heap.store(arg, Integer.parseInt(input));
