@@ -31,6 +31,7 @@ public class Display extends Device {
             sharedStorage.store(baseAddress + i, 0);
         }
         virtualDisplay = new VirtualDisplay();
+        displayPanel.add(virtualDisplay);
     }
 
     @Override
@@ -44,7 +45,6 @@ public class Display extends Device {
                 pixels[(y * virtualWidth + x)] = sharedStorage.load(currAddress);
             }
         }
-        displayPanel.add(virtualDisplay);
         displayPanel.revalidate();
         displayPanel.repaint();
     }
@@ -66,7 +66,7 @@ public class Display extends Device {
             {
                 for(int x = 0; x < Display.this.virtualWidth; x++)
                 {
-                    if(pixels[(y * Display.this.virtualWidth + x)] == 1)
+                    if(pixels[(y * Display.this.virtualWidth + x)] != 0)
                     {
                         g.setColor(Color.black);
                     }

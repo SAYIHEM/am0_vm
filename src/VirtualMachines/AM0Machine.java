@@ -51,7 +51,7 @@ public class AM0Machine extends RuntimeMachine {
         this.devices = new ArrayList<>();
         this.devices.add(new Soundcard(8000f, runtimeHeap, SOUND_FREQ, SOUND_TIME, SOUND_VOL));
 
-        JFrame f = new JFrame("Title");
+        JFrame f = new JFrame("AM0 virtual display");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setSize(500, 500);
         f.setVisible(true);
