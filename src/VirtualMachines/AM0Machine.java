@@ -21,8 +21,8 @@ public class AM0Machine extends RuntimeMachine {
     private Heap runtimeHeap;
 
 
-    private final int SOUND_FREQ = 1, SOUND_TIME = 2, SOUND_VOL = 3;
-    private final int DISPLAY_BASE = 10;
+    private final int SOUND_FREQ = 1334, SOUND_TIME = 1335, SOUND_VOL = 1336;
+    private final int DISPLAY_BASE = 1337;
     private List<Device> devices;
 
     private void handlePeripherals()
@@ -65,9 +65,8 @@ public class AM0Machine extends RuntimeMachine {
         while(commandPointer.getValue() < program.length) {
 
             // Write output
-            output += program[commandPointer.getValue()] + "\n";
-
-            //Log.d("AM0", program[commandPointer.getValue()]);
+            //output += program[commandPointer.getValue()] + "\n";
+            Log.d("AM0", program[commandPointer.getValue()]);
             interpreter.execute(program[commandPointer.getValue()]);
 
             handlePeripherals();

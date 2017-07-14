@@ -37,7 +37,7 @@ public class Main {
                 "JMC 11",
                 "LOAD 1",
                 "LIT 2",
-                "Logical.DIV",
+                "DIV",
                 "STORE 1",
                 "WRITE 1",
                 "JMP 1"
@@ -56,9 +56,9 @@ public class Main {
                 "LIT 1", // volume
                 "LIT 500", //play 200ms
                 "LIT 800", //play 600Hz tone
-                "STORE 1", //
-                "STORE 2", //push to device buffer
-                "STORE 3",
+                "STORE 1334", //
+                "STORE 1335", //push to device buffer
+                "STORE 1336",
                 "JMP 0"//
         };
 
@@ -68,18 +68,10 @@ public class Main {
                 "LIT 1",
                 "LIT 1",
                 "LIT 1",
-                "STORE 10",
-                "STORE 11",
-                "STORE 12",
-                "STORE 13",
-                "LIT 1",
-                "LIT 1",
-                "LIT 1",
-                "LIT 1",
-                "STORE 22",
-                "STORE 23",
-                "STORE 24",
-                "STORE 25"
+                "STORE 1337",
+                "STORE 1338",
+                "STORE 1339",
+                "STORE 1340"
         };
 
 
@@ -95,10 +87,10 @@ public class Main {
                 "MOD",
                 "JMC 9",
                 "LIT 1",
-                "STORE 10",
+                "STORE 1337",
                 "JMP 11",
                 "LIT 0",
-                "STORE 10",
+                "STORE 1337",
                 "LIT 1",
                 "LOAD 5",
                 "ADD",
@@ -106,21 +98,22 @@ public class Main {
                 "JMP 2"
         };
 
+        //address of display is 1337
         String[] program7 = {
                 "LIT 0",
                 "STORE 5",
                 "LOAD 5",
                 "LIT 50",
-                "GE",
+                "GT",
                 "JMC 9",
                 "LIT 1",
-                "STORE 10",
+                "STORE 1337",
                 "JMP 11",
                 "LIT 0",
-                "STORE 10",
+                "STORE 1337",
                 "LOAD 5",
                 "LIT 100",
-                "LE",
+                "LT",
                 "JMC 0",
                 "LIT 1",
                 "LOAD 5",
@@ -130,8 +123,9 @@ public class Main {
         };
 
 
-        AM0Machine machine = new AM0Machine(program7);
+        AM0Machine machine = new AM0Machine();
         //System.out.println(machine.getOutput());
+        machine.run(program2);
 
 
         System.out.println("Program terminated...");
