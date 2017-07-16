@@ -1,9 +1,13 @@
 package Test;
 
 
+import FileReader.FileArrayProvider;
 import Hardware.Peripherals.Soundcard;
 import Logs.Log;
 import VirtualMachines.AM0Machine;
+import VirtualMachines.AM1Mashine;
+
+import java.io.IOException;
 
 /**
  * Created by X0R_R0X on 7/6/2017.
@@ -129,8 +133,20 @@ public class Main {
                 "JMP 2"
         };
 
+        try {
 
-        AM0Machine machine = new AM0Machine(program7);
+            String[] program = FileArrayProvider.readLines("res/test.am1");
+            AM1Mashine am1Mashine = new AM1Mashine();
+            am1Mashine.setEntryPoint(9);
+            am1Mashine.run(program);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        //AM0Machine machine = new AM0Machine(program5);
         //System.out.println(machine.getOutput());
 
 

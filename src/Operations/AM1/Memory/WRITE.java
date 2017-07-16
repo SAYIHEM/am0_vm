@@ -2,6 +2,7 @@ package Operations.AM1.Memory;
 
 import Constants.ArgPatterns;
 import Constants.Colors;
+import Constants.Flag;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Hardware.Stacks.Pointer;
@@ -10,8 +11,8 @@ import Operations.AM1.AM1operation;
 
 public class WRITE extends AM1operation {
 
-    public WRITE(Heap heap, Stack stack, Heap runtimeHeap, CommandPointer commandPointer, Pointer reference) {
-        super(heap, stack, runtimeHeap, commandPointer, reference);
+    public WRITE(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
+        super(heap, stack, commandPointer, reference);
     }
 
     @Override
@@ -28,13 +29,13 @@ public class WRITE extends AM1operation {
         int out = 0;
 
         // For 'global' flag
-        if (flag.equals("global")) {
+        if (flag.equals(Flag.GLOBAL)) {
 
             out = heap.load(address);
         }
 
         // For 'lokal' flag
-        if (flag.equals("lokal")) {
+        if (flag.equals(Flag.LOKAL)) {
 
             out = heap.load(reference.getValue() + address);
         }

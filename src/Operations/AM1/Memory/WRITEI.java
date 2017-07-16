@@ -10,8 +10,8 @@ import Operations.AM1.AM1operation;
 
 public class WRITEI extends AM1operation {
 
-    public WRITEI(Heap heap, Stack stack, Heap runtimeHeap, CommandPointer commandPointer, Pointer reference) {
-        super(heap, stack, runtimeHeap, commandPointer, reference);
+    public WRITEI(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
+        super(heap, stack, commandPointer, reference);
     }
 
     @Override
@@ -21,9 +21,9 @@ public class WRITEI extends AM1operation {
         if (!arg.matches(ArgPatterns.BRACKET_INT))
             throw new IllegalArgumentException("Error in " + this.name + ". Argument was '" + arg + "'.");
 
-        int address_runtimeHeap = this.BRACKET_INT(arg);
-        int address_heap = runtimeHeap.load(address_runtimeHeap);
-        int out = heap.load(address_heap);
+        int address_pointer = this.BRACKET_INT(arg);
+        int address_value = heap.load(reference.getValue() + address_pointer);
+        int out = heap.load(address_value);
 
         System.out.println(Colors.RED_BACK + Colors.BLACK + "OUTPUT ->" + Integer.toString(out) + Colors.RESET);
 

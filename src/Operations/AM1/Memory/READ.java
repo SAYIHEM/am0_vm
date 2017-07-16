@@ -1,6 +1,7 @@
 package Operations.AM1.Memory;
 
 import Constants.ArgPatterns;
+import Constants.Colors;
 import Constants.Flag;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
@@ -8,9 +9,11 @@ import Hardware.Stacks.Pointer;
 import Hardware.Stacks.Stack;
 import Operations.AM1.AM1operation;
 
-public class LOADA extends AM1operation {
+import java.util.Scanner;
 
-    public LOADA(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
+public class READ extends AM1operation {
+
+    public READ(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
         super(heap, stack, commandPointer, reference);
     }
 
@@ -25,18 +28,21 @@ public class LOADA extends AM1operation {
         String flag = args[0];
         int address = Integer.parseInt(args[1]);
 
+        // Get Value Input
+        System.out.print(Colors.BLUE_BACK + Colors.BLACK + "INPUT <-" + Colors.RESET + " ");
+        Scanner in = new Scanner(System.in);
+        int value = Integer.parseInt(in.nextLine().trim());
+
         // For 'global' flag
         if (flag.equals(Flag.GLOBAL)) {
 
-            int globalAddress = heap.load(address);
-            stack.push(heap.load(globalAddress));
+            heap.store(address, value);
         }
 
         // For 'lokal' flag
         if (flag.equals(Flag.LOKAL)) {
 
-            int globalAddress = heap.load(reference.getValue() + address);
-            stack.push(heap.load(globalAddress));
+            heap.store(reference.getValue() + address, value);
         }
 
         increment();

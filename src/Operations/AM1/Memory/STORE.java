@@ -1,6 +1,7 @@
 package Operations.AM1.Memory;
 
 import Constants.ArgPatterns;
+import Constants.Flag;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Hardware.Stacks.Pointer;
@@ -9,8 +10,8 @@ import Operations.AM1.AM1operation;
 
 public class STORE extends AM1operation {
 
-    public STORE(Heap heap, Stack stack, Heap runtimeHeap, CommandPointer commandPointer, Pointer reference) {
-        super(heap, stack, runtimeHeap, commandPointer, reference);
+    public STORE(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
+        super(heap, stack, commandPointer, reference);
     }
 
     @Override
@@ -25,14 +26,15 @@ public class STORE extends AM1operation {
         int address = Integer.parseInt(args[1]);
 
         // For 'global' flag
-        if (flag.equals("global")) {
+        if (flag.equals(Flag.GLOBAL)) {
 
-            stack.push(heap.load(address));
+            heap.store(address, stack.pop());
         }
 
         // For 'lokal' flag
-        if (flag.equals("lokal")) {
+        if (flag.equals(Flag.LOKAL)) {
 
+            heap.store(reference.getValue() + address, stack.pop());
         }
 
         increment();

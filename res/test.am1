@@ -1,0 +1,15 @@
+LOADI (-2)
+LIT 11
+GT
+INIT 1
+STORE (lokal, 1)
+WRITEI (-2)
+WRITE (lokal, 1)
+RET 0
+INIT 1
+LIT 10
+STORE (lokal, 1)
+LOAD (lokal, 1)
+PUSH
+CALL 0
+RET 0

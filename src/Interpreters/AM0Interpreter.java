@@ -5,12 +5,14 @@ import InstructionSets.Instructions;
 import Operations.AM0.AM0operation;
 import InstructionSets.AM0Instructions;
 import Constants.Colors;
+import Operations.Operation;
+import jdk.nashorn.internal.runtime.regexp.joni.constants.OPCode;
 
 import java.util.Map;
 
 public class AM0Interpreter implements Interpreter {
 
-    private Map<String, AM0operation> instructions;
+    private Map<String, Operation> instructions;
 
     public AM0Interpreter(Instructions instructions) {
 
@@ -18,7 +20,6 @@ public class AM0Interpreter implements Interpreter {
         if (!(instructions instanceof AM0Instructions)) System.out.println(Colors.RED + "Warning: Using InstructionSet that is not AM0!" + Colors.RESET);
 
         this.instructions = instructions.getInstructions();
-
     }
 
     public void execute(String command) {

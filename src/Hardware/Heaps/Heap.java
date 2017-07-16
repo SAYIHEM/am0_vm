@@ -30,11 +30,36 @@ public class Heap {
     public Integer load(Integer address)
     {
         if(address < 0 || address >= ADDRESS_MAX)
-            throw new StackException("READ error. address out of bounds!");
+            throw new StackException("READ error. address out of bounds! Address was: " + address);
 
         Integer val = heap.get(address);
         if (val == null) throw new StackException("READ error. Value in address was NULL!");
 
         return val;
+    }
+
+    public void emptyfromAddress(int address) {
+
+        Map<Integer, Integer> heapCopy = new HashMap<>(heap);
+
+        for (Integer heapAddress : heapCopy.keySet()) {
+
+            if (heapAddress > address && heapAddress <= getMaxAddress()) {
+
+                heap.remove(heapAddress);
+            }
+        }
+    }
+
+    public Integer getMaxAddress() {
+
+        int maxAddress = 0;
+
+        for (Integer address : heap.keySet()) {
+
+            maxAddress = address > maxAddress ? address : maxAddress;
+        }
+
+        return maxAddress;
     }
 }

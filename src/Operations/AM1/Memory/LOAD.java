@@ -1,6 +1,7 @@
 package Operations.AM1.Memory;
 
 import Constants.ArgPatterns;
+import Constants.Flag;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Hardware.Stacks.Pointer;
@@ -10,8 +11,8 @@ import Operations.AM1.AM1operation;
 public class LOAD extends AM1operation {
 
 
-    public LOAD(Heap heap, Stack stack, Heap runtimeHeap, CommandPointer commandPointer, Pointer reference) {
-        super(heap, stack, runtimeHeap, commandPointer, reference);
+    public LOAD(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
+        super(heap, stack, commandPointer, reference);
     }
 
     @Override
@@ -26,16 +27,17 @@ public class LOAD extends AM1operation {
         int address = Integer.parseInt(args[1]);
 
         // For 'global' flag
-        if (flag.equals("global")) {
+        if (flag.equals(Flag.GLOBAL)) {
 
             stack.push(heap.load(address));
         }
 
         // For 'lokal' flag
-        if (flag.equals("lokal")) {
+        if (flag.equals(Flag.LOKAL)) {
 
             stack.push(heap.load(reference.getValue() + address));
         }
 
+        increment();
     }
 }

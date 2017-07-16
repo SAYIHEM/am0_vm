@@ -8,6 +8,7 @@ import Hardware.Peripherals.Soundcard;
 import InstructionSets.AM0Instructions;
 import Interpreters.AM0Interpreter;
 import Hardware.Stacks.Stack;
+import Interpreters.Interpreter;
 import Logs.Log;
 
 import javax.swing.*;
@@ -60,7 +61,7 @@ public class AM0Machine extends RuntimeMachine {
 
     public void run(String[] program) {
 
-        AM0Interpreter interpreter = new AM0Interpreter(new AM0Instructions(runtimeHeap, runtimeStack, commandPointer));
+        Interpreter interpreter = new AM0Interpreter(new AM0Instructions(runtimeHeap, runtimeStack, commandPointer));
 
         while(commandPointer.getValue() < program.length) {
 

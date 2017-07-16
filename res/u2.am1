@@ -1,0 +1,32 @@
+INIT 1
+READ (lokal, 1)
+LOADA (lokal, 1)
+PUSH
+CALL 1
+INIT 1
+LIT 2
+STORE (lokal, 1)
+LIT 1
+LOADI (-1)
+GT
+JMC 32
+LOAD (lokal, 1)
+LOADI (-1)
+MOD
+LIT 0
+NE
+JMC 24
+LOAD (lokal, 1)
+LIT 1
+ADD
+STORE (lokal, 1)
+JMP 13
+LOAD (lokal, 1)
+LOADI (-1)
+DIV
+STOREI (-1)
+WRITEI (-1)
+LOADI (-1)
+PUSH
+CALL 6
+RET 1

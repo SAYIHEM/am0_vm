@@ -8,6 +8,7 @@ import Operations.AM0.Logical.*;
 import Operations.AM0.Memory.*;
 import Hardware.Stacks.Stack;
 import Operations.AM0.Memory.READ;
+import Operations.Operation;
 
 import java.util.Map;
 
@@ -36,7 +37,7 @@ public class AM0Instructions extends Instructions {
         instructions.put("JMC", new JMC(heap, stack, commandPointer));
     }
 
-    public Map<String, AM0operation> getInstructions() {
+    public Map<String, Operation> getInstructions() {
 
         return instructions;
     }

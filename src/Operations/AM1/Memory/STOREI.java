@@ -7,9 +7,9 @@ import Hardware.Stacks.Pointer;
 import Hardware.Stacks.Stack;
 import Operations.AM1.AM1operation;
 
-public class LOADI extends AM1operation {
+public class STOREI extends AM1operation {
 
-    public LOADI(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
+    public STOREI(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
         super(heap, stack, commandPointer, reference);
     }
 
@@ -22,7 +22,7 @@ public class LOADI extends AM1operation {
 
         int address_pointer = this.BRACKET_INT(arg);
         int address_value = heap.load(reference.getValue() + address_pointer);
-        stack.push(heap.load(address_value));
+        heap.store(address_value, stack.pop());
 
         increment();
     }
