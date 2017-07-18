@@ -1,6 +1,7 @@
 package Test;
 
 
+import Constants.ArgPatterns;
 import FileReader.FileArrayProvider;
 import Hardware.Peripherals.Soundcard;
 import Logs.Log;
@@ -137,6 +138,8 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println("(13,2,3:0:3:0,4,4,-)".matches(ArgPatterns.AM1_INPUT));
 
 
         //AM0Machine machine = new AM0Machine(program5);

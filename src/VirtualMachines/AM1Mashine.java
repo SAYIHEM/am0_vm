@@ -1,5 +1,6 @@
 package VirtualMachines;
 
+import Constants.ArgPatterns;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Hardware.Peripherals.Display;
@@ -57,6 +58,25 @@ public class AM1Mashine extends RuntimeMachine {
             interpreter.execute(program[commandPointer.getValue()]);
 
         }
+    }
+
+    // TODO: Input and Output is ignored right now!
+    public void setStartConfig(String startConfig) {
+
+        if (startConfig == null) throw new NullPointerException("StartConfig was NULL!");
+
+        // Test for correct input
+        startConfig = startConfig.replace(" ", "");
+        if (!startConfig.matches(ArgPatterns.AM1_INPUT))
+            throw new IllegalArgumentException("Invalid StartConfig! Config was: " + startConfig);
+
+        String[] configArray = startConfig.split(",");
+
+        // Set commandPointer
+        this.commandPointer.setValue(Integer.parseInt(configArray[0]));
+
+        // SetUp Stack
+        // TODO !!!!!
     }
 
     public void setEntryPoint(int entryPoint) {
