@@ -17,8 +17,6 @@ public class Main {
 
     public static void main(String[] argv) {
 
-        System.out.println("Program start...");
-
         String[] program1 = {
                 "READ 1",
                 "READ 2",
@@ -144,7 +142,5 @@ public class Main {
         //AM0Machine machine = new AM0Machine(program5);
         //System.out.println(machine.getOutput());
 
-
-        System.out.println("Program terminated...");
     }
 }
