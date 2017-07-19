@@ -129,9 +129,9 @@ public class Main {
 
         try {
 
-            String[] program = FileArrayProvider.readLines("res/test.am1");
+            String[] program = FileArrayProvider.readLines("res/prog.am1");
             AM1Mashine am1Mashine = new AM1Mashine();
-            am1Mashine.setEntryPoint(9);
+            am1Mashine.setStartConfig("(12, -, 0 : 3 : 0, 3, 9, -)");
             am1Mashine.run(program);
 
 
@@ -139,7 +139,6 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.println("(13,2,3:0:3:0,4,4,-)".matches(ArgPatterns.AM1_INPUT));
 
 
         //AM0Machine machine = new AM0Machine(program5);

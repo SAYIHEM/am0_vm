@@ -33,7 +33,7 @@ public class Heap {
             throw new StackException("READ error. address out of bounds! Address was: " + address);
 
         Integer val = heap.get(address);
-        if (val == null) throw new StackException("READ error. Value in address was NULL!");
+        if (val == null) throw new StackException("READ error. Value in address was NULL! Address was: " + address);
 
         return val;
     }

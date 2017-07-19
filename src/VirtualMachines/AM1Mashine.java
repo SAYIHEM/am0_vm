@@ -1,6 +1,7 @@
 package VirtualMachines;
 
 import Constants.ArgPatterns;
+import Constants.Colors;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Hardware.Peripherals.Display;
@@ -24,6 +25,7 @@ public class AM1Mashine extends RuntimeMachine {
     private Stack runtimeStack;
     private Heap runtimeHeap;
     private Pointer reference;
+    private String startConfig = Colors.RED + "Not defined!" + Colors.RESET;
 
     public AM1Mashine() {
 
@@ -47,6 +49,8 @@ public class AM1Mashine extends RuntimeMachine {
     @Override
     public void run(String[] program) {
 
+        System.out.println("Starting AM1-program with config: " + this.startConfig + " ...");
+
         Interpreter interpreter = new AM1Interpreter(new AM1Instructions(runtimeHeap, runtimeStack, commandPointer, reference));
 
         while(commandPointer.getValue() < program.length) {
@@ -58,6 +62,8 @@ public class AM1Mashine extends RuntimeMachine {
             interpreter.execute(program[commandPointer.getValue()]);
 
         }
+
+        System.out.println("Program terminated.");
     }
 
     // TODO: Input and Output is ignored right now!
@@ -69,14 +75,41 @@ public class AM1Mashine extends RuntimeMachine {
         startConfig = startConfig.replace(" ", "");
         if (!startConfig.matches(ArgPatterns.AM1_INPUT))
             throw new IllegalArgumentException("Invalid StartConfig! Config was: " + startConfig);
+        startConfig = startConfig.replace("(", "");
+        startConfig = startConfig.replace(")", "");
 
         String[] configArray = startConfig.split(",");
 
         // Set commandPointer
-        this.commandPointer.setValue(Integer.parseInt(configArray[0]));
+        this.commandPointer.setValue(Integer.parseInt(configArray[0]) - 1); // TODO: CommandPointer muss verschoben sein!
 
         // SetUp Stack
-        // TODO !!!!!
+        String[] stack = configArray[1].split(":");
+        if (!stack[0].equals("-")) {
+
+            for (int i = stack.length - 1; i >= 0; i--) {
+
+                this.runtimeStack.push(Integer.parseInt(stack[i]));
+            }
+        }
+
+        // SetUp Heap
+        String[] heap = configArray[2].split(":");
+        if (!heap[0].equals("-")) {
+
+            int address = 1;
+            for (int i = heap.length - 1; i >= 0; i--) {
+
+                this.runtimeHeap.store(address, Integer.parseInt(heap[i]));
+                address++;
+            }
+        }
+
+        // Set Ref-pointer
+        this.reference.setValue(Integer.parseInt(configArray[3]));
+
+        // Save StartConfig for console output
+        this.startConfig = startConfig;
     }
 
     public void setEntryPoint(int entryPoint) {

@@ -28,8 +28,8 @@ public class LOADA extends AM1operation {
         // For 'global' flag
         if (flag.equals(Flag.GLOBAL)) {
 
-            int globalAddress = heap.load(address);
-            stack.push(heap.load(globalAddress));
+            //int globalAddress = heap.load(address);
+            stack.push(address);
         }
 
         // For 'lokal' flag

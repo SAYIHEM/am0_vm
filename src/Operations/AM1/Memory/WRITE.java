@@ -40,7 +40,7 @@ public class WRITE extends AM1operation {
             out = heap.load(reference.getValue() + address);
         }
 
-        System.out.println(Colors.RED_BACK + Colors.BLACK + "OUTPUT ->" + Integer.toString(out) + Colors.RESET);
+        System.out.println(Colors.RED_BACK + Colors.BLACK + "OUTPUT ->" + Colors.RESET + " " + Integer.toString(out));
 
         increment();
     }
