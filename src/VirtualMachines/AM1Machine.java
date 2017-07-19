@@ -1,6 +1,7 @@
 package VirtualMachines;
 
 import Constants.ArgPatterns;
+import Constants.Colors;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Hardware.Stacks.Pointer;
@@ -10,7 +11,7 @@ import Interpreters.AM1Interpreter;
 import Interpreters.Interpreter;
 import Logs.Log;
 
-public class AM1Mashine extends RuntimeMachine {
+public class AM1Machine extends RuntimeMachine {
 
     private CommandPointer commandPointer;
     private Stack runtimeStack;
@@ -19,12 +20,12 @@ public class AM1Mashine extends RuntimeMachine {
     private String startConfig;
     private boolean configSet = false;
 
-    public AM1Mashine() {
+    public AM1Machine() {
 
         init();
     }
 
-    public AM1Mashine(String[] program) {
+    public AM1Machine(String[] program) {
 
         init();
         run(program);
@@ -42,7 +43,11 @@ public class AM1Mashine extends RuntimeMachine {
     public void run(String[] program) {
 
         // Check if StartConfig is set
-        if (!this.configSet) throw new IllegalStateException("Missing Start-config!");
+        if (!this.configSet) {
+
+            System.out.println(Colors.RED + "Run failed: Missing Start-config!" + Colors.RESET);
+            return;
+        }
 
         // Console output
         System.out.println("Starting AM1-program with config: " + this.startConfig);
@@ -56,11 +61,13 @@ public class AM1Mashine extends RuntimeMachine {
 
             // Write output
             output += program[commandPointer.getValue()] + "\n";
-            Log.d(commandPointer.getValue() + "", program[commandPointer.getValue()]);
+            System.out.printf("%2s: %s", commandPointer.getValue(), program[commandPointer.getValue()] + "\n"); // TODO: Implementation with 'Log.d'
 
             interpreter.execute(program[commandPointer.getValue()]);
-
         }
+
+        // Reset machine
+        reset();
 
         System.out.println("Program terminated.");
     }
@@ -78,7 +85,7 @@ public class AM1Mashine extends RuntimeMachine {
         this.configSet = true;
     }
 
-    // TODO: Input and Output is ignored right now!
+    // TODO: Input and Output is manuel right now!
     private void interpretStartConfig() {
 
         this.startConfig = this.startConfig.replace("(", "");
@@ -113,6 +120,13 @@ public class AM1Mashine extends RuntimeMachine {
 
         // Set Ref-pointer
         this.reference.setValue(Integer.parseInt(configArray[3]));
+    }
+
+    private void reset() {
+
+        init();
+        this.startConfig = null;
+        this.configSet = false;
     }
 
     public void setEntryPoint(int entryPoint) {

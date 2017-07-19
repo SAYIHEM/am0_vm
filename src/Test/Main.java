@@ -1,12 +1,8 @@
 package Test;
 
 
-import Constants.ArgPatterns;
 import FileReader.FileArrayProvider;
-import Hardware.Peripherals.Soundcard;
-import Logs.Log;
-import VirtualMachines.AM0Machine;
-import VirtualMachines.AM1Mashine;
+import VirtualMachines.AM1Machine;
 
 import java.io.IOException;
 
@@ -128,16 +124,13 @@ public class Main {
         try {
 
             String[] program = FileArrayProvider.readLines("res/prog.am1");
-            AM1Mashine am1Mashine = new AM1Mashine();
-            am1Mashine.setStartConfig("(12, -, 0 : 3 : 0, 3, 9, -)");
-            am1Mashine.run(program);
-
+            AM1Machine am1Machine = new AM1Machine();
+            am1Machine.setStartConfig("(12, -, 0 : 3 : 0, 3, 9, -)");
+            am1Machine.run(program);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
 
         //AM0Machine machine = new AM0Machine(program5);
         //System.out.println(machine.getOutput());

@@ -1,5 +1,6 @@
 package Interpreters;
 
+import Constants.ArgPatterns;
 import Constants.Colors;
 import InstructionSets.AM1Instructions;
 import InstructionSets.Instructions;
@@ -29,15 +30,21 @@ public class AM1Interpreter implements Interpreter {
         String operation;
         String arg;
 
-        if (!command.contains(" ")) {
+        // For command without parameter
+        if (command.matches(ArgPatterns.COMMAND_SINGLE)) {
 
-            operation = command;   // TODO: Filter with RegEx!
+            operation = command;
             arg = "";
 
-        } else {
+        // For command with parameter
+        } else if (command.matches(ArgPatterns.COMMAND_PARAMETER)) {
 
             operation = command.substring(0, command.indexOf(' '));
             arg = command.substring(command.indexOf(' ') + 1);
+
+        } else {
+
+            throw new IllegalArgumentException(Colors.RED + "Could not parse command! Command was: " + command + Colors.RESET);
         }
 
 
