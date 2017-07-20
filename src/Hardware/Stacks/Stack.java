@@ -5,7 +5,8 @@ import Exceptions.StackException;
 import java.util.ArrayList;
 
 public class Stack {
-    private ArrayList<Integer> stack;
+
+    protected ArrayList<Integer> stack;
 
     // Constructor
     public Stack() { stack = new ArrayList<>(); }

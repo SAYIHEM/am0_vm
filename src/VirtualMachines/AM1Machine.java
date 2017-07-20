@@ -3,22 +3,32 @@ package VirtualMachines;
 import Constants.ArgPatterns;
 import Constants.Colors;
 import Hardware.CommandPointers.CommandPointer;
+import Hardware.Heaps.AM1Heap;
 import Hardware.Heaps.Heap;
+import Hardware.Stacks.AM1Stack;
 import Hardware.Stacks.Pointer;
 import Hardware.Stacks.Stack;
 import InstructionSets.AM1Instructions;
 import Interpreters.AM1Interpreter;
 import Interpreters.Interpreter;
 import Logs.Log;
+import OutputHandler.AM1ConsoleOutput;
+import OutputHandler.Displayable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AM1Machine extends RuntimeMachine {
 
     private CommandPointer commandPointer;
-    private Stack runtimeStack;
-    private Heap runtimeHeap;
+    private AM1Stack runtimeStack;
+    private AM1Heap runtimeHeap;
     private Pointer reference;
     private String startConfig;
     private boolean configSet = false;
+
+    // For console output
+    private AM1ConsoleOutput consoleOutput;
 
     public AM1Machine() {
 
@@ -34,9 +44,17 @@ public class AM1Machine extends RuntimeMachine {
     private void init() {
 
         commandPointer = new CommandPointer();
-        runtimeStack = new Stack();
-        runtimeHeap = new Heap();
+        runtimeStack = new AM1Stack();
+        runtimeHeap = new AM1Heap();
         reference = new Pointer();
+
+        // Set up List for console output
+        List<Displayable> devvices = new ArrayList<>();
+        devvices.add(commandPointer);
+        devvices.add(runtimeStack);
+        devvices.add(runtimeHeap);
+        devvices.add(reference);
+        consoleOutput = new AM1ConsoleOutput(devvices);
     }
 
     @Override
@@ -61,7 +79,11 @@ public class AM1Machine extends RuntimeMachine {
 
             // Write output
             output += program[commandPointer.getValue()] + "\n";
+
+            // TODO: Fix Console Output
+            //System.out.printf("%2s: %s%20s", commandPointer.getValue(), program[commandPointer.getValue()], consoleOutput.getMachineState() + "\n"); // TODO: Implementation with 'Log.d'
             System.out.printf("%2s: %s", commandPointer.getValue(), program[commandPointer.getValue()] + "\n"); // TODO: Implementation with 'Log.d'
+
 
             interpreter.execute(program[commandPointer.getValue()]);
         }

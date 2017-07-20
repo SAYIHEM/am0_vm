@@ -10,10 +10,8 @@ import java.util.Map;
  */
 public class Heap {
 
-    private static Heap instance = new Heap();
-
-    private final Integer ADDRESS_MAX = 0xFFFF;
-    private Map<Integer, Integer> heap;
+    protected final Integer ADDRESS_MAX = 0xFFFF;
+    protected Map<Integer, Integer> heap;
 
     public Heap()
     {

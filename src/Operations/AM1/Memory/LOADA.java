@@ -36,7 +36,7 @@ public class LOADA extends AM1operation {
         if (flag.equals(Flag.LOKAL)) {
 
             int globalAddress = heap.load(reference.getValue() + address);
-            stack.push(heap.load(globalAddress));
+            stack.push(globalAddress);
         }
 
         increment();

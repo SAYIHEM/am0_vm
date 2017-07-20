@@ -1,7 +1,9 @@
 package Hardware.Stacks;
 
 
-public class Pointer {
+import OutputHandler.Displayable;
+
+public class Pointer implements Displayable {
 
     private int value;
 
@@ -23,5 +25,11 @@ public class Pointer {
     public int getValue() {
 
         return this.value;
+    }
+
+    @Override
+    public String getState() {
+
+        return Integer.toString(value);
     }
 }

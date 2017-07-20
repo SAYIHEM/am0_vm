@@ -123,10 +123,16 @@ public class Main {
 
         try {
 
-            String[] program = FileArrayProvider.readLines("res/prog.am1");
+            /*String[] program = FileArrayProvider.readLines("res/prog.am1");
             AM1Machine am1Machine = new AM1Machine();
             am1Machine.setStartConfig("(12, -, 0 : 3 : 0, 3, 9, -)");
+            am1Machine.run(program);*/
+
+            String[] program = FileArrayProvider.readLines("res/u2.am1");
+            AM1Machine am1Machine = new AM1Machine();
+            am1Machine.setStartConfig("(28, -, -, 0, -, -)");
             am1Machine.run(program);
+
 
         } catch (IOException e) {
             e.printStackTrace();
