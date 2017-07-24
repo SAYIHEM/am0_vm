@@ -1,0 +1,24 @@
+RET 1 [proc f]
+LOADI (-2) [proc g]
+LIT 1 [var i]
+STORE (lokal, 1)
+LOAD (lokal, 1)
+GT
+JMC 15
+LOAD (lokal, -2)
+PUSH
+CALL 1
+LOAD (lokal, 1)
+LIT 1
+ADD
+STORE (lokal, 1)
+JMP 5
+LOADA (lokal, 1)
+STORE (lokal, -2)
+RET 1
+INIT 1 [MAIN]
+LIT 3 [var p]
+STORE (lokal, 1)
+LOADA (lokal, 1)
+PUSH
+CALL 2

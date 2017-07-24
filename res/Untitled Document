@@ -1,0 +1,2 @@
+            String[] program = FileArrayProvider.readLines("res/u9a3.am1");
+
