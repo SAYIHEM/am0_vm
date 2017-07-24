@@ -4,14 +4,11 @@ import Constants.ArgPatterns;
 import Constants.Colors;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.AM1Heap;
-import Hardware.Heaps.Heap;
 import Hardware.Stacks.AM1Stack;
 import Hardware.Stacks.Pointer;
-import Hardware.Stacks.Stack;
 import InstructionSets.AM1Instructions;
 import Interpreters.AM1Interpreter;
 import Interpreters.Interpreter;
-import Logs.Log;
 import OutputHandler.AM1ConsoleOutput;
 import OutputHandler.Displayable;
 
