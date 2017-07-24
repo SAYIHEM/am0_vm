@@ -2,6 +2,7 @@ package Test;
 
 
 import FileReader.FileArrayProvider;
+import VirtualMachines.AM0Machine;
 import VirtualMachines.AM1Machine;
 
 import java.io.IOException;
@@ -12,6 +13,8 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] argv) {
+
+        System.out.println("Program start...");
 
         String[] program1 = {
                 "READ 1",
@@ -120,6 +123,11 @@ public class Main {
                 "STORE 5",
                 "JMP 2"
         };
+
+        //AM0 test, blinking a pixel
+        //AM0Machine am0Machine = new AM0Machine();
+        //am0Machine.run(program7);
+
 
         try {
 
