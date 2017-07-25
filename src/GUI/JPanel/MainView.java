@@ -50,7 +50,7 @@ public class MainView extends JFrame {
     }
 
 
-    private void expandElement(Component element, double scaleX, double scaleY) {
+    private void scaleElement(Component element, double scaleX, double scaleY) {
 
         int X = element.getX();
         int Y = element.getY();
@@ -61,19 +61,10 @@ public class MainView extends JFrame {
 
     }
 
-    private void shrinkElement(Component element, double scaleX, double scaleY) {
-
-        int X = element.getX();
-        int Y = element.getY();
-        int width = element.getWidth();
-        int height = element.getHeight();
-
-        element.setBounds((int)(X - (X*scaleX-X)), (int)(Y - (Y*scaleX-Y)), (int)(width - (width*scaleX-width)), (int)(height - (height*scaleY-height)));
-
-    }
 
     private void resize() {
 
+        this.panel.setSize(initialWidth, initialHeight);
         // Set ListBox positions
         this.listStack.setBounds(13, 13, 345,460);
         this.listProgram.setBounds(363,41, 375, 316);
@@ -96,11 +87,6 @@ public class MainView extends JFrame {
 
         // Init
         this.panel = new JPanel();
-        panel.setSize(766, 635);
-        Dimension dim = new Dimension();
-        dim.setSize(766, 635);
-        panel.setMinimumSize(dim);
-        this.setMaximumSize(dim);
 
         // Init ListViews
         this.listStack = new JList();
@@ -114,8 +100,6 @@ public class MainView extends JFrame {
         this.buttonSetBreakpoint = new JButton();
         this.buttonBreak = new JButton();
         this.buttonMakeStep = new JButton();
-
-
 
 
         // Init Listeners
@@ -171,24 +155,22 @@ public class MainView extends JFrame {
         this.addComponentListener(new ComponentListener() {
             public void componentResized(ComponentEvent e) {
 
-
+                double width = getWidth();
+                double height = getHeight();
 
                 resize();
-
-                double width = getWidth();
-                double heigth = getHeight();
 
                 //double scaleX = width / initialWidth;
                 //double scaleY = heigth / initialHeight;
 
-                double scaleX = width > initialWidth ? width/initialWidth : initialWidth/width;
-                double scaleY = width > initialWidth ? heigth/initialHeight : initialHeight/heigth;
+                double scaleX = width/initialWidth;
+                double scaleY = height/initialHeight;
 
 
                 System.out.println("scaleX: " + scaleX);
                 System.out.println("scaleY: " + scaleY);
                 System.out.println("Width: " + width);
-                System.out.println("Height: " + heigth);
+                System.out.println("Height: " + height);
                 System.out.println("initialWidth: " + initialWidth);
                 System.out.println("initialHeight: " + initialHeight);
                 System.out.println("");
@@ -196,14 +178,11 @@ public class MainView extends JFrame {
 
                 for (Component element : componentList) {
 
-                    if (width > initialWidth || heigth > initialHeight) expandElement(element, scaleX, scaleY);
-                    if (width < initialWidth || heigth < initialHeight) shrinkElement(element, scaleX, scaleY);
-
-
+                    scaleElement(element, scaleX, scaleY);
                 }
 
                 // Resize Panel
-                panel.setSize((int)(panel.getWidth()*scaleX), (int)(panel.getHeight()*scaleY));
+                panel.setSize((int)width, (int)height);
 
                 revalidate();
                 repaint();
