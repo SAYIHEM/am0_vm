@@ -5,6 +5,7 @@ import FileReader.FileArrayProvider;
 import VirtualMachines.AM0Machine;
 import VirtualMachines.AM1Machine;
 
+import javax.swing.*;
 import java.io.IOException;
 
 /**
@@ -13,6 +14,11 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] argv) {
+
+
+
+
+
 
         System.out.println("Program start...");
 
