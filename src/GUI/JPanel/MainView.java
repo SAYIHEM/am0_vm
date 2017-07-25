@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainView extends JFrame {
 
@@ -21,6 +23,8 @@ public class MainView extends JFrame {
     private JButton buttonSetBreakpoint;
     private JButton buttonBreak;
     private JButton buttonMakeStep;
+
+    private List<Component> componentList = new ArrayList<>();
 
     // Listener
     private ComponentListener listenerFrame;
@@ -40,26 +44,63 @@ public class MainView extends JFrame {
             e.printStackTrace();
         }
 
-        // Set size of window
-        setSize(766, 635);
-
-
 
         init();
+        resize();
     }
 
-    private void onResize() {
 
+    private void expandElement(Component element, double scaleX, double scaleY) {
 
+        int X = element.getX();
+        int Y = element.getY();
+        int width = element.getWidth();
+        int height = element.getHeight();
+
+        element.setBounds((int)(X*scaleX), (int)(Y*scaleY), (int)(width*scaleX), (int)(height*scaleY));
+
+    }
+
+    private void shrinkElement(Component element, double scaleX, double scaleY) {
+
+        int X = element.getX();
+        int Y = element.getY();
+        int width = element.getWidth();
+        int height = element.getHeight();
+
+        element.setBounds((int)(X - (X*scaleX-X)), (int)(Y - (Y*scaleX-Y)), (int)(width - (width*scaleX-width)), (int)(height - (height*scaleY-height)));
+
+    }
+
+    private void resize() {
+
+        // Set ListBox positions
+        this.listStack.setBounds(13, 13, 345,460);
+        this.listProgram.setBounds(363,41, 375, 316);
+        this.listEventOutput.setBounds(13, 478, 726, 108);
+
+        // Set Button position
+        this.buttonLoadFile.setBounds(363, 12, 373, 23);
+        this.buttonRun.setBounds(365, 363, 119, 46);
+        this.buttonTerminate.setBounds(615, 363, 119, 46);
+        this.buttonSetBreakpoint.setBounds(371, 430, 75, 23);
+        this.buttonBreak.setBounds(581, 429, 75, 23);
+        this.buttonMakeStep.setBounds(659, 429, 75, 23);
     }
 
     private void init() {
 
+        // Set size of window
+        setSize(766, 635);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         // Init
         this.panel = new JPanel();
         panel.setSize(766, 635);
-
-
+        Dimension dim = new Dimension();
+        dim.setSize(766, 635);
+        panel.setMinimumSize(dim);
+        this.setMaximumSize(dim);
 
         // Init ListViews
         this.listStack = new JList();
@@ -75,24 +116,24 @@ public class MainView extends JFrame {
         this.buttonMakeStep = new JButton();
 
 
-        // Set ListBox positions
-        this.listStack.setBounds(13, 13, 345,460);
-        this.listProgram.setBounds(363,41, 375, 316);
-        this.listEventOutput.setBounds(13, 478, 726, 108);
 
-        // Set Button position
-        this.buttonLoadFile.setBounds(363, 12, 373, 23);
-        this.buttonRun.setBounds(365, 363, 119, 46);
-        this.buttonTerminate.setBounds(615, 363, 119, 46);
-        this.buttonSetBreakpoint.setBounds(371, 430, 75, 23);
-        this.buttonBreak.setBounds(581, 429, 75, 23);
-        this.buttonMakeStep.setBounds(659, 429, 75, 23);
 
         // Init Listeners
         initListeners();
 
 
-        // Add Buttons to Panel
+        // Add Elements to List
+        this.componentList.add(listStack);
+        this.componentList.add(listProgram);
+        this.componentList.add(listEventOutput);
+        this.componentList.add(buttonLoadFile);
+        this.componentList.add(buttonRun);
+        this.componentList.add(buttonTerminate);
+        this.componentList.add(buttonSetBreakpoint);
+        this.componentList.add(buttonBreak);
+        this.componentList.add(buttonMakeStep);
+
+        // Add Elements to Panel
         this.panel.add(listStack);
         this.panel.add(listProgram);
         this.panel.add(listEventOutput);
@@ -118,8 +159,13 @@ public class MainView extends JFrame {
 
         revalidate();
         repaint();
+
+
+
     }
 
+
+    private double n = 0;
     private void initListeners() {
 
         this.addComponentListener(new ComponentListener() {
@@ -127,17 +173,40 @@ public class MainView extends JFrame {
 
 
 
+                resize();
 
-                double scaleX = getWidth() / initialWidth;
-                double scalesY = getHeight() / initialHeight;
+                double width = getWidth();
+                double heigth = getHeight();
 
-                initialWidth = getWidth();
-                initialHeight = getHeight();
+                //double scaleX = width / initialWidth;
+                //double scaleY = heigth / initialHeight;
 
-                System.out.println("Yau");
+                double scaleX = width > initialWidth ? width/initialWidth : initialWidth/width;
+                double scaleY = width > initialWidth ? heigth/initialHeight : initialHeight/heigth;
 
-                listStack.setBounds();
 
+                System.out.println("scaleX: " + scaleX);
+                System.out.println("scaleY: " + scaleY);
+                System.out.println("Width: " + width);
+                System.out.println("Height: " + heigth);
+                System.out.println("initialWidth: " + initialWidth);
+                System.out.println("initialHeight: " + initialHeight);
+                System.out.println("");
+
+
+                for (Component element : componentList) {
+
+                    if (width > initialWidth || heigth > initialHeight) expandElement(element, scaleX, scaleY);
+                    if (width < initialWidth || heigth < initialHeight) shrinkElement(element, scaleX, scaleY);
+
+
+                }
+
+                // Resize Panel
+                panel.setSize((int)(panel.getWidth()*scaleX), (int)(panel.getHeight()*scaleY));
+
+                revalidate();
+                repaint();
             }
 
             @Override
