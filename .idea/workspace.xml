@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93abb51e-3caa-46e9-904b-d5e5060108fc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/JPanel/Toolbox/DButton.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Tools/FontManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/GUI/JPanel/ScrollView.java" afterPath="$PROJECT_DIR$/src/GUI/JPanel/Toolbox/ScrollView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Constants/Symbols.java" afterPath="$PROJECT_DIR$/src/Constants/Symbols.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI/JPanel/MainView.java" afterPath="$PROJECT_DIR$/src/GUI/JPanel/MainView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI/JPanel/Resizeable.java" afterPath="$PROJECT_DIR$/src/GUI/JPanel/Resizeable.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -633,7 +627,7 @@
       <workItem from="1499549413804" duration="727000" />
       <workItem from="1500923029703" duration="1860000" />
       <workItem from="1501017002832" duration="1035000" />
-      <workItem from="1501081127747" duration="6953000" />
+      <workItem from="1501081127747" duration="7591000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1499276896480</created>
@@ -803,11 +797,18 @@
       <option name="project" value="LOCAL" />
       <updated>1500819248345</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="ɹǝƃɹnqǝsǝǝɥɔ">
+      <created>1501091058056</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1501091058056</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49924000" />
+    <option name="totallyTimeSpent" value="50562000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1602" height="852" extended-state="6" />
