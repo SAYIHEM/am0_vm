@@ -32,7 +32,7 @@ public class MainView extends JFrame {
     // FontManager
     FontManager fontManager = new FontManager();
 
-    private List<Resizeable> componentList = new ArrayList<>();
+    private List<Component> componentList = new ArrayList<>();
 
     // Listener
     private ComponentListener listenerFrame;
@@ -102,6 +102,12 @@ public class MainView extends JFrame {
         this.listStack = new ScrollView();
         this.listProgram = new ScrollView();
         this.listEventOutput = new ScrollView();
+
+        for (int i = 0; i < 50; i++) {
+
+            // TODO: Test ScrollView
+            //listEventOutput.add();
+        }
 
 
 
@@ -196,9 +202,14 @@ public class MainView extends JFrame {
 
 
 
-                for (Resizeable element : componentList) {
+                // Resize Elements
+                for (Component element : componentList) {
 
-                    element.resize(scaleX, scaleY);
+                    if (element instanceof Resizeable) {
+
+                        Resizeable resizeableElement = (Resizeable) element;
+                        resizeableElement.resize(scaleX, scaleY);
+                    }
                 }
 
                 // Resize Panel

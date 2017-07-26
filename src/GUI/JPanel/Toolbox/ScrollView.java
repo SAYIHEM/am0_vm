@@ -6,6 +6,13 @@ import javax.swing.*;
 
 public class ScrollView extends JList implements Resizeable, Scrollable {
 
+    private JScrollPane scrollPane;
+
+    public ScrollView() {
+
+        scrollPane = new JScrollPane();
+        scrollPane.setViewportView(this);
+    }
 
     @Override
     public void resize(double scaleX, double scaleY) {
