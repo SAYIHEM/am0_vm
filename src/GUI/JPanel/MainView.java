@@ -1,5 +1,7 @@
 package GUI.JPanel;
 
+import Constants.Symbols;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
@@ -64,7 +66,6 @@ public class MainView extends JFrame {
 
     private void resize() {
 
-        this.panel.setSize(initialWidth, initialHeight);
         // Set ListBox positions
         this.listStack.setBounds(13, 13, 345,460);
         this.listProgram.setBounds(363,41, 375, 316);
@@ -79,6 +80,8 @@ public class MainView extends JFrame {
         this.buttonMakeStep.setBounds(659, 429, 75, 23);
     }
 
+
+
     private void init() {
 
         // Set size of window
@@ -87,6 +90,7 @@ public class MainView extends JFrame {
 
         // Init
         this.panel = new JPanel();
+        this.panel.setSize(1920, 1080);
 
         // Init ListViews
         this.listStack = new JList();
@@ -95,11 +99,26 @@ public class MainView extends JFrame {
 
         // Init Buttons
         this.buttonLoadFile = new JButton();
+        this.buttonLoadFile.setText("LOAD FILE");
+
+
         this.buttonRun = new JButton();
+        this.buttonRun.setText("RUN");
+
+
         this.buttonTerminate = new JButton();
+        this.buttonTerminate.setText("TERMINATE");
+
+
         this.buttonSetBreakpoint = new JButton();
+        this.buttonSetBreakpoint.setText(Symbols.SET_BREAKPOINT);
+
+
         this.buttonBreak = new JButton();
+        this.buttonBreak.setText(Symbols.BREAK);
+
         this.buttonMakeStep = new JButton();
+        this.buttonMakeStep.setText("MAKE STEP");
 
 
         // Init Listeners
@@ -141,6 +160,7 @@ public class MainView extends JFrame {
 
         setVisible(true);
 
+        createBufferStrategy(3);
         revalidate();
         repaint();
 
@@ -167,13 +187,13 @@ public class MainView extends JFrame {
                 double scaleY = height/initialHeight;
 
 
-                System.out.println("scaleX: " + scaleX);
+/*                System.out.println("scaleX: " + scaleX);
                 System.out.println("scaleY: " + scaleY);
                 System.out.println("Width: " + width);
                 System.out.println("Height: " + height);
                 System.out.println("initialWidth: " + initialWidth);
                 System.out.println("initialHeight: " + initialHeight);
-                System.out.println("");
+                System.out.println("");*/
 
 
                 for (Component element : componentList) {
@@ -186,6 +206,7 @@ public class MainView extends JFrame {
 
                 revalidate();
                 repaint();
+
             }
 
             @Override
