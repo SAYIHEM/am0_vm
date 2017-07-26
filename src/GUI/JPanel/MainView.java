@@ -1,5 +1,8 @@
 package GUI.JPanel;
 
+import GUI.JPanel.Toolbox.DButton;
+import GUI.JPanel.Toolbox.ScrollView;
+import Tools.FontManager;
 import Constants.Symbols;
 
 import javax.swing.*;
@@ -14,19 +17,22 @@ public class MainView extends JFrame {
     private JPanel panel;
 
     // Lists
-    private JList listStack;
-    private JList listProgram;
-    private JList listEventOutput;
+    private ScrollView listStack;
+    private ScrollView listProgram;
+    private ScrollView listEventOutput;
 
     // Buttons
-    private JButton buttonLoadFile;
-    private JButton buttonRun;
-    private JButton buttonTerminate;
-    private JButton buttonSetBreakpoint;
-    private JButton buttonBreak;
-    private JButton buttonMakeStep;
+    private DButton buttonLoadFile;
+    private DButton buttonRun;
+    private DButton buttonTerminate;
+    private DButton buttonSetBreakpoint;
+    private DButton buttonBreak;
+    private DButton buttonMakeStep;
 
-    private List<Component> componentList = new ArrayList<>();
+    // FontManager
+    FontManager fontManager = new FontManager();
+
+    private List<Resizeable> componentList = new ArrayList<>();
 
     // Listener
     private ComponentListener listenerFrame;
@@ -74,7 +80,7 @@ public class MainView extends JFrame {
         // Set Button position
         this.buttonLoadFile.setBounds(363, 12, 373, 23);
         this.buttonRun.setBounds(365, 363, 119, 46);
-        this.buttonTerminate.setBounds(615, 363, 119, 46);
+        this.buttonTerminate.setBounds(584, 363, 150, 46);
         this.buttonSetBreakpoint.setBounds(371, 430, 75, 23);
         this.buttonBreak.setBounds(581, 429, 75, 23);
         this.buttonMakeStep.setBounds(659, 429, 75, 23);
@@ -93,31 +99,34 @@ public class MainView extends JFrame {
         this.panel.setSize(1920, 1080);
 
         // Init ListViews
-        this.listStack = new JList();
-        this.listProgram = new JList();
-        this.listEventOutput = new JList();
+        this.listStack = new ScrollView();
+        this.listProgram = new ScrollView();
+        this.listEventOutput = new ScrollView();
+
+
 
         // Init Buttons
-        this.buttonLoadFile = new JButton();
+        this.buttonLoadFile = new DButton();
         this.buttonLoadFile.setText("LOAD FILE");
 
 
-        this.buttonRun = new JButton();
+        this.buttonRun = new DButton();
         this.buttonRun.setText("RUN");
 
 
-        this.buttonTerminate = new JButton();
+        this.buttonTerminate = new DButton();
         this.buttonTerminate.setText("TERMINATE");
 
 
-        this.buttonSetBreakpoint = new JButton();
-        this.buttonSetBreakpoint.setText(Symbols.SET_BREAKPOINT);
+        this.buttonSetBreakpoint = new DButton();
+        this.buttonSetBreakpoint.setText(String.valueOf(Symbols.SET_BREAKPOINT));
+        this.buttonSetBreakpoint.setFont(FontManager.UNICODE);
 
-
-        this.buttonBreak = new JButton();
+        this.buttonBreak = new DButton();
         this.buttonBreak.setText(Symbols.BREAK);
+        this.buttonSetBreakpoint.setFont(FontManager.UNICODE);
 
-        this.buttonMakeStep = new JButton();
+        this.buttonMakeStep = new DButton();
         this.buttonMakeStep.setText("MAKE STEP");
 
 
@@ -180,25 +189,16 @@ public class MainView extends JFrame {
 
                 resize();
 
-                //double scaleX = width / initialWidth;
-                //double scaleY = heigth / initialHeight;
 
                 double scaleX = width/initialWidth;
                 double scaleY = height/initialHeight;
 
 
-/*                System.out.println("scaleX: " + scaleX);
-                System.out.println("scaleY: " + scaleY);
-                System.out.println("Width: " + width);
-                System.out.println("Height: " + height);
-                System.out.println("initialWidth: " + initialWidth);
-                System.out.println("initialHeight: " + initialHeight);
-                System.out.println("");*/
 
 
-                for (Component element : componentList) {
+                for (Resizeable element : componentList) {
 
-                    scaleElement(element, scaleX, scaleY);
+                    element.resize(scaleX, scaleY);
                 }
 
                 // Resize Panel

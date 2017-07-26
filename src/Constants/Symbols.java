@@ -2,8 +2,8 @@ package Constants;
 
 public abstract class Symbols {
 
-    public static final String SET_BREAKPOINT = "U+081C";
-    public static final String BREAK = "U+23F9";
+    public static final String SET_BREAKPOINT = "\u081C";
+    public static final String BREAK = "\u23F9";
 
 
 }

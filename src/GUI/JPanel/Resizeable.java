@@ -2,5 +2,5 @@ package GUI.JPanel;
 
 public interface Resizeable {
 
-    void rezize();
+    void resize(double scaleX, double scaleY);
 }
