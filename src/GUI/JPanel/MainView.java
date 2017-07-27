@@ -103,10 +103,10 @@ public class MainView extends JFrame {
         DefaultListModel<String> model = new DefaultListModel<>();
         this.listStack = new ScrollView<>(model);
         this.listProgram = new ScrollView<>();
-        // this.listEventOutput = new ScrollView<String>()).getView()); // TODO: Get output from ScollViews
+        this.listEventOutput = new ScrollView<>();
 
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
 
             // TODO: Test ScrollView
             JTextField textField = new JTextField();
