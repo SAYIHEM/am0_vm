@@ -1,9 +1,7 @@
 package Test;
 
-import GUI.JPanel.Controller.ControllerMainView;
-import GUI.JPanel.MainView;
 
-import javax.swing.*;
+import GUI.Controller.ControllerMainView;
 
 public class Test {
 

@@ -1,7 +1,8 @@
 package GUI.JPanel;
 
-import GUI.JPanel.Views.DButton;
-import GUI.JPanel.Views.ScrollView;
+import GUI.Resizeable;
+import GUI.Views.DButton;
+import GUI.Views.ScrollView;
 import Tools.FontManager;
 import Constants.Symbols;
 
@@ -248,7 +249,7 @@ public class MainView extends JFrame {
     /*
     * Getter and Setter for GUI Controller
     */
-    public String[] getTextListStack() {
+    public String[] getModelStackView() {
 
         String[] entries = new String[this.listStack.getModel().getSize()];
 
