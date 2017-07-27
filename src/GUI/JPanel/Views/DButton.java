@@ -1,4 +1,4 @@
-package GUI.JPanel.Toolbox;
+package GUI.JPanel.Views;
 
 import GUI.JPanel.Resizeable;
 

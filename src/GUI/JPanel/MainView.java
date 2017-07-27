@@ -1,7 +1,7 @@
 package GUI.JPanel;
 
-import GUI.JPanel.Toolbox.DButton;
-import GUI.JPanel.Toolbox.ScrollView;
+import GUI.JPanel.Views.DButton;
+import GUI.JPanel.Views.ScrollView;
 import Tools.FontManager;
 import Constants.Symbols;
 
@@ -17,9 +17,9 @@ public class MainView extends JFrame {
     private JPanel panel;
 
     // Lists
-    private ScrollView listStack;
-    private ScrollView listProgram;
-    private ScrollView listEventOutput;
+    private ScrollView<String> listStack;
+    private ScrollView<String> listProgram;
+    private ScrollView<String> listEventOutput;
 
     // Buttons
     private DButton buttonLoadFile;
@@ -98,16 +98,23 @@ public class MainView extends JFrame {
         this.panel = new JPanel();
         this.panel.setSize(1920, 1080);
 
+
         // Init ListViews
-        this.listStack = new ScrollView();
-        this.listProgram = new ScrollView();
-        this.listEventOutput = new ScrollView();
+        DefaultListModel<String> model = new DefaultListModel<>();
+        this.listStack = new ScrollView<>(model);
+        this.listProgram = new ScrollView<>();
+        // this.listEventOutput = new ScrollView<String>()).getView()); // TODO: Get output from ScollViews
+
 
         for (int i = 0; i < 50; i++) {
 
             // TODO: Test ScrollView
-            //listEventOutput.add();
+            JTextField textField = new JTextField();
+            textField.setText("TEEEEST");
+            model.addElement("TESTET");
         }
+        this.listStack.updateUI();
+
 
 
 
@@ -125,7 +132,7 @@ public class MainView extends JFrame {
 
 
         this.buttonSetBreakpoint = new DButton();
-        this.buttonSetBreakpoint.setText(String.valueOf(Symbols.SET_BREAKPOINT));
+        this.buttonSetBreakpoint.setText(Symbols.SET_BREAKPOINT);
         this.buttonSetBreakpoint.setFont(FontManager.UNICODE);
 
         this.buttonBreak = new DButton();
@@ -238,5 +245,30 @@ public class MainView extends JFrame {
     }
 
 
+    /*
+    * Getter and Setter for GUI Controller
+    */
+    public String[] getTextListStack() {
 
+        String[] entries = new String[this.listStack.getModel().getSize()];
+
+        for (int i = 0; i < entries.length; i++) {
+
+            entries[i] = String.valueOf(this.listStack.getModel().getElementAt(i));
+        }
+
+        return entries;
+    }
+
+    public String[] listProgram() {
+
+        return null;
+
+    }
+
+    public String[] listEventOutput() {
+
+        return null;
+
+    }
 }
