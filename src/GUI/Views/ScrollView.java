@@ -3,6 +3,7 @@ package GUI.Views;
 import GUI.Resizeable;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ScrollView<T> extends JScrollPane implements Resizeable {
 
@@ -57,5 +58,19 @@ public class ScrollView<T> extends JScrollPane implements Resizeable {
         this.listView.resize(scaleX, scaleY);
 
 
+    }
+
+    public void setFontList(Font font) {
+
+        if (font == null) throw new NullPointerException("Font to set was NULL!");
+
+        this.listView.setFont(font);
+    }
+
+    public Font getFontList() {
+
+        if (this.listView == null) return super.getFont();
+
+        return this.listView.getFont();
     }
 }

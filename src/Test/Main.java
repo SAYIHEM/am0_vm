@@ -1,11 +1,9 @@
 package Test;
 
 
-import FileReader.FileArrayProvider;
-import VirtualMachines.AM0Machine;
+import Tools.FileArrayProvider;
 import VirtualMachines.AM1Machine;
 
-import javax.swing.*;
 import java.io.IOException;
 
 /**

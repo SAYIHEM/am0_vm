@@ -22,6 +22,7 @@ public class AM1Machine extends RuntimeMachine {
     private AM1Heap runtimeHeap;
     private Pointer reference;
     private String startConfig;
+    private String[] program;
     private boolean configSet = false;
 
     // For console output
@@ -33,6 +34,8 @@ public class AM1Machine extends RuntimeMachine {
     }
 
     public AM1Machine(String[] program) {
+
+        this.program = program;
 
         init();
         run(program);
@@ -46,12 +49,19 @@ public class AM1Machine extends RuntimeMachine {
         reference = new Pointer();
 
         // Set up List for console output
-        List<Displayable> devvices = new ArrayList<>();
-        devvices.add(commandPointer);
-        devvices.add(runtimeStack);
-        devvices.add(runtimeHeap);
-        devvices.add(reference);
-        consoleOutput = new AM1ConsoleOutput(devvices);
+        List<Displayable> devices = new ArrayList<>();
+        devices.add(commandPointer);
+        devices.add(runtimeStack);
+        devices.add(runtimeHeap);
+        devices.add(reference);
+        consoleOutput = new AM1ConsoleOutput(devices);
+    }
+
+    public void run() throws IllegalStateException {
+
+        if (program != null) throw new IllegalStateException("Program for Machine was not set!");
+
+        run(this.program);
     }
 
     @Override
@@ -141,12 +151,25 @@ public class AM1Machine extends RuntimeMachine {
         this.reference.setValue(Integer.parseInt(configArray[3]));
     }
 
+    public void setProgram(String[] program) {
+
+        if (program == null) throw new NullPointerException("Program to set was NULL!");
+
+        this.program = program;
+    }
+
+    public int getCommandValue() {
+
+        return this.commandPointer.getValue();
+    }
+
     private void reset() {
 
         init();
         this.startConfig = null;
         this.configSet = false;
     }
+
 
     public void setEntryPoint(int entryPoint) {
 

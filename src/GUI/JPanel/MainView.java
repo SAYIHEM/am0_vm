@@ -18,17 +18,17 @@ public class MainView extends JFrame {
     private JPanel panel;
 
     // Lists
-    private ScrollView<String> listStack;
-    private ScrollView<String> listProgram;
-    private ScrollView<String> listEventOutput;
+    public ScrollView<String> listStack;
+    public ScrollView<String> listProgram;
+    public ScrollView<String> listEventOutput;
 
     // Buttons
-    private DButton buttonLoadFile;
-    private DButton buttonRun;
-    private DButton buttonTerminate;
-    private DButton buttonSetBreakpoint;
-    private DButton buttonBreak;
-    private DButton buttonMakeStep;
+    public DButton buttonLoadFile;
+    public DButton buttonRun;
+    public DButton buttonTerminate;
+    public DButton buttonSetBreakpoint;
+    public DButton buttonBreak;
+    public DButton buttonMakeStep;
 
     // FontManager
     FontManager fontManager = new FontManager();
@@ -74,6 +74,19 @@ public class MainView extends JFrame {
     private void resize() {
 
         // Set ListBox positions
+        this.listStack.setBounds(10, 10, 345,460);
+        this.listProgram.setBounds(360,40, 200, 430);
+        this.listEventOutput.setBounds(10, 475, 726, 108);
+
+        // Set Button position
+        this.buttonLoadFile.setBounds(360,10, 200, 25);
+        this.buttonRun.setBounds(565, 40, 150, 45);
+        this.buttonTerminate.setBounds(565, 90, 150, 45);
+        this.buttonSetBreakpoint.setBounds(371, 430, 75, 23);
+        this.buttonBreak.setBounds(581, 429, 75, 23);
+        this.buttonMakeStep.setBounds(659, 429, 75, 23);
+
+/*        // Set ListBox positions
         this.listStack.setBounds(13, 13, 345,460);
         this.listProgram.setBounds(363,41, 375, 316);
         this.listEventOutput.setBounds(13, 478, 726, 108);
@@ -84,7 +97,7 @@ public class MainView extends JFrame {
         this.buttonTerminate.setBounds(584, 363, 150, 46);
         this.buttonSetBreakpoint.setBounds(371, 430, 75, 23);
         this.buttonBreak.setBounds(581, 429, 75, 23);
-        this.buttonMakeStep.setBounds(659, 429, 75, 23);
+        this.buttonMakeStep.setBounds(659, 429, 75, 23);*/
     }
 
 
@@ -101,21 +114,16 @@ public class MainView extends JFrame {
 
 
         // Init ListViews
-        DefaultListModel<String> model = new DefaultListModel<>();
-        this.listStack = new ScrollView<>(model);
+        this.listStack = new ScrollView<>();
+        listStack.setFontList(listStack.getFontList().deriveFont((float)11));
+
+
         this.listProgram = new ScrollView<>();
+        listProgram.setFontList(listProgram.getFontList().deriveFont((float)14));
+
+
         this.listEventOutput = new ScrollView<>();
-
-
-        for (int i = 0; i < 10; i++) {
-
-            // TODO: Test ScrollView
-            JTextField textField = new JTextField();
-            textField.setText("TEEEEST");
-            model.addElement("TESTET");
-        }
-        this.listStack.updateUI();
-
+        listEventOutput.setFontList(listEventOutput.getFontList().deriveFont((float)11));
 
 
 
@@ -142,6 +150,8 @@ public class MainView extends JFrame {
 
         this.buttonMakeStep = new DButton();
         this.buttonMakeStep.setText("MAKE STEP");
+        this.buttonMakeStep.setFont(FontManager.UNICODE);
+
 
 
         // Init Listeners
@@ -206,9 +216,6 @@ public class MainView extends JFrame {
 
                 double scaleX = width/initialWidth;
                 double scaleY = height/initialHeight;
-
-
-
 
                 // Resize Elements
                 for (Component element : componentList) {
