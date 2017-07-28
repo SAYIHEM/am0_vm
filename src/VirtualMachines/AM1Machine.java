@@ -2,6 +2,7 @@ package VirtualMachines;
 
 import Constants.ArgPatterns;
 import Constants.Colors;
+import GUI.Controller.ControllerMainView;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.AM1Heap;
 import Hardware.Stacks.AM1Stack;
@@ -26,9 +27,11 @@ public class AM1Machine extends RuntimeMachine {
     private String[] program;
     private boolean configSet = false;
 
+    private Interpreter interpreter = null;
 
     // For console output
     private AM1ConsoleOutput consoleOutput;
+
 
     public AM1Machine() {
 
@@ -45,6 +48,7 @@ public class AM1Machine extends RuntimeMachine {
 
     private void init() {
 
+        // Create new Machine Components
         commandPointer = new CommandPointer();
         runtimeStack = new AM1Stack();
         runtimeHeap = new AM1Heap();
@@ -61,46 +65,64 @@ public class AM1Machine extends RuntimeMachine {
 
     public void run() throws IllegalStateException {
 
-        if (program != null) throw new IllegalStateException("Program for Machine was not set!");
-
         run(this.program);
     }
 
     @Override
     public void run(String[] program) {
 
-        // Check if StartConfig is set
-        if (!this.configSet) {
-
-            System.out.println(Colors.RED + "Run failed: Missing Start-config!" + Colors.RESET);
-            return;
-        }
+        this.prepare();
 
         // Console output
         System.out.println("Starting AM1-program with config: " + this.startConfig);
 
-        // Interpret StartConfig
-        interpretStartConfig();
-
-        Interpreter interpreter = new AM1Interpreter(new AM1Instructions(runtimeHeap, runtimeStack, commandPointer, reference));
 
         while(commandPointer.getValue() > 0 && commandPointer.getValue() < program.length) {
 
             // Write output
-            output += program[commandPointer.getValue()] + "\n";
+            this.output.add(String.format("%2s: %s", commandPointer.getValue(), program[commandPointer.getValue()]));
 
             // TODO: Fix Console Output
             //System.out.printf("%2s: %s%20s", commandPointer.getValue(), program[commandPointer.getValue()], consoleOutput.getMachineState() + "\n"); // TODO: Implementation with 'Log.d'
-            System.out.printf("%2s: %s", commandPointer.getValue(), program[commandPointer.getValue()] + "\n"); // TODO: Implementation with 'Log.d'
 
-
-            interpreter.execute(program[commandPointer.getValue()]);
+            this.interpreter.execute(program[commandPointer.getValue()]);
         }
 
         // Reset machine
         reset();
 
         System.out.println("Program terminated.");
+    }
+
+
+    public AM1State StepForward() {
+
+        if (commandPointer.getValue() > 0 && commandPointer.getValue() < program.length) {
+
+            // Write output
+            this.output.add(String.format("%2s: %s", commandPointer.getValue(), program[commandPointer.getValue()]));
+
+            interpreter.execute(program[commandPointer.getValue()]);
+        }
+
+        return getMashineState();
+    }
+
+    public void StepBackward(AM1State machineState) {
+
+        if (machineState == null) throw new NullPointerException("State to step backward was NULL!");
+
+        this.setMashineState(machineState);
+    }
+
+    public List<String> getOutput() {
+
+        // TODO: create stack table output!
+
+        List<String> output = new ArrayList<>(this.output);
+        this.output.clear();
+
+        return output;
     }
 
     public void setStartConfig(String startConfig) {
@@ -117,7 +139,11 @@ public class AM1Machine extends RuntimeMachine {
     }
 
     // TODO: Input and Output is manuel right now!
-    private void interpretStartConfig() {
+    public AM1State prepare() {
+
+        // Exceptions: Check for correct SetUp
+        if (program == null) throw new IllegalStateException("Program for Machine was not set!");
+        if (!configSet) throw new IllegalStateException("StartConfig not set!");
 
         this.startConfig = this.startConfig.replace("(", "");
         this.startConfig = this.startConfig.replace(")", "");
@@ -151,6 +177,12 @@ public class AM1Machine extends RuntimeMachine {
 
         // Set Ref-pointer
         this.reference.setValue(Integer.parseInt(configArray[3]));
+
+        // Initialize Interpreter
+        this.interpreter = new AM1Interpreter(new AM1Instructions(runtimeHeap, runtimeStack, commandPointer, reference));
+
+        // Return initial State
+        return this.getMashineState();
     }
 
     public void setProgram(String[] program) {

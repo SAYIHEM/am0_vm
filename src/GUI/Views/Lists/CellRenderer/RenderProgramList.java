@@ -13,10 +13,8 @@ public class RenderProgramList extends DefaultListCellRenderer implements Highli
 
         Component component = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-        if (this.highlightedRows.containsKey(index)) {
+        component.setBackground(this.highlightedRows.getOrDefault(index, Color.white));
 
-            component.setBackground(this.highlightedRows.get(index));
-        }
         return component;
     }
 

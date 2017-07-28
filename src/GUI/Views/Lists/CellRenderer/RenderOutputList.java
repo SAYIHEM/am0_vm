@@ -13,10 +13,8 @@ public class RenderOutputList extends DefaultListCellRenderer implements Highlig
 
         Component component = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-        if (this.highlightedRows.containsKey(index)) {
+        component.setForeground(this.highlightedRows.getOrDefault(index, Color.white));
 
-            component.setForeground(this.highlightedRows.get(index));
-        }
         return component;
     }
 

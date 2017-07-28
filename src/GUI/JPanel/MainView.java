@@ -3,6 +3,7 @@ package GUI.JPanel;
 import GUI.Resizeable;
 import GUI.Views.DButton;
 import GUI.Views.DCheckBox;
+import GUI.Views.DTextField;
 import GUI.Views.Lists.CellRenderer.RenderOutputList;
 import GUI.Views.Lists.CellRenderer.RenderProgramList;
 import GUI.Views.Lists.DisabledItemSelectionModel;
@@ -36,6 +37,9 @@ public class MainView extends JFrame {
 
     // CheckBoxes
     private DCheckBox checkDebugMode;
+
+    // TextFields
+    public DTextField textFieldStartConfig;
 
     // FontManager
     FontManager fontManager = new FontManager();
@@ -87,14 +91,17 @@ public class MainView extends JFrame {
 
         // Set Button position
         this.buttonLoadFile.setBounds(360,10, 200, 25);
-        this.buttonRun.setBounds(565, 40, 150, 45);
-        this.buttonTerminate.setBounds(565, 115, 150, 45);
+        this.buttonRun.setBounds(565, 40, 200, 45);
+        this.buttonTerminate.setBounds(565, 115, 200, 45);
         this.buttonSetBreakpoint.setBounds(371, 430, 75, 23);
         this.buttonBreak.setBounds(581, 429, 75, 23);
         this.buttonMakeStep.setBounds(659, 429, 75, 23);
 
         // Set CheckBox position
-        this.checkDebugMode.setBounds(565, 85, 150, 20);
+        this.checkDebugMode.setBounds(565, 85, 200, 20);
+
+        // Set TextField position
+        this.textFieldStartConfig.setBounds(565, 10, 200, 25);
 
 /*        // Set ListBox positions
         this.listStack.setBounds(13, 13, 345,460);
@@ -168,6 +175,11 @@ public class MainView extends JFrame {
         this.checkDebugMode = new DCheckBox();
         this.checkDebugMode.setText("Run in Debug Mode");
 
+
+        // Init TextFields
+        this.textFieldStartConfig = new DTextField();
+
+
         // Init Listeners
         initListeners();
 
@@ -183,6 +195,7 @@ public class MainView extends JFrame {
         this.panel.add(buttonBreak);
         this.panel.add(buttonMakeStep);
         this.panel.add(checkDebugMode);
+        this.panel.add(textFieldStartConfig);
 
 
 
@@ -256,6 +269,7 @@ public class MainView extends JFrame {
 
     public boolean inDebugMode() {
 
-        return !this.checkDebugMode.isSelected();
+        return this.checkDebugMode.isSelected();
     }
+
 }

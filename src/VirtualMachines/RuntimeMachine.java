@@ -1,9 +1,12 @@
 package VirtualMachines;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class RuntimeMachine {
 
-    protected String output = "";
+    protected List<String> output = new ArrayList<>();
     protected String[] program = {};
 
     public RuntimeMachine() {}
@@ -19,7 +22,7 @@ public abstract class RuntimeMachine {
 
     public abstract void run(String[] program);
 
-    public String getOutput() {
+    public List<String> getOutput() {
 
         return this.output;
     }

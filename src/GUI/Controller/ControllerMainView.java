@@ -93,6 +93,7 @@ public class ControllerMainView {
                         }
                     }
 
+
                 } catch (IOException e1) {
 
                     // Add new ErrorOutput
@@ -114,30 +115,64 @@ public class ControllerMainView {
         @Override
         public void actionPerformed(ActionEvent e) {
 
+            // Clear StackList
+            listStack.clear();
+
             // Performing Run in DebugMode
             if (mainView.inDebugMode()) {
 
                 // EventOutput
-                listOutput.addElement("Starting Program...");
+                listOutput.addElement("Starting Program in Debug Mode...");
+                listOutput.highlight(listOutput.getListSize()-1, Color.orange);
 
+                try {
+
+                    // SetUp StartConfig and prepare
+                    runtimeMachine.setStartConfig(mainView.textFieldStartConfig.getText());
+                    AM1State initialState = runtimeMachine.prepare();
+                    machineStates.add(initialState);
+
+                    // Highlight EntryPoint in ProgramList
+                    listProgram.highlight(runtimeMachine.getCommandValue()-1);
+
+
+                } catch (Exception e1) {
+
+                    // Add new ErrorOutput
+                    listOutput.addElement(e1.getMessage());
+                    listOutput.highlight(listOutput.getListSize()-1, Color.RED);
+                }
+
+                // Set StackOutput
+                for (String line : runtimeMachine.getOutput()) {
+
+                    listStack.addElement(line);
+                }
 
 
             // Performing Run normal
             } else {
 
                 // EventOutput
-                listOutput.addElement("Starting Program in Debug Mode...");
-                listOutput.highlight(listOutput.getListSize()-1);
+                listOutput.addElement("Starting Program...");
 
                 try {
 
-                    // SetUp StartConfig and run program
-                    runtimeMachine.setStartConfig("TTT"); // TODO: Set Start Config
+                    // SetUp StartConfig and Start Program
+                    runtimeMachine.setStartConfig(mainView.textFieldStartConfig.getText());
                     runtimeMachine.run();
+
+                    // Set StackOutput TODO: create stack table!
+                    for (String line : runtimeMachine.getOutput()) {
+
+                        listStack.addElement(line);
+                    }
 
                 } catch (Exception e1) {
 
-
+                    // Add new ErrorOutput
+                    listOutput.addElement(e1.getMessage());
+                    listOutput.highlight(listOutput.getListSize()-1, Color.RED);
                 }
 
             }
@@ -172,8 +207,21 @@ public class ControllerMainView {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            // Highlight Line in ProgramModel
+            // Lowlight Line in ProgramList
+            listProgram.lowlight(machineStates.get(machineStates.size()-1).getCommandPointer().getValue()-1);
 
+            // Make Step and safe to StateList
+            AM1State newState = runtimeMachine.StepForward();
+            machineStates.add(newState);
+
+            // Highlight Line in ProgramModel
+            listProgram.highlight(runtimeMachine.getCommandValue());
+
+            // Set StackOutput
+            for (String line : runtimeMachine.getOutput()) {
+
+                listStack.addElement(line);
+            }
         }
     }
 

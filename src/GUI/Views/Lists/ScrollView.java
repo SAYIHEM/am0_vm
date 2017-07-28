@@ -2,8 +2,6 @@ package GUI.Views.Lists;
 
 import GUI.Resizeable;
 import GUI.Views.Lists.CellRenderer.Highlightable;
-import GUI.Views.Lists.CellRenderer.RenderProgramList;
-import GUI.Views.Lists.ListView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -127,6 +125,8 @@ public class ScrollView<T> extends JScrollPane implements Resizeable, Highlighta
 
         if (this.listView.getCellRenderer() instanceof Highlightable)
             ((Highlightable) this.listView.getCellRenderer()).highlight(index);
+
+        updateUI();
     }
 
     @Override
@@ -134,6 +134,8 @@ public class ScrollView<T> extends JScrollPane implements Resizeable, Highlighta
 
         if (this.listView.getCellRenderer() instanceof Highlightable)
             ((Highlightable) this.listView.getCellRenderer()).highlight(index, color);
+
+        updateUI();
     }
 
     @Override
@@ -142,5 +144,6 @@ public class ScrollView<T> extends JScrollPane implements Resizeable, Highlighta
         if (this.listView.getCellRenderer() instanceof Highlightable)
             ((Highlightable) this.listView.getCellRenderer()).lowlight(index);
 
+        updateUI();
     }
 }
