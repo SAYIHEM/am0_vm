@@ -1,6 +1,5 @@
 package Operations.AM0;
 
-import Constants.ArgPatterns;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Hardware.Stacks.Stack;

@@ -11,6 +11,7 @@ import Interpreters.AM1Interpreter;
 import Interpreters.Interpreter;
 import OutputHandler.AM1ConsoleOutput;
 import OutputHandler.Displayable;
+import VirtualMachines.MachineState.AM1State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class AM1Machine extends RuntimeMachine {
     private String startConfig;
     private String[] program;
     private boolean configSet = false;
+
 
     // For console output
     private AM1ConsoleOutput consoleOutput;
@@ -170,12 +172,19 @@ public class AM1Machine extends RuntimeMachine {
         this.configSet = false;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Getter & Setter for Machine State
+    ///////////////////////////////////////////////////////////////////////////
+    public AM1State getMashineState() {
 
-    public void setEntryPoint(int entryPoint) {
+        return new AM1State(commandPointer, runtimeStack, runtimeHeap, reference);
+    }
 
-        // Exceptions
-        if (entryPoint <= 0) throw new IllegalArgumentException("Invalid EntryPoint! Input was: " + entryPoint);
+    public void setMashineState(AM1State state) {
 
-        commandPointer.setValue(entryPoint);
+        this.commandPointer = state.getCommandPointer();
+        this.runtimeStack = state.getStack();
+        this.runtimeHeap =  state.getHeap();
+        this.reference = state.getReference();
     }
 }

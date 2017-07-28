@@ -1,4 +1,4 @@
-package GUI.Views;
+package GUI.Views.Lists;
 
 import GUI.Resizeable;
 

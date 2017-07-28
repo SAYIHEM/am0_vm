@@ -2,7 +2,11 @@ package GUI.JPanel;
 
 import GUI.Resizeable;
 import GUI.Views.DButton;
-import GUI.Views.ScrollView;
+import GUI.Views.DCheckBox;
+import GUI.Views.Lists.CellRenderer.RenderOutputList;
+import GUI.Views.Lists.CellRenderer.RenderProgramList;
+import GUI.Views.Lists.DisabledItemSelectionModel;
+import GUI.Views.Lists.ScrollView;
 import Tools.FontManager;
 import Constants.Symbols;
 
@@ -20,7 +24,7 @@ public class MainView extends JFrame {
     // Lists
     public ScrollView<String> listStack;
     public ScrollView<String> listProgram;
-    public ScrollView<String> listEventOutput;
+    public ScrollView<String> listOutput;
 
     // Buttons
     public DButton buttonLoadFile;
@@ -29,6 +33,9 @@ public class MainView extends JFrame {
     public DButton buttonSetBreakpoint;
     public DButton buttonBreak;
     public DButton buttonMakeStep;
+
+    // CheckBoxes
+    private DCheckBox checkDebugMode;
 
     // FontManager
     FontManager fontManager = new FontManager();
@@ -76,20 +83,23 @@ public class MainView extends JFrame {
         // Set ListBox positions
         this.listStack.setBounds(10, 10, 345,460);
         this.listProgram.setBounds(360,40, 200, 430);
-        this.listEventOutput.setBounds(10, 475, 726, 108);
+        this.listOutput.setBounds(10, 475, 726, 108);
 
         // Set Button position
         this.buttonLoadFile.setBounds(360,10, 200, 25);
         this.buttonRun.setBounds(565, 40, 150, 45);
-        this.buttonTerminate.setBounds(565, 90, 150, 45);
+        this.buttonTerminate.setBounds(565, 115, 150, 45);
         this.buttonSetBreakpoint.setBounds(371, 430, 75, 23);
         this.buttonBreak.setBounds(581, 429, 75, 23);
         this.buttonMakeStep.setBounds(659, 429, 75, 23);
 
+        // Set CheckBox position
+        this.checkDebugMode.setBounds(565, 85, 150, 20);
+
 /*        // Set ListBox positions
         this.listStack.setBounds(13, 13, 345,460);
         this.listProgram.setBounds(363,41, 375, 316);
-        this.listEventOutput.setBounds(13, 478, 726, 108);
+        this.listOutput.setBounds(13, 478, 726, 108);
 
         // Set Button position
         this.buttonLoadFile.setBounds(363, 12, 373, 23);
@@ -106,7 +116,7 @@ public class MainView extends JFrame {
 
         // Set size of window
         setSize(766, 635);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Init
         this.panel = new JPanel();
@@ -114,16 +124,20 @@ public class MainView extends JFrame {
 
 
         // Init ListViews
-        this.listStack = new ScrollView<>();
+        this.listStack = new ScrollView<>(new DefaultListModel<>());
+        listStack.setCellRenderer(new DefaultListCellRenderer()); // TODO Create renderer for Table!
+        listStack.setSelectionMode(new DisabledItemSelectionModel());
         listStack.setFontList(listStack.getFontList().deriveFont((float)11));
 
-
-        this.listProgram = new ScrollView<>();
+        this.listProgram = new ScrollView<>(new DefaultListModel<>());
+        listProgram.setCellRenderer(new RenderProgramList());
+        listProgram.setSelectionMode(new DisabledItemSelectionModel());
         listProgram.setFontList(listProgram.getFontList().deriveFont((float)14));
 
-
-        this.listEventOutput = new ScrollView<>();
-        listEventOutput.setFontList(listEventOutput.getFontList().deriveFont((float)11));
+        this.listOutput = new ScrollView<>(new DefaultListModel<>());
+        listOutput.setCellRenderer(new RenderOutputList());
+        listOutput.setSelectionMode(new DisabledItemSelectionModel());
+        listOutput.setFontList(listOutput.getFontList().deriveFont((float)11));
 
 
 
@@ -131,14 +145,11 @@ public class MainView extends JFrame {
         this.buttonLoadFile = new DButton();
         this.buttonLoadFile.setText("LOAD FILE");
 
-
         this.buttonRun = new DButton();
         this.buttonRun.setText("RUN");
 
-
         this.buttonTerminate = new DButton();
         this.buttonTerminate.setText("TERMINATE");
-
 
         this.buttonSetBreakpoint = new DButton();
         this.buttonSetBreakpoint.setText(Symbols.SET_BREAKPOINT);
@@ -153,32 +164,26 @@ public class MainView extends JFrame {
         this.buttonMakeStep.setFont(FontManager.UNICODE);
 
 
+        // Init CheckBoxes
+        this.checkDebugMode = new DCheckBox();
+        this.checkDebugMode.setText("Run in Debug Mode");
 
         // Init Listeners
         initListeners();
 
 
-        // Add Elements to List
-        this.componentList.add(listStack);
-        this.componentList.add(listProgram);
-        this.componentList.add(listEventOutput);
-        this.componentList.add(buttonLoadFile);
-        this.componentList.add(buttonRun);
-        this.componentList.add(buttonTerminate);
-        this.componentList.add(buttonSetBreakpoint);
-        this.componentList.add(buttonBreak);
-        this.componentList.add(buttonMakeStep);
-
         // Add Elements to Panel
         this.panel.add(listStack);
         this.panel.add(listProgram);
-        this.panel.add(listEventOutput);
+        this.panel.add(listOutput);
         this.panel.add(buttonLoadFile);
         this.panel.add(buttonRun);
         this.panel.add(buttonTerminate);
         this.panel.add(buttonSetBreakpoint);
         this.panel.add(buttonBreak);
         this.panel.add(buttonMakeStep);
+        this.panel.add(checkDebugMode);
+
 
 
         //JFrame layout
@@ -196,9 +201,6 @@ public class MainView extends JFrame {
         createBufferStrategy(3);
         revalidate();
         repaint();
-
-
-
     }
 
 
@@ -218,7 +220,7 @@ public class MainView extends JFrame {
                 double scaleY = height/initialHeight;
 
                 // Resize Elements
-                for (Component element : componentList) {
+                for (Component element : panel.getComponents()) {
 
                     if (element instanceof Resizeable) {
 
@@ -252,31 +254,8 @@ public class MainView extends JFrame {
         });
     }
 
+    public boolean inDebugMode() {
 
-    /*
-    * Getter and Setter for GUI Controller
-    */
-    public String[] getModelStackView() {
-
-        String[] entries = new String[this.listStack.getModel().getSize()];
-
-        for (int i = 0; i < entries.length; i++) {
-
-            entries[i] = String.valueOf(this.listStack.getModel().getElementAt(i));
-        }
-
-        return entries;
-    }
-
-    public String[] listProgram() {
-
-        return null;
-
-    }
-
-    public String[] listEventOutput() {
-
-        return null;
-
+        return !this.checkDebugMode.isSelected();
     }
 }
