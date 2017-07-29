@@ -3,9 +3,24 @@ package Hardware.Heaps;
 import Constants.Flag;
 import OutputHandler.Displayable;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 public class AM1Heap extends Heap implements Displayable {
 
-    public String getState()  {
+    public AM1Heap() {
+        super();
+    }
+
+    // Copy constructor
+    public AM1Heap(AM1Heap heap) {
+
+        if (heap == null) throw new NullPointerException("Heap to copy was NULL!");
+
+        this.heap = new TreeMap<>(heap.getHeap());
+    }
+
+    public String getState() {
 
         if (heap.isEmpty()) return "-";
 
@@ -25,5 +40,10 @@ public class AM1Heap extends Heap implements Displayable {
         }
 
         return actualState.toString();
+    }
+
+    public Map<Integer, Integer> getHeap() {
+
+        return this.heap;
     }
 }

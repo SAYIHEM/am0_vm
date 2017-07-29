@@ -1,5 +1,6 @@
 package Hardware.Peripherals;
 
+import Exceptions.HeapException;
 import Hardware.Heaps.Heap;
 
 /**
@@ -12,6 +13,6 @@ public abstract class Device {
         this.sharedStorage = sharedStorage;
     }
 
-    public abstract void update();
-    public abstract void reset();
+    public abstract void update() throws HeapException;
+    public abstract void reset() throws HeapException;
 }

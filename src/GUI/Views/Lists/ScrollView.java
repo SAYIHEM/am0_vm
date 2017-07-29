@@ -13,7 +13,7 @@ public class ScrollView<T> extends JScrollPane implements Resizeable, Highlighta
     public ScrollView() {
         super(new ListView<>());
 
-        this.listView = (this.getViewport().getView() instanceof ListView) ? (ListView<T>) this.getViewport().getView() : null;
+        this.listView = (this.getViewport().getView() instanceof ListView) ? (ListView) this.getViewport().getView() : null;
 
         // Exceptions
         if (this.listView == null) throw new NullPointerException("Error in creating Scrollview, could not get ListView!");
@@ -27,7 +27,7 @@ public class ScrollView<T> extends JScrollPane implements Resizeable, Highlighta
         // Exceptions
         if (model == null) throw new NullPointerException("Model in constructor was NULL!");
 
-        this.listView = (this.getViewport().getView() instanceof ListView) ? (ListView<T>) this.getViewport().getView() : null;
+        this.listView = (this.getViewport().getView() instanceof ListView) ? (ListView) this.getViewport().getView() : null;
 
         // Exceptions
         if (this.listView == null) throw new NullPointerException("Error in creating Scrollview, could not get ListView!");
@@ -75,9 +75,9 @@ public class ScrollView<T> extends JScrollPane implements Resizeable, Highlighta
         if (this.getModel() instanceof DefaultListModel) ((DefaultListModel) this.getModel()).clear();
     }
 
-    public int getListSize() {
+    public int getIndexLastElement() {
 
-        return this.getModel().getSize();
+        return this.getModel().getSize() - 1;
     }
 
     public ListModel<T> getModel() {

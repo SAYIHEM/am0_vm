@@ -1,7 +1,9 @@
 package Operations.AM0.Memory;
 
 import Constants.ArgPatterns;
-import Constants.Colors;
+import Constants.ColorConsole;
+import Exceptions.HeapException;
+import Exceptions.InvalidOperationArgumentException;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Hardware.Stacks.Stack;
@@ -18,14 +20,14 @@ public class WRITE extends AM0operation {
     }
 
     @Override
-    public void run(String arg) {
+    public void run(String arg) throws InvalidOperationArgumentException, HeapException {
 
         // Test argument string
         if (!arg.matches(ArgPatterns.INT))
-            throw new IllegalArgumentException("Error in "+ this.name + ". Argument was '" + arg + "'.");
+            throw new InvalidOperationArgumentException("Error in "+ this.name + ". Argument was '" + arg + "'.");
 
 
-        System.out.println(Colors.RED_BACK + Colors.BLACK + "OUTPUT ->" + Colors.RESET
+        System.out.println(ColorConsole.RED_BACK + ColorConsole.BLACK + "OUTPUT ->" + ColorConsole.RESET
                 + " " + heap.load(Integer.parseInt(arg)));
 
         increment();

@@ -1,11 +1,13 @@
 package Operations.AM1.Memory;
 
 import Constants.ArgPatterns;
-import Constants.Colors;
+import Constants.ColorConsole;
 import Constants.Flag;
+import Exceptions.HeapException;
+import Exceptions.InvalidOperationArgumentException;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
-import Hardware.Stacks.Pointer;
+import Hardware.Pointer;
 import Hardware.Stacks.Stack;
 import Operations.AM1.AM1operation;
 
@@ -16,11 +18,11 @@ public class WRITE extends AM1operation {
     }
 
     @Override
-    public void run(String arg) {
+    public void run(String arg) throws InvalidOperationArgumentException, HeapException {
 
         // Test argument string
         if (!arg.matches(ArgPatterns.GLOBAL_LOKAL))
-            throw new IllegalArgumentException("Error in "+ this.name + ". Argument was '" + arg + "'.");
+            throw new InvalidOperationArgumentException("Error in "+ this.name + ". Argument was '" + arg + "'.");
 
         String[] args = this.GLOBAL_LOKAL(arg);
         String flag = args[0];
@@ -40,7 +42,7 @@ public class WRITE extends AM1operation {
             out = heap.load(reference.getValue() + address);
         }
 
-        System.out.println(Colors.RED_BACK + Colors.BLACK + "OUTPUT ->" + Colors.RESET + " " + Integer.toString(out));
+        System.out.println(ColorConsole.RED_BACK + ColorConsole.BLACK + "OUTPUT ->" + ColorConsole.RESET + " " + Integer.toString(out));
 
         increment();
     }

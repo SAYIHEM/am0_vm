@@ -102,21 +102,7 @@ public class MainView extends JFrame {
 
         // Set TextField position
         this.textFieldStartConfig.setBounds(565, 10, 200, 25);
-
-/*        // Set ListBox positions
-        this.listStack.setBounds(13, 13, 345,460);
-        this.listProgram.setBounds(363,41, 375, 316);
-        this.listOutput.setBounds(13, 478, 726, 108);
-
-        // Set Button position
-        this.buttonLoadFile.setBounds(363, 12, 373, 23);
-        this.buttonRun.setBounds(365, 363, 119, 46);
-        this.buttonTerminate.setBounds(584, 363, 150, 46);
-        this.buttonSetBreakpoint.setBounds(371, 430, 75, 23);
-        this.buttonBreak.setBounds(581, 429, 75, 23);
-        this.buttonMakeStep.setBounds(659, 429, 75, 23);*/
     }
-
 
 
     private void init() {
@@ -145,7 +131,6 @@ public class MainView extends JFrame {
         listOutput.setCellRenderer(new RenderOutputList());
         listOutput.setSelectionMode(new DisabledItemSelectionModel());
         listOutput.setFontList(listOutput.getFontList().deriveFont((float)11));
-
 
 
         // Init Buttons

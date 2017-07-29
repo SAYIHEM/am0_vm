@@ -21,32 +21,30 @@ public class RenderProgramList extends DefaultListCellRenderer implements Highli
     @Override
     public void highlight(int index) {
 
-        if (index < 0) throw new IllegalArgumentException("RowIndex to highlight was negative! Value was: " + index);
-
         // Remove old value if existing
         if (this.highlightedRows.containsKey(index)) this.highlightedRows.remove(index);
 
         this.highlightedRows.put(index, Color.gray);
+        updateUI();
     }
 
     @Override
     public void highlight(int index, Color backgroundColor) {
 
-        if (index < 0) throw new IllegalArgumentException("RowIndex to highlight was negative! Value was: " + index);
         if (backgroundColor == null) throw new NullPointerException("Color to highlight row was NULL!");
 
         // Remove old value if existing
         if (this.highlightedRows.containsKey(index)) this.highlightedRows.remove(index);
 
         this.highlightedRows.put(index, backgroundColor);
+        updateUI();
     }
 
     @Override
     public void lowlight(int index) {
 
-        if (index < 0) throw new IllegalArgumentException("RowIndex to highlight was negative! Value was: " + index);
-
         this.highlightedRows.remove(index);
+        updateUI();
     }
 
 

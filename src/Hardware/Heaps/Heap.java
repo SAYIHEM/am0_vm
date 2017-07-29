@@ -1,5 +1,6 @@
 package Hardware.Heaps;
 
+import Exceptions.HeapException;
 import Exceptions.StackException;
 
 import java.util.HashMap;
@@ -18,25 +19,25 @@ public class Heap {
         heap =  new HashMap<>();
     }
 
-    public void store(Integer address, Integer value)
-    {
+    public void store(Integer address, Integer value) throws HeapException {
+
         if(address < 0 || address >= ADDRESS_MAX)
-            throw new StackException("STORE error. address out of bounds!");
+            throw new HeapException("STORE error. address out of bounds!");
         heap.put(address, value);
     }
 
-    public Integer load(Integer address)
-    {
+    public Integer load(Integer address) throws HeapException {
+
         if(address < 0 || address >= ADDRESS_MAX)
-            throw new StackException("READ error. address out of bounds! Address was: " + address);
+            throw new HeapException("READ error. address out of bounds! Address was: " + address);
 
         Integer val = heap.get(address);
-        if (val == null) throw new StackException("READ error. Value in address was NULL! Address was: " + address);
+        if (val == null) throw new HeapException("READ error. Value in address was NULL! Address was: " + address);
 
         return val;
     }
 
-    public void emptyfromAddress(int address) {
+    public void emptyFromAddress(int address) {
 
         Map<Integer, Integer> heapCopy = new HashMap<>(heap);
 

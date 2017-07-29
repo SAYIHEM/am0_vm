@@ -1,5 +1,8 @@
 package Hardware.Peripherals;
 
+import Constants.Colors;
+import Exceptions.HeapException;
+import GUI.Controller.EventOutput;
 import Hardware.Heaps.Heap;
 import Logs.Log;
 
@@ -16,8 +19,7 @@ public class Soundcard extends Device {
     private int frequencyAddress, timeAddress, volumeAddress;
     private float SAMPLE_RATE;
 
-    public Soundcard(float sampleRate, Heap sharedStorage, int frequencyAddress, int timeAddress, int volumeAddress)
-    {
+    public Soundcard(float sampleRate, Heap sharedStorage, int frequencyAddress, int timeAddress, int volumeAddress) throws HeapException {
         super(sharedStorage);
         this.frequencyAddress = frequencyAddress;
         this.timeAddress = timeAddress;
@@ -28,6 +30,8 @@ public class Soundcard extends Device {
         sharedStorage.store(frequencyAddress, 0);
         sharedStorage.store(timeAddress, 0);
         sharedStorage.store(volumeAddress, 0);
+
+
     }
 
     public void tryPlayTone(int hz, int millis, int volume)
@@ -67,7 +71,7 @@ public class Soundcard extends Device {
 
 
     @Override
-    public void update() {
+    public void update() throws HeapException {
 
         int time = sharedStorage.load(timeAddress);
         int frequency = sharedStorage.load(frequencyAddress);
@@ -90,7 +94,8 @@ public class Soundcard extends Device {
     }
 
     @Override
-    public void reset() {
+    public void reset() throws HeapException {
+
         sharedStorage.store(frequencyAddress, 0);
         sharedStorage.store(timeAddress, 0);
         sharedStorage.store(volumeAddress, 0);

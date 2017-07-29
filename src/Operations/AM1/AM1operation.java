@@ -2,7 +2,7 @@ package Operations.AM1;
 
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
-import Hardware.Stacks.Pointer;
+import Hardware.Pointer;
 import Hardware.Stacks.Stack;
 import Operations.Operation;
 

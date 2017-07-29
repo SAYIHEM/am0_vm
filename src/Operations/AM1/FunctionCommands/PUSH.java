@@ -1,8 +1,11 @@
 package Operations.AM1.FunctionCommands;
 
+import Exceptions.HeapException;
+import Exceptions.InvalidOperationArgumentException;
+import Exceptions.StackException;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
-import Hardware.Stacks.Pointer;
+import Hardware.Pointer;
 import Hardware.Stacks.Stack;
 import Operations.AM1.AM1operation;
 
@@ -13,7 +16,7 @@ public class PUSH extends AM1operation {
     }
 
     @Override
-    public void run(String arg) {
+    public void run(String arg) throws InvalidOperationArgumentException, StackException, HeapException {
 
         heap.store(heap.getMaxAddress() + 1, stack.pop());
 

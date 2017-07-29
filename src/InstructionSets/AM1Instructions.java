@@ -2,7 +2,7 @@ package InstructionSets;
 
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
-import Hardware.Stacks.Pointer;
+import Hardware.Pointer;
 import Hardware.Stacks.Stack;
 import Operations.AM0.Arithmethic.*;
 import Operations.AM0.Logical.*;

@@ -1,12 +1,13 @@
 package GUI.Controller;
 
 import Constants.Colors;
+import Exceptions.IllegalMachineStateException;
+import Exceptions.InvalidStartConfigException;
 import GUI.JPanel.MainView;
 import GUI.Views.Lists.ScrollView;
 import Tools.FileArrayProvider;
 import VirtualMachines.AM1Machine;
 import VirtualMachines.MachineState.AM1State;
-import VirtualMachines.RuntimeMachine;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +28,7 @@ public class ControllerMainView {
     private ScrollView<String> listProgram;
     private ScrollView<String> listOutput;
 
+    // Machine States for DebugMode
     private List<AM1State> machineStates;
 
     public ControllerMainView() {
@@ -45,6 +47,8 @@ public class ControllerMainView {
         this.listProgram = this.mainView.listProgram;
         this.listOutput = this.mainView.listOutput;
 
+        // SetUp EventOutput
+        EventOutput.setEventView(this.listOutput);
     }
 
     private void setListeners() {
@@ -67,46 +71,39 @@ public class ControllerMainView {
             fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
             int result = fileChooser.showOpenDialog(mainView);
 
+            // TODO: Check for .AM0 / .AM1 ending of File!
 
             if (result == JFileChooser.APPROVE_OPTION) {
 
                 File selectedFile = fileChooser.getSelectedFile();
 
+                // Convert File to String[]
+                String[] program = new String[0];
                 try {
 
-                    // Convert File to String[]
-                    String[] program = FileArrayProvider.readLines(selectedFile.getAbsolutePath());
-
-                    // Add Program to AM1-machine
-                    runtimeMachine.setProgram(program);
-
-                    // Show Program in Program-ScrollView
-                    listProgram.clear();
-                    int lineNumber = 1;
-                    for (String line : program) {
-
-                        if (!line.isEmpty()) {
-
-                            line = String.format("%2d  %s", lineNumber, line);
-                            listProgram.addElement(line);
-                            lineNumber++;
-                        }
-                    }
-
+                    program = FileArrayProvider.readLines(selectedFile.getAbsolutePath());
 
                 } catch (IOException e1) {
 
                     // Add new ErrorOutput
-                    listOutput.addElement("Error while reading File!\n" + e1.getMessage());
-                    listOutput.highlight(listOutput.getListSize()-1, Color.RED);
+                    EventOutput.add("Error while reading File!\n" + e1.getMessage(), Colors.RED);
                 }
 
+                // Add Program to AM1-machine
+                runtimeMachine.setProgram(program);
 
-            } else {
+                // Show Program in Program-ScrollView
+                listProgram.clear();
+                int lineNumber = 1;
+                for (String line : program) {
 
-                // Add new ErrorOutput
-                /*listOutput.addElement("Error while reading File!");*/
-                /*listOutput.highlight(listOutput.getListSize()-1, Color.RED);*/
+                    if (!line.isEmpty()) {
+
+                        line = String.format("%2d  %s", lineNumber, line);
+                        listProgram.addElement(line);
+                        lineNumber++;
+                    }
+                }
             }
         }
     }
@@ -115,33 +112,39 @@ public class ControllerMainView {
         @Override
         public void actionPerformed(ActionEvent e) {
 
+            // Check for program was load
+            if (listProgram.getIndexLastElement() < 0) {
+
+                // ErrorOutput
+                EventOutput.add("No Program was loaded!", Colors.RED);
+                return;
+            }
+
             // Clear StackList
             listStack.clear();
 
             // Performing Run in DebugMode
             if (mainView.inDebugMode()) {
 
-                // EventOutput
-                listOutput.addElement("Starting Program in Debug Mode...");
-                listOutput.highlight(listOutput.getListSize()-1, Color.orange);
-
+                // SetUp StartConfig and prepare
+                AM1State initialState;
                 try {
 
-                    // SetUp StartConfig and prepare
                     runtimeMachine.setStartConfig(mainView.textFieldStartConfig.getText());
-                    AM1State initialState = runtimeMachine.prepare();
-                    machineStates.add(initialState);
+                    initialState = runtimeMachine.prepare();
 
-                    // Highlight EntryPoint in ProgramList
-                    listProgram.highlight(runtimeMachine.getCommandValue()-1);
+                } catch (InvalidStartConfigException | IllegalMachineStateException e1) {
 
-
-                } catch (Exception e1) {
-
-                    // Add new ErrorOutput
-                    listOutput.addElement(e1.getMessage());
-                    listOutput.highlight(listOutput.getListSize()-1, Color.RED);
+                    // ErrorOutput
+                    EventOutput.add(e1.getMessage(), Colors.RED);
+                    return;
                 }
+
+                // Add initial State to MachineStates
+                machineStates.add(initialState);
+
+                // Highlight EntryPoint in ProgramList
+                listProgram.highlight(runtimeMachine.getCommandValue()-1);
 
                 // Set StackOutput
                 for (String line : runtimeMachine.getOutput()) {
@@ -149,32 +152,37 @@ public class ControllerMainView {
                     listStack.addElement(line);
                 }
 
+                // EventOutput
+                EventOutput.add("Starting Program in Debug Mode...", Colors.ORANGE_LIGHT);
+
+
 
             // Performing Run normal
             } else {
 
-                // EventOutput
-                listOutput.addElement("Starting Program...");
-
+                // SetUp StartConfig
                 try {
 
-                    // SetUp StartConfig and Start Program
                     runtimeMachine.setStartConfig(mainView.textFieldStartConfig.getText());
-                    runtimeMachine.run();
 
-                    // Set StackOutput TODO: create stack table!
-                    for (String line : runtimeMachine.getOutput()) {
+                } catch (InvalidStartConfigException e1) {
 
-                        listStack.addElement(line);
-                    }
-
-                } catch (Exception e1) {
-
-                    // Add new ErrorOutput
-                    listOutput.addElement(e1.getMessage());
-                    listOutput.highlight(listOutput.getListSize()-1, Color.RED);
+                    // ErrorOutput
+                    EventOutput.add(e1.getMessage(), Colors.RED);
+                    return;
                 }
 
+                // EventOutput
+                EventOutput.add("Starting Program...");
+
+                // Start machine
+                runtimeMachine.run();
+
+                // Set StackOutput TODO: create stack table!
+                for (String line : runtimeMachine.getOutput()) {
+
+                    listStack.addElement(line);
+                }
             }
         }
     }
@@ -215,7 +223,7 @@ public class ControllerMainView {
             machineStates.add(newState);
 
             // Highlight Line in ProgramModel
-            listProgram.highlight(runtimeMachine.getCommandValue());
+            listProgram.highlight(runtimeMachine.getCommandValue()-1);
 
             // Set StackOutput
             for (String line : runtimeMachine.getOutput()) {

@@ -3,7 +3,7 @@ package VirtualMachines.MachineState;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.AM1Heap;
 import Hardware.Stacks.AM1Stack;
-import Hardware.Stacks.Pointer;
+import Hardware.Pointer;
 
 public class AM1State {
 
@@ -16,10 +16,10 @@ public class AM1State {
 
         if (commandPointer == null || stack == null || heap == null || reference == null) throw new NullPointerException();
 
-        this.commandPointer = commandPointer;
-        this.stack = stack;
-        this.heap = heap;
-        this.reference = reference;
+        this.commandPointer = new CommandPointer(commandPointer);
+        this.stack = new AM1Stack(stack);
+        this.heap = new AM1Heap(heap);
+        this.reference = new Pointer(reference);
     }
 
     public CommandPointer getCommandPointer() {

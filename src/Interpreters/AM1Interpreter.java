@@ -1,7 +1,12 @@
 package Interpreters;
 
 import Constants.ArgPatterns;
+import Constants.ColorConsole;
 import Constants.Colors;
+import Exceptions.HeapException;
+import Exceptions.InvalidOperationArgumentException;
+import Exceptions.StackException;
+import GUI.Controller.EventOutput;
 import InstructionSets.AM1Instructions;
 import InstructionSets.Instructions;
 import Operations.Operation;
@@ -15,7 +20,7 @@ public class AM1Interpreter implements Interpreter {
     public AM1Interpreter(Instructions instructions) {
 
         if (instructions == null) throw new NullPointerException("Instructions to set were NULL!");
-        if (!(instructions instanceof AM1Instructions)) System.out.println(Colors.RED + "Warning: Using InstructionSet that is not AM1!" + Colors.RESET);
+        if (!(instructions instanceof AM1Instructions)) System.out.println(ColorConsole.RED + "Warning: Using InstructionSet that is not AM1!" + ColorConsole.RESET);
 
         this.instructions = instructions.getInstructions();
     }
@@ -44,7 +49,7 @@ public class AM1Interpreter implements Interpreter {
 
         } else {
 
-            throw new IllegalArgumentException(Colors.RED + "Could not parse command! Command was: " + command + Colors.RESET);
+            throw new IllegalArgumentException(ColorConsole.RED + "Could not parse command! Command was: " + command + ColorConsole.RESET);
         }
 
 
@@ -52,6 +57,14 @@ public class AM1Interpreter implements Interpreter {
         if (!this.instructions.containsKey(operation)) throw new IllegalArgumentException("Wrong OperationName in Command: " + command);
 
         // Run Command
-        this.instructions.get(operation).run(arg);
+        try {
+
+            this.instructions.get(operation).run(arg);
+
+        } catch (HeapException | StackException | InvalidOperationArgumentException e) {
+
+            // ErrorOutput
+            EventOutput.add(e.getMessage(), Colors.RED);
+        }
     }
 }

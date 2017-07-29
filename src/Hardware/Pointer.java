@@ -1,4 +1,4 @@
-package Hardware.Stacks;
+package Hardware;
 
 
 import OutputHandler.Displayable;
@@ -6,6 +6,14 @@ import OutputHandler.Displayable;
 public class Pointer implements Displayable {
 
     private int value;
+
+    // Copy constructor
+    public Pointer(Pointer pointer) {
+
+        if (pointer == null) throw new NullPointerException("Pointer to copy was NULL!");
+
+        this.value = pointer.getValue();
+    }
 
     public Pointer() {
 
@@ -15,11 +23,6 @@ public class Pointer implements Displayable {
     public void setValue(int val) {
 
         this.value = val;
-    }
-
-    public void changeValue(int diff) {
-
-        this.value += diff;
     }
 
     public int getValue() {

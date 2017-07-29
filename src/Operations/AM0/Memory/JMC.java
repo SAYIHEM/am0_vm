@@ -1,6 +1,8 @@
 package Operations.AM0.Memory;
 
 import Constants.ArgPatterns;
+import Exceptions.InvalidOperationArgumentException;
+import Exceptions.StackException;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Operations.AM0.AM0operation;
@@ -17,11 +19,11 @@ public class JMC extends AM0operation {
     }
 
     @Override
-    public void run(String arg) {
+    public void run(String arg) throws InvalidOperationArgumentException, StackException {
 
         // Test argument string
         if (!arg.matches(ArgPatterns.INT))
-            throw new IllegalArgumentException("Error in "+ this.name + ". Argument was '" + arg + "'.");
+            throw new InvalidOperationArgumentException("Error in "+ this.name + ". Argument was '" + arg + "'.");
 
         Integer value = this.stack.pop();
 

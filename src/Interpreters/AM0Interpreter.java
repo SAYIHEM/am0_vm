@@ -1,12 +1,15 @@
 package Interpreters;
 
 import Constants.ArgPatterns;
-import InstructionSets.Instructions;
-import Operations.AM0.AM0operation;
-import InstructionSets.AM0Instructions;
 import Constants.Colors;
+import Exceptions.HeapException;
+import Exceptions.InvalidOperationArgumentException;
+import Exceptions.StackException;
+import GUI.Controller.EventOutput;
+import InstructionSets.Instructions;
+import InstructionSets.AM0Instructions;
+import Constants.ColorConsole;
 import Operations.Operation;
-import jdk.nashorn.internal.runtime.regexp.joni.constants.OPCode;
 
 import java.util.Map;
 
@@ -17,7 +20,7 @@ public class AM0Interpreter implements Interpreter {
     public AM0Interpreter(Instructions instructions) {
 
         if (instructions == null) throw new NullPointerException("Instructions to set were NULL!");
-        if (!(instructions instanceof AM0Instructions)) System.out.println(Colors.RED + "Warning: Using InstructionSet that is not AM0!" + Colors.RESET);
+        if (!(instructions instanceof AM0Instructions)) System.out.println(ColorConsole.RED + "Warning: Using InstructionSet that is not AM0!" + ColorConsole.RESET);
 
         this.instructions = instructions.getInstructions();
     }
@@ -40,6 +43,14 @@ public class AM0Interpreter implements Interpreter {
         if (!this.instructions.containsKey(operation)) throw new IllegalArgumentException("Wrong OperationName in Command: " + command);
 
         // Run Command
-        this.instructions.get(args[0]).run(arg);
+        try {
+
+            this.instructions.get(args[0]).run(arg);
+
+        } catch (HeapException | StackException | InvalidOperationArgumentException e) {
+
+            // ErrorOutput
+            EventOutput.add(e.getMessage(), Colors.RED);
+        }
     }
 }

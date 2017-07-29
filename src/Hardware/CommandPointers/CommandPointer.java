@@ -8,9 +8,18 @@ import OutputHandler.Displayable;
 public class CommandPointer implements Displayable {
 
     private Integer value;
+
     public CommandPointer()
     {
         value = 0;
+    }
+
+    // Copy constructor
+    public CommandPointer(CommandPointer commandPointer) {
+
+        if (commandPointer == null) throw new NullPointerException("CommandPointer to copy was NULL!");
+
+        this.value = commandPointer.getValue();
     }
 
     public void increment()

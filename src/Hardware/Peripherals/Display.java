@@ -1,5 +1,6 @@
 package Hardware.Peripherals;
 
+import Exceptions.HeapException;
 import Hardware.Heaps.Heap;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ public class Display extends Device {
     private Integer[] pixels;
     private VirtualDisplay virtualDisplay;
 
-    public Display(Heap sharedStorage, int baseAddress, int virtualWidth, int virtualHeight, JFrame displayPanel) {
+    public Display(Heap sharedStorage, int baseAddress, int virtualWidth, int virtualHeight, JFrame displayPanel) throws HeapException {
         super(sharedStorage);
         this.baseAddress = baseAddress;
         this.displayPanel = displayPanel;
@@ -37,7 +38,7 @@ public class Display extends Device {
     }
 
     @Override
-    public void update() {
+    public void update() throws HeapException {
 
         for(int y = 0; y < virtualHeight; y++)
         {
@@ -52,7 +53,7 @@ public class Display extends Device {
     }
 
     @Override
-    public void reset() {
+    public void reset() throws HeapException {
         for(int i = 0; i < virtualHeight * virtualWidth; i++)
         {
             sharedStorage.store(baseAddress + i, 0);

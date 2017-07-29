@@ -1,10 +1,12 @@
 package Operations.AM0.Memory;
 
 import Constants.ArgPatterns;
+import Exceptions.HeapException;
+import Exceptions.InvalidOperationArgumentException;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Operations.AM0.AM0operation;
-import Constants.Colors;
+import Constants.ColorConsole;
 import Hardware.Stacks.Stack;
 
 import java.util.Scanner;
@@ -20,14 +22,14 @@ public class READ extends AM0operation {
     }
 
     @Override
-    public void run(String arg) {
+    public void run(String arg) throws InvalidOperationArgumentException, HeapException {
 
         // Test argument string
         if (!arg.matches(ArgPatterns.INT))
-            throw new IllegalArgumentException("Error in "+ this.name + ". Argument was '" + arg + "'.");
+            throw new InvalidOperationArgumentException("Error in "+ this.name + ". Argument was '" + arg + "'.");
 
 
-        System.out.print(Colors.BLUE_BACK + Colors.BLACK + "INPUT <-" + Colors.RESET + " ");
+        System.out.print(ColorConsole.BLUE_BACK + ColorConsole.BLACK + "INPUT <-" + ColorConsole.RESET + " ");
 
         Scanner in = new Scanner(System.in);
         String input = in.nextLine().trim();

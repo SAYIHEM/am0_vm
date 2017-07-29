@@ -1,5 +1,7 @@
 package GUI.Views.Lists.CellRenderer;
 
+import Constants.Colors;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
@@ -13,15 +15,13 @@ public class RenderOutputList extends DefaultListCellRenderer implements Highlig
 
         Component component = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-        component.setForeground(this.highlightedRows.getOrDefault(index, Color.white));
+        component.setForeground(this.highlightedRows.getOrDefault(index, Colors.BLACK));
 
         return component;
     }
 
     @Override
     public void highlight(int index) {
-
-        if (index < 0) throw new IllegalArgumentException("RowIndex to highlight was negative! Value was: " + index);
 
         // Remove old value if existing
         if (this.highlightedRows.containsKey(index)) this.highlightedRows.remove(index);
@@ -32,7 +32,6 @@ public class RenderOutputList extends DefaultListCellRenderer implements Highlig
     @Override
     public void highlight(int index, Color backgroundColor) {
 
-        if (index < 0) throw new IllegalArgumentException("RowIndex to highlight was negative! Value was: " + index);
         if (backgroundColor == null) throw new NullPointerException("Color to highlight row was NULL!");
 
         // Remove old value if existing
@@ -43,8 +42,6 @@ public class RenderOutputList extends DefaultListCellRenderer implements Highlig
 
     @Override
     public void lowlight(int index) {
-
-        if (index < 0) throw new IllegalArgumentException("RowIndex to highlight was negative! Value was: " + index);
 
         this.highlightedRows.remove(index);
     }

@@ -3,7 +3,24 @@ package Hardware.Stacks;
 import Constants.Flag;
 import OutputHandler.Displayable;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class AM1Stack extends Stack implements Displayable {
+
+    public AM1Stack() {
+        super();
+    }
+
+    // Copy constructor
+    public AM1Stack(AM1Stack stack) {
+
+        if (stack == null) throw new NullPointerException("Stack to copy was NULL!");
+
+        this.stack = new ArrayList<>(stack.getStack());
+
+    }
 
     @Override
     public String getState() {
@@ -26,5 +43,10 @@ public class AM1Stack extends Stack implements Displayable {
         }
 
         return actualState.toString();
+    }
+
+    public List<Integer> getStack() {
+
+        return this.stack;
     }
 }

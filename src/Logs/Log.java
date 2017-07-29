@@ -1,6 +1,6 @@
 package Logs;
 
-import Constants.Colors;
+import Constants.ColorConsole;
 
 public abstract class Log {
 
@@ -18,6 +18,6 @@ public abstract class Log {
     public static void d(Object source, String message, String colorCode) {
 
         String sourceName = source.getClass().getSimpleName();
-        System.out.println(colorCode + sourceName + ": " + message + Colors.RESET);
+        System.out.println(colorCode + sourceName + ": " + message + ColorConsole.RESET);
     }
 }

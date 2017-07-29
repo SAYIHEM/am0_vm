@@ -1,6 +1,7 @@
 package Test;
 
 
+import Exceptions.InvalidStartConfigException;
 import Tools.FileArrayProvider;
 import VirtualMachines.AM1Machine;
 
@@ -12,11 +13,6 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] argv) {
-
-
-
-
-
 
         System.out.println("Program start...");
 
@@ -146,7 +142,7 @@ public class Main {
             am1Machine.run(program);
 
 
-        } catch (IOException e) {
+        } catch (InvalidStartConfigException | IOException e) {
             e.printStackTrace();
         }
 

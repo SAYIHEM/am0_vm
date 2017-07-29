@@ -1,11 +1,13 @@
 package Operations.AM1.Memory;
 
 import Constants.ArgPatterns;
-import Constants.Colors;
+import Constants.ColorConsole;
 import Constants.Flag;
+import Exceptions.HeapException;
+import Exceptions.InvalidOperationArgumentException;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
-import Hardware.Stacks.Pointer;
+import Hardware.Pointer;
 import Hardware.Stacks.Stack;
 import Operations.AM1.AM1operation;
 
@@ -18,18 +20,18 @@ public class READ extends AM1operation {
     }
 
     @Override
-    public void run(String arg) {
+    public void run(String arg) throws InvalidOperationArgumentException, HeapException {
 
         // Test argument string
         if (!arg.matches(ArgPatterns.GLOBAL_LOKAL))
-            throw new IllegalArgumentException("Error in " + this.name + ". Argument was '" + arg + "'.");
+            throw new InvalidOperationArgumentException("Error in " + this.name + ". Argument was '" + arg + "'.");
 
         String[] args = this.GLOBAL_LOKAL(arg);
         String flag = args[0];
         int address = Integer.parseInt(args[1]);
 
         // Get Value Input
-        System.out.print(Colors.BLUE_BACK + Colors.BLACK + "INPUT <-" + Colors.RESET + " ");
+        System.out.print(ColorConsole.BLUE_BACK + ColorConsole.BLACK + "INPUT <-" + ColorConsole.RESET + " ");
         Scanner in = new Scanner(System.in);
         int value = Integer.parseInt(in.nextLine().trim());
 
