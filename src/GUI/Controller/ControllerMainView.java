@@ -3,6 +3,7 @@ package GUI.Controller;
 import Constants.Colors;
 import Exceptions.IllegalMachineStateException;
 import Exceptions.InvalidStartConfigException;
+import GUI.Controller.Callbacks.TerminationCallback;
 import GUI.JPanel.MainView;
 import GUI.Views.Lists.ScrollView;
 import Tools.FileArrayProvider;
@@ -10,7 +11,6 @@ import VirtualMachines.AM1Machine;
 import VirtualMachines.MachineState.AM1State;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControllerMainView {
+public class ControllerMainView implements TerminationCallback {
 
     private MainView mainView;
     private AM1Machine runtimeMachine;
@@ -33,11 +33,17 @@ public class ControllerMainView {
 
     public ControllerMainView() {
 
-        // Start MainView
-        this.mainView = new MainView(500,500);
+        // Init components
+        this.init();
 
         // Set Listeners
         this.setListeners();
+    }
+
+    private void init() {
+
+        // Start MainView
+        this.mainView = new MainView(500,500);
 
         this.runtimeMachine = new AM1Machine();
         this.machineStates = new ArrayList<>();
@@ -49,6 +55,9 @@ public class ControllerMainView {
 
         // SetUp EventOutput
         EventOutput.setEventView(this.listOutput);
+
+        // Register for MachineTermination Callback
+        this.runtimeMachine.register(this);
     }
 
     private void setListeners() {
@@ -57,10 +66,11 @@ public class ControllerMainView {
         this.mainView.buttonRun.addActionListener(new RunListener());
         this.mainView.buttonTerminate.addActionListener(new TerminateListener());
         this.mainView.buttonSetBreakpoint.addActionListener(new SetBreakpointListener());
-        this.mainView.buttonBreak.addActionListener(new BreakListener());
-        this.mainView.buttonMakeStep.addActionListener(new MakeStepListener());
+        this.mainView.buttonFastForward.addActionListener(new FastForwardListener());
+        this.mainView.buttoonStepForward.addActionListener(new StepForwardListener());
+        this.mainView.buttoonStepBackward.addActionListener(new StepBackwardListener());
+        this.mainView.checkDebugMode.addActionListener(new CheckDebugModeListener());
     }
-
 
     public class LoadFileListener implements ActionListener {
         @Override
@@ -123,8 +133,12 @@ public class ControllerMainView {
             // Clear StackList
             listStack.clear();
 
+
             // Performing Run in DebugMode
             if (mainView.inDebugMode()) {
+
+                // Make Debug Buttons usable
+                enableDebugButtons();
 
                 // SetUp StartConfig and prepare
                 AM1State initialState;
@@ -203,7 +217,7 @@ public class ControllerMainView {
         }
     }
 
-    public class BreakListener implements ActionListener {
+    public class FastForwardListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -211,7 +225,7 @@ public class ControllerMainView {
         }
     }
 
-    public class MakeStepListener implements ActionListener {
+    public class StepForwardListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -232,5 +246,55 @@ public class ControllerMainView {
             }
         }
     }
+
+    public class StepBackwardListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            // Lowlight Line in ProgramList
+            listProgram.lowlight(runtimeMachine.getCommandValue()-1);
+
+            // Make Step and safe to StateList
+            runtimeMachine.StepBackward(machineStates.get(machineStates.size()-1));
+            machineStates.remove(machineStates.size()-1);
+
+            // Highlight Line in ProgramModel
+            listProgram.highlight(machineStates.get(machineStates.size()-1).getCommandPointer().getValue()-1);
+
+            // TODO remove Stack output line
+        }
+    }
+
+    public class CheckDebugModeListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+    private void enableDebugButtons() {
+
+        // Enable Buttons for debugging
+        mainView.buttonSetBreakpoint.setEnabled(true);
+        mainView.buttonFastForward.setEnabled(true);
+        mainView.buttoonStepForward.setEnabled(true);
+        mainView.buttoonStepBackward.setEnabled(true);
+    }
+
+    private void disableDebugButtons() {
+
+        // Enable Buttons for debugging
+        mainView.buttonSetBreakpoint.setEnabled(false);
+        mainView.buttonFastForward.setEnabled(false);
+        mainView.buttoonStepForward.setEnabled(false);
+        mainView.buttoonStepBackward.setEnabled(false);
+    }
+
+    @Override
+    public void call() {
+
+        disableDebugButtons();
+    }
+
 
 }

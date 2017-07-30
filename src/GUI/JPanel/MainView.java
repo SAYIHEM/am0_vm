@@ -32,11 +32,12 @@ public class MainView extends JFrame {
     public DButton buttonRun;
     public DButton buttonTerminate;
     public DButton buttonSetBreakpoint;
-    public DButton buttonBreak;
-    public DButton buttonMakeStep;
+    public DButton buttonFastForward;
+    public DButton buttoonStepForward;
+    public DButton buttoonStepBackward;
 
     // CheckBoxes
-    private DCheckBox checkDebugMode;
+    public DCheckBox checkDebugMode;
 
     // TextFields
     public DTextField textFieldStartConfig;
@@ -49,7 +50,7 @@ public class MainView extends JFrame {
     // Listener
     private ComponentListener listenerFrame;
 
-    int initialWidth = 766;
+    int initialWidth = 770;
     int initialHeight = 635;
 
     public MainView(int width, int height) {
@@ -92,10 +93,11 @@ public class MainView extends JFrame {
         // Set Button position
         this.buttonLoadFile.setBounds(360,10, 200, 25);
         this.buttonRun.setBounds(565, 40, 200, 45);
-        this.buttonTerminate.setBounds(565, 115, 200, 45);
+        this.buttonTerminate.setBounds(565, 150, 200, 45);
         this.buttonSetBreakpoint.setBounds(371, 430, 75, 23);
-        this.buttonBreak.setBounds(581, 429, 75, 23);
-        this.buttonMakeStep.setBounds(659, 429, 75, 23);
+        this.buttoonStepBackward.setBounds(565, 110, 60, 25);
+        this.buttoonStepForward.setBounds(625, 110, 60, 25);
+        this.buttonFastForward.setBounds(705, 110, 60, 25);
 
         // Set CheckBox position
         this.checkDebugMode.setBounds(565, 85, 200, 20);
@@ -108,8 +110,11 @@ public class MainView extends JFrame {
     private void init() {
 
         // Set size of window
-        setSize(766, 635);
+        setSize(780, 635);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        // TODO: Set application icon
+        this.setIconImage(new ImageIcon("res/icons/prog.am1").getImage());
 
         // Init
         this.panel = new JPanel();
@@ -126,6 +131,7 @@ public class MainView extends JFrame {
         listProgram.setCellRenderer(new RenderProgramList());
         listProgram.setSelectionMode(new DisabledItemSelectionModel());
         listProgram.setFontList(listProgram.getFontList().deriveFont((float)14));
+        listProgram.setAutoscrolls(true); // TODO: OutputList autoscroll when new message!
 
         this.listOutput = new ScrollView<>(new DefaultListModel<>());
         listOutput.setCellRenderer(new RenderOutputList());
@@ -135,30 +141,38 @@ public class MainView extends JFrame {
 
         // Init Buttons
         this.buttonLoadFile = new DButton();
-        this.buttonLoadFile.setText("LOAD FILE");
+        buttonLoadFile.setText("LOAD FILE");
 
         this.buttonRun = new DButton();
-        this.buttonRun.setText("RUN");
+        buttonRun.setText("RUN");
 
         this.buttonTerminate = new DButton();
-        this.buttonTerminate.setText("TERMINATE");
+        buttonTerminate.setText("TERMINATE");
 
         this.buttonSetBreakpoint = new DButton();
-        this.buttonSetBreakpoint.setText(Symbols.SET_BREAKPOINT);
-        this.buttonSetBreakpoint.setFont(FontManager.UNICODE);
+        buttonSetBreakpoint.setText(Symbols.SET_BREAKPOINT);
+        buttonSetBreakpoint.setFont(FontManager.UNICODE);
+        buttonSetBreakpoint.setEnabled(false);
 
-        this.buttonBreak = new DButton();
-        this.buttonBreak.setText(Symbols.BREAK);
-        this.buttonSetBreakpoint.setFont(FontManager.UNICODE);
+        this.buttonFastForward = new DButton();
+        buttonFastForward.setText(Symbols.FAST_FORWARD);
+        buttonFastForward.setFont(FontManager.UNICODE);
+        buttonFastForward.setEnabled(false);
 
-        this.buttonMakeStep = new DButton();
-        this.buttonMakeStep.setText("MAKE STEP");
-        this.buttonMakeStep.setFont(FontManager.UNICODE);
+        this.buttoonStepForward = new DButton();
+        buttoonStepForward.setText(Symbols.STEP_FORWARD);
+        buttoonStepForward.setFont(FontManager.UNICODE);
+        buttoonStepForward.setEnabled(false);
+
+        this.buttoonStepBackward = new DButton();
+        buttoonStepBackward.setText(Symbols.STEP_BACKWARD);
+        buttoonStepBackward.setFont(FontManager.UNICODE);
+        buttoonStepBackward.setEnabled(false);
 
 
         // Init CheckBoxes
         this.checkDebugMode = new DCheckBox();
-        this.checkDebugMode.setText("Run in Debug Mode");
+        checkDebugMode.setText("Run in Debug Mode");
 
 
         // Init TextFields
@@ -177,8 +191,9 @@ public class MainView extends JFrame {
         this.panel.add(buttonRun);
         this.panel.add(buttonTerminate);
         this.panel.add(buttonSetBreakpoint);
-        this.panel.add(buttonBreak);
-        this.panel.add(buttonMakeStep);
+        this.panel.add(buttonFastForward);
+        this.panel.add(buttoonStepForward);
+        this.panel.add(buttoonStepBackward);
         this.panel.add(checkDebugMode);
         this.panel.add(textFieldStartConfig);
 
@@ -199,6 +214,7 @@ public class MainView extends JFrame {
         createBufferStrategy(3);
         revalidate();
         repaint();
+
     }
 
 
@@ -212,7 +228,6 @@ public class MainView extends JFrame {
                 double height = getHeight();
 
                 resize();
-
 
                 double scaleX = width/initialWidth;
                 double scaleY = height/initialHeight;
@@ -256,5 +271,4 @@ public class MainView extends JFrame {
 
         return this.checkDebugMode.isSelected();
     }
-
 }

@@ -5,6 +5,9 @@ import Constants.Colors;
 import Exceptions.HeapException;
 import Exceptions.IllegalMachineStateException;
 import Exceptions.InvalidStartConfigException;
+import GUI.Controller.Callbacks.TerminationCallback;
+import GUI.Controller.Callbacks.TerminationCaller;
+import GUI.Controller.ControllerMainView;
 import GUI.Controller.EventOutput;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.AM1Heap;
@@ -20,7 +23,7 @@ import VirtualMachines.MachineState.AM1State;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AM1Machine extends RuntimeMachine {
+public class AM1Machine extends RuntimeMachine implements TerminationCaller {
 
     private CommandPointer commandPointer;
     private AM1Stack runtimeStack;
@@ -34,6 +37,9 @@ public class AM1Machine extends RuntimeMachine {
 
     // For console output
     private AM1ConsoleOutput consoleOutput;
+
+    // Reference for MachineTermination Callback
+    private TerminationCallback callback;
 
 
     public AM1Machine() {
@@ -95,6 +101,9 @@ public class AM1Machine extends RuntimeMachine {
         // EventOutput
         EventOutput.add("Program terminated.");
 
+        // Call controller machine termination
+        this.doCall();
+
         // Reset machine
         reset();
     }
@@ -113,6 +122,9 @@ public class AM1Machine extends RuntimeMachine {
 
             // EventOutput
             EventOutput.add("Program terminated.");
+
+            // Call controller machine termination
+            this.doCall();
 
             // Reset machine
             reset();
@@ -240,5 +252,20 @@ public class AM1Machine extends RuntimeMachine {
         this.runtimeStack = state.getStack();
         this.runtimeHeap =  state.getHeap();
         this.reference = state.getReference();
+    }
+
+
+    @Override
+    public void register(TerminationCallback callback) {
+
+        if (callback == null) throw new NullPointerException("Callback to register was NULL!");
+
+        this.callback = callback;
+    }
+
+    @Override
+    public void doCall() {
+
+        this.callback.call();
     }
 }
