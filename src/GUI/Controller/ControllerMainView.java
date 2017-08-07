@@ -53,8 +53,9 @@ public class ControllerMainView implements TerminationCallback {
         this.listProgram = this.mainView.listProgram;
         this.listOutput = this.mainView.listOutput;
 
-        // SetUp EventOutput
-        EventOutput.setEventView(this.listOutput);
+        // SetUp Output views
+        StackOutput.setView(this.listStack); // TODO Make Output as Singleton
+        EventOutput.setView(this.listOutput);
 
         // Register for MachineTermination Callback
         this.runtimeMachine.register(this);
@@ -133,12 +134,12 @@ public class ControllerMainView implements TerminationCallback {
             // Clear StackList
             listStack.clear();
 
-
             // Performing Run in DebugMode
             if (mainView.inDebugMode()) {
 
                 // Make Debug Buttons usable
                 enableDebugButtons();
+                mainView.buttoonStepBackward.setEnabled(false);
 
                 // SetUp StartConfig and prepare
                 AM1State initialState;
@@ -159,12 +160,6 @@ public class ControllerMainView implements TerminationCallback {
 
                 // Highlight EntryPoint in ProgramList
                 listProgram.highlight(runtimeMachine.getCommandValue()-1);
-
-                // Set StackOutput
-                for (String line : runtimeMachine.getOutput()) {
-
-                    listStack.addElement(line);
-                }
 
                 // EventOutput
                 EventOutput.add("Starting Program in Debug Mode...", Colors.ORANGE_LIGHT);
@@ -191,12 +186,6 @@ public class ControllerMainView implements TerminationCallback {
 
                 // Start machine
                 runtimeMachine.run();
-
-                // Set StackOutput TODO: create stack table!
-                for (String line : runtimeMachine.getOutput()) {
-
-                    listStack.addElement(line);
-                }
             }
         }
     }
@@ -229,6 +218,9 @@ public class ControllerMainView implements TerminationCallback {
         @Override
         public void actionPerformed(ActionEvent e) {
 
+            // Enable StepBackwards button if disabled
+            if (!mainView.buttoonStepBackward.isEnabled()) mainView.buttoonStepBackward.setEnabled(true);
+
             // Lowlight Line in ProgramList
             listProgram.lowlight(machineStates.get(machineStates.size()-1).getCommandPointer().getValue()-1);
 
@@ -240,16 +232,23 @@ public class ControllerMainView implements TerminationCallback {
             listProgram.highlight(runtimeMachine.getCommandValue()-1);
 
             // Set StackOutput
-            for (String line : runtimeMachine.getOutput()) {
-
-                listStack.addElement(line);
-            }
+            StackOutput.add(runtimeMachine.getOutput());
         }
     }
 
     public class StepBackwardListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            // Disable Button if there is no step before
+            if (machineStates.size() == 1) {
+
+                mainView.buttoonStepBackward.setEnabled(false);
+
+            } else if (!mainView.buttoonStepBackward.isEnabled()) {
+
+                mainView.buttoonStepBackward.setEnabled(true);
+            }
 
             // Lowlight Line in ProgramList
             listProgram.lowlight(runtimeMachine.getCommandValue()-1);
@@ -261,7 +260,8 @@ public class ControllerMainView implements TerminationCallback {
             // Highlight Line in ProgramModel
             listProgram.highlight(machineStates.get(machineStates.size()-1).getCommandPointer().getValue()-1);
 
-            // TODO remove Stack output line
+            // Remove last Stack output line
+            StackOutput.removeLastLine();
         }
     }
 

@@ -5,6 +5,7 @@ import Constants.ColorConsole;
 import Constants.Flag;
 import Exceptions.HeapException;
 import Exceptions.InvalidOperationArgumentException;
+import Exceptions.StackException;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.Heap;
 import Hardware.Pointer;
@@ -15,12 +16,12 @@ import java.util.Scanner;
 
 public class READ extends AM1operation {
 
-    public READ(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
-        super(heap, stack, commandPointer, reference);
+    public READ(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference, Stack input, Stack output) {
+        super(heap, stack, commandPointer, reference, input, output);
     }
 
     @Override
-    public void run(String arg) throws InvalidOperationArgumentException, HeapException {
+    public void run(String arg) throws InvalidOperationArgumentException, HeapException, StackException {
 
         // Test argument string
         if (!arg.matches(ArgPatterns.GLOBAL_LOKAL))
@@ -31,9 +32,7 @@ public class READ extends AM1operation {
         int address = Integer.parseInt(args[1]);
 
         // Get Value Input
-        System.out.print(ColorConsole.BLUE_BACK + ColorConsole.BLACK + "INPUT <-" + ColorConsole.RESET + " ");
-        Scanner in = new Scanner(System.in);
-        int value = Integer.parseInt(in.nextLine().trim());
+        int value = this.input.pop();
 
         // For 'global' flag
         if (flag.equals(Flag.GLOBAL)) {

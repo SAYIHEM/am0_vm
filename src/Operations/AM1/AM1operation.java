@@ -12,8 +12,10 @@ public abstract class AM1operation extends Operation {
     protected Stack stack;
     protected CommandPointer commandPointer;
     protected Pointer reference;
+    protected Stack input;
+    protected Stack output;
 
-    public AM1operation(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
+    public AM1operation(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference, Stack input, Stack output) {
 
         this.name = this.getClass().getSimpleName();
 
@@ -21,6 +23,8 @@ public abstract class AM1operation extends Operation {
         this.stack = stack;
         this.commandPointer = commandPointer;
         this.reference = reference;
+        this.input = input;
+        this.output = output;
     }
 
     @Override

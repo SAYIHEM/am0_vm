@@ -13,8 +13,8 @@ import Operations.AM1.AM1operation;
 
 public class WRITE extends AM1operation {
 
-    public WRITE(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
-        super(heap, stack, commandPointer, reference);
+    public WRITE(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference, Stack input, Stack output) {
+        super(heap, stack, commandPointer, reference, input, output);
     }
 
     @Override
@@ -42,7 +42,8 @@ public class WRITE extends AM1operation {
             out = heap.load(reference.getValue() + address);
         }
 
-        System.out.println(ColorConsole.RED_BACK + ColorConsole.BLACK + "OUTPUT ->" + ColorConsole.RESET + " " + Integer.toString(out));
+        // Set value output
+        this.output.push(out);
 
         increment();
     }

@@ -6,20 +6,20 @@ import Exceptions.HeapException;
 import Exceptions.IllegalMachineStateException;
 import Exceptions.InvalidStartConfigException;
 import GUI.Controller.Callbacks.Callback;
-import GUI.Controller.Callbacks.Caller;
-import GUI.Controller.Callbacks.TerminationCallback;
 import GUI.Controller.Callbacks.TerminationCaller;
-import GUI.Controller.ControllerMainView;
 import GUI.Controller.EventOutput;
+import GUI.Controller.StackOutput;
 import Hardware.CommandPointers.CommandPointer;
 import Hardware.Heaps.AM1Heap;
 import Hardware.Stacks.AM1Stack;
 import Hardware.Pointer;
+import Hardware.Stacks.Stack;
 import InstructionSets.AM1Instructions;
 import Interpreters.AM1Interpreter;
 import Interpreters.Interpreter;
-import OutputHandler.AM1ConsoleOutput;
+import OutputHandler.AM1Output;
 import OutputHandler.Displayable;
+import OutputHandler.OutputHandler;
 import VirtualMachines.MachineState.AM1State;
 
 import java.util.ArrayList;
@@ -31,14 +31,13 @@ public class AM1Machine extends RuntimeMachine implements TerminationCaller {
     private AM1Stack runtimeStack;
     private AM1Heap runtimeHeap;
     private Pointer reference;
+    private Stack inputList;
+    private Stack outputList;
     private String startConfig;
     private String[] program;
     private boolean configSet = false;
 
     private Interpreter interpreter = null;
-
-    // For console output
-    private AM1ConsoleOutput consoleOutput;
 
     // Reference for MachineTermination Callback
     private Callback callback;
@@ -64,6 +63,8 @@ public class AM1Machine extends RuntimeMachine implements TerminationCaller {
         runtimeStack = new AM1Stack();
         runtimeHeap = new AM1Heap();
         reference = new Pointer();
+        inputList = new Stack();
+        outputList = new Stack();
 
         // Set up List for console output
         List<Displayable> devices = new ArrayList<>();
@@ -71,7 +72,9 @@ public class AM1Machine extends RuntimeMachine implements TerminationCaller {
         devices.add(runtimeStack);
         devices.add(runtimeHeap);
         devices.add(reference);
-        consoleOutput = new AM1ConsoleOutput(devices);
+        devices.add(inputList);
+        devices.add(outputList);
+        output = new AM1Output(devices);
     }
 
     public void run() {
@@ -94,8 +97,8 @@ public class AM1Machine extends RuntimeMachine implements TerminationCaller {
 
         while (commandPointer.getValue() > 0 && commandPointer.getValue() < program.length) {
 
-            // Write output
-            this.output.add(String.format("%2s: %s", commandPointer.getValue(), program[commandPointer.getValue()]));
+            // Write stack output
+            StackOutput.add(this.getOutput());
 
             this.interpreter.execute(program[commandPointer.getValue()]);
         }
@@ -116,7 +119,7 @@ public class AM1Machine extends RuntimeMachine implements TerminationCaller {
         if (commandPointer.getValue() > 0 && commandPointer.getValue() < program.length) {
 
             // Write output
-            this.output.add(String.format("%2s: %s", commandPointer.getValue(), program[commandPointer.getValue()]));
+            //this.output.add(String.format("%2s: %s", commandPointer.getValue(), program[commandPointer.getValue()]));
 
             interpreter.execute(program[commandPointer.getValue()]);
 
@@ -142,16 +145,6 @@ public class AM1Machine extends RuntimeMachine implements TerminationCaller {
         this.setMachineState(machineState);
     }
 
-    public List<String> getOutput() {
-
-        // TODO: create stack table output!
-
-        List<String> output = new ArrayList<>(this.output);
-        this.output.clear();
-
-        return output;
-    }
-
     public void setStartConfig(String startConfig) throws InvalidStartConfigException {
 
         if (startConfig == null) throw new NullPointerException("StartConfig was NULL!");
@@ -165,7 +158,6 @@ public class AM1Machine extends RuntimeMachine implements TerminationCaller {
         this.configSet = true;
     }
 
-    // TODO: Input and Output is manuel right now!
     public AM1State prepare() throws IllegalMachineStateException {
 
         // Exceptions: Check for correct SetUp
@@ -214,8 +206,28 @@ public class AM1Machine extends RuntimeMachine implements TerminationCaller {
         // Set Ref-pointer
         this.reference.setValue(Integer.parseInt(configArray[3]));
 
+        // Set Input List
+        String[] input = configArray[4].split(":");
+        if (!input[0].equals("-")) {
+
+            for (int i = input.length - 1; i >= 0; i--) {
+
+                this.inputList.push(Integer.parseInt(input[i]));
+            }
+        }
+
+        // Set Input List
+        String[] output = configArray[5].split(":");
+        if (!output[0].equals("-")) {
+
+            for (int i = output.length - 1; i >= 0; i--) {
+
+                this.outputList.push(Integer.parseInt(output[i]));
+            }
+        }
+
         // Initialize Interpreter
-        this.interpreter = new AM1Interpreter(new AM1Instructions(runtimeHeap, runtimeStack, commandPointer, reference));
+        this.interpreter = new AM1Interpreter(new AM1Instructions(runtimeHeap, runtimeStack, commandPointer, reference, inputList, outputList));
 
         // Return initial State
         return this.getMachineState();

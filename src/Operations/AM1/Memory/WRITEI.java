@@ -12,8 +12,8 @@ import Operations.AM1.AM1operation;
 
 public class WRITEI extends AM1operation {
 
-    public WRITEI(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
-        super(heap, stack, commandPointer, reference);
+    public WRITEI(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference, Stack input, Stack output) {
+        super(heap, stack, commandPointer, reference, input, output);
     }
 
     @Override
@@ -27,7 +27,8 @@ public class WRITEI extends AM1operation {
         int address_value = heap.load(reference.getValue() + address_pointer);
         int out = heap.load(address_value);
 
-        System.out.println(ColorConsole.RED_BACK + ColorConsole.BLACK + "OUTPUT ->" + Integer.toString(out) + ColorConsole.RESET);
+        // Set value output
+        this.output.push(out);
 
         increment();
     }

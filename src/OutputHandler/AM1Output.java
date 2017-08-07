@@ -2,18 +2,18 @@ package OutputHandler;
 
 import java.util.List;
 
-public class AM1ConsoleOutput implements OutputHandler {
+public class AM1Output implements OutputHandler {
 
     private List<Displayable> devices;
 
-    public AM1ConsoleOutput(List<Displayable> devices) {
+    public AM1Output(List<Displayable> devices) {
 
         if (devices == null) throw new NullPointerException("Devices in AM1ConsoleOutput was NULL!");
         this.devices = devices;
     }
 
     @Override
-    public String getMachineState() {
+    public String get() {
 
         StringBuilder machineState = new StringBuilder();
 
@@ -21,7 +21,7 @@ public class AM1ConsoleOutput implements OutputHandler {
         for (Displayable device : this.devices) {
 
             machineState.append(device.getState());
-            machineState.append("|");
+            machineState.append(" | ");
         }
 
         return machineState.toString();

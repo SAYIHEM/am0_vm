@@ -1,13 +1,16 @@
 package VirtualMachines;
 
 
+import OutputHandler.OutputHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class RuntimeMachine {
 
-    protected List<String> output = new ArrayList<>();
     protected String[] program = {};
+    protected OutputHandler output;
+
 
     public RuntimeMachine() {}
 
@@ -22,9 +25,9 @@ public abstract class RuntimeMachine {
 
     public abstract void run(String[] program);
 
-    public List<String> getOutput() {
+    public String getOutput() {
 
-        return this.output;
+        return this.output.get();
     }
 
 }

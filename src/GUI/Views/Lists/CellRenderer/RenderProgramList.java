@@ -1,5 +1,7 @@
 package GUI.Views.Lists.CellRenderer;
 
+import Constants.Colors;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
@@ -13,7 +15,7 @@ public class RenderProgramList extends DefaultListCellRenderer implements Highli
 
         Component component = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-        component.setBackground(this.highlightedRows.getOrDefault(index, Color.white));
+        component.setBackground(this.highlightedRows.getOrDefault(index, Colors.WHITE));
 
         return component;
     }

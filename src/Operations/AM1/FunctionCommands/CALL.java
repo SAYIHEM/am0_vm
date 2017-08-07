@@ -11,8 +11,8 @@ import Operations.AM1.AM1operation;
 
 public class CALL extends AM1operation {
 
-    public CALL(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
-        super(heap, stack, commandPointer, reference);
+    public CALL(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference, Stack input, Stack output) {
+        super(heap, stack, commandPointer, reference, input, output);
     }
 
     @Override

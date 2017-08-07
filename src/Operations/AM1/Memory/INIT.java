@@ -11,8 +11,8 @@ import Operations.AM1.AM1operation;
 
 public class INIT extends AM1operation {
 
-    public INIT(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference) {
-        super(heap, stack, commandPointer, reference);
+    public INIT(Heap heap, Stack stack, CommandPointer commandPointer, Pointer reference, Stack input, Stack output) {
+        super(heap, stack, commandPointer, reference, input, output);
     }
 
     @Override

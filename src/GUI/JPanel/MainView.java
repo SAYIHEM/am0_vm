@@ -6,6 +6,7 @@ import GUI.Views.DCheckBox;
 import GUI.Views.DTextField;
 import GUI.Views.Lists.CellRenderer.RenderOutputList;
 import GUI.Views.Lists.CellRenderer.RenderProgramList;
+import GUI.Views.Lists.CellRenderer.RenderStackList;
 import GUI.Views.Lists.DisabledItemSelectionModel;
 import GUI.Views.Lists.ScrollView;
 import Tools.FontManager;
@@ -123,7 +124,7 @@ public class MainView extends JFrame {
 
         // Init ListViews
         this.listStack = new ScrollView<>(new DefaultListModel<>());
-        listStack.setCellRenderer(new DefaultListCellRenderer()); // TODO Create renderer for Table!
+        listStack.setCellRenderer(new RenderStackList()); // TODO Create renderer for Table!
         listStack.setSelectionMode(new DisabledItemSelectionModel());
         listStack.setFontList(listStack.getFontList().deriveFont((float)11));
 
