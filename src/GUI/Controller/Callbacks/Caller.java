@@ -2,6 +2,6 @@ package GUI.Controller.Callbacks;
 
 public interface Caller {
 
-    void register(TerminationCallback callback);
+    void register(Callback callback);
     void doCall();
 }

@@ -5,6 +5,8 @@ import Constants.Colors;
 import Exceptions.HeapException;
 import Exceptions.IllegalMachineStateException;
 import Exceptions.InvalidStartConfigException;
+import GUI.Controller.Callbacks.Callback;
+import GUI.Controller.Callbacks.Caller;
 import GUI.Controller.Callbacks.TerminationCallback;
 import GUI.Controller.Callbacks.TerminationCaller;
 import GUI.Controller.ControllerMainView;
@@ -39,7 +41,7 @@ public class AM1Machine extends RuntimeMachine implements TerminationCaller {
     private AM1ConsoleOutput consoleOutput;
 
     // Reference for MachineTermination Callback
-    private TerminationCallback callback;
+    private Callback callback;
 
 
     public AM1Machine() {
@@ -256,11 +258,12 @@ public class AM1Machine extends RuntimeMachine implements TerminationCaller {
 
 
     @Override
-    public void register(TerminationCallback callback) {
+    public void register(Callback callback) {
 
         if (callback == null) throw new NullPointerException("Callback to register was NULL!");
 
         this.callback = callback;
+
     }
 
     @Override
