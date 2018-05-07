@@ -1,0 +1,19 @@
+INIT 1
+CALL 13
+INIT 0
+LOADI (-2)
+LIT 2
+GT
+JMC 12
+LOADI (-2)
+LIT 2
+DIV
+STOREI (-2)
+RET 1
+INIT 0
+READ (global, 1)
+LOADA (global, 1)
+PUSH
+CALL 3
+WRITE (global, 1)
+JMP 0
